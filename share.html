@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LaiqVerse ArtWork</title>
+    
+    <!-- Open Graph Tags - These will be set dynamically -->
+    <meta property="og:title" content="LaiqVerse ArtWork" />
+    <meta property="og:description" content="AI artwork by Laiq Ahmed Qureshi — LaiqVerse — AI in Pakistan" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://laiqqureshi.github.io/laiqversestudioai/share.html" />
+    <meta property="og:image" content="https://laiqqureshi.github.io/laiqversestudioai/logo.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+            background: #f5f5f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 40px;
+        }
+        .container {
+            max-width: 900px;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+        }
+        .container h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 16px 0 8px;
+            color: #1d1d1f;
+        }
+        .container p {
+            color: #86868b;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin: 0 auto 16px;
+        }
+        .back-link {
+            display: inline-block;
+            color: #fd4400;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img id="mainImage" src="" alt="" />
+        <h1 id="mainTitle">Loading...</h1>
+        <p id="mainDescription">Loading...</p>
+        <a href="https://laiqqureshi.github.io/laiqversestudioai/gallery.html" class="back-link">← Back to The Vault</a>
+    </div>
+
+    <script>
+        // ===== DYNAMIC CONTENT LOADER =====
+        // Get the ID from URL: share.html?id=1
+        const urlParams = new URLSearchParams(window.location.search);
+        const imageId = urlParams.get('id');
+        
+        if (imageId) {
+            // Fetch the image data from the gallery
+            fetch('/laiqversestudioai/gallery.html')
+                .then(response => response.text())
+                .then(html => {
+                    // Extract the vaultData
+                    const match = html.match(/const vaultData = (\[[\s\S]*?\]);/);
+                    if (match) {
+                        try {
+                            const data = JSON.parse(match[1]);
+                            const item = data.find(p => p.id === parseInt(imageId));
+                            if (item) {
+                                // Update the page with the image data
+                                document.getElementById('mainTitle').textContent = item.title;
+                                document.getElementById('mainDescription').textContent = item.prompt || 'AI artwork by Laiq Ahmed Qureshi';
+                                document.getElementById('mainImage').src = '/' + item.folder + '/' + item.image;
+                                document.getElementById('mainImage').alt = item.title;
+                                
+                                // Update OG tags dynamically
+                                document.querySelector('meta[property="og:title"]').content = item.title;
+                                document.querySelector('meta[property="og:description"]').content = item.prompt || 'AI artwork by Laiq Ahmed Qureshi';
+                                document.querySelector('meta[property="og:image"]').content = window.location.origin + '/' + item.folder + '/' + item.image;
+                                document.querySelector('meta[property="og:url"]').content = window.location.href;
+                            }
+                        } catch(e) {
+                            console.error('Error parsing data:', e);
+                        }
+                    }
+                })
+                .catch(err => console.error('Error fetching data:', err));
+        }
+    </script>
+</body>
+</html>
