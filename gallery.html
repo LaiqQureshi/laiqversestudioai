@@ -4724,7 +4724,7 @@
             }
         });
 
-                function shareLightbox(platform) {
+                        function shareLightbox(platform) {
             if (!currentLightboxItem) return;
             const item = currentLightboxItem;
             const title = item.title;
@@ -4754,6 +4754,9 @@
 ' + url); break;
                 default: return;
             }
+            if (shareUrl) window.open(shareUrl, '_blank', 'width=600,height=500');
+            document.getElementById('lbShareMenu').classList.remove('show');
+        }
             if (shareUrl) window.open(shareUrl, '_blank', 'width=600,height=500');
             document.getElementById('lbShareMenu').classList.remove('show');
         }/${item.folder}/${item.image}`;
