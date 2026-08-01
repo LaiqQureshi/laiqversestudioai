@@ -178,6 +178,195 @@
             border-radius: 100px;
         }
 
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+        }
+
+        .lightbox-overlay.open {
+            display: flex;
+        }
+
+        .lightbox-content {
+            background: #ffffff;
+            border-radius: 20px;
+            max-width: 900px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 40px 120px rgba(0, 0, 0, 0.3);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.06);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: #1d1d1f;
+            transition: all 0.3s ease;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(0, 0, 0, 0.12);
+            transform: rotate(90deg);
+        }
+
+        .lightbox-image-wrap {
+            padding: 20px 20px 0;
+        }
+
+        .lightbox-image-wrap img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            display: block;
+        }
+
+        .lightbox-body {
+            padding: 20px 28px 28px;
+        }
+
+        .lightbox-body .lb-category {
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: #fd4400;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .lightbox-body h2 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin: 4px 0 8px 0;
+            color: #1d1d1f;
+        }
+
+        .lightbox-body .lb-description {
+            font-size: 0.9rem;
+            color: #86868b;
+            line-height: 1.6;
+            margin-bottom: 16px;
+            max-height: 120px;
+            overflow-y: auto;
+        }
+
+        .lightbox-body .lb-tags {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .lightbox-body .lb-tags span {
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: #86868b;
+            background: #f5f5f7;
+            padding: 3px 12px;
+            border-radius: 100px;
+        }
+
+        .lightbox-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            border-top: 1px solid #f0f0f0;
+            padding-top: 16px;
+        }
+
+        .lightbox-actions button {
+            padding: 8px 20px;
+            border-radius: 980px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-family: var(--font);
+        }
+
+        .lb-btn-copy {
+            background: #fd4400;
+            color: white;
+        }
+        .lb-btn-copy:hover {
+            background: #e63d00;
+        }
+
+        .lb-btn-share {
+            background: #f5f5f7;
+            color: #1d1d1f;
+            border: 1px solid #e5e5ea;
+        }
+        .lb-btn-share:hover {
+            background: #1d1d1f;
+            color: white;
+            border-color: #1d1d1f;
+        }
+
+        .lb-share-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .lb-share-menu {
+            display: none;
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-8px);
+            background: #ffffff;
+            border-radius: 14px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+            padding: 8px;
+            min-width: 160px;
+            border: 1px solid #f0f0f0;
+            z-index: 100;
+            margin-bottom: 8px;
+        }
+
+        .lb-share-menu.show {
+            display: block;
+        }
+
+        .lb-share-menu a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            color: #1d1d1f;
+            text-decoration: none;
+            transition: background 0.15s ease;
+            cursor: pointer;
+        }
+
+        .lb-share-menu a:hover {
+            background: #f5f5f7;
+        }
+
         @media (max-width: 1200px) {
             .vault-grid {
                 column-count: 3;
@@ -197,6 +386,26 @@
                 grid-column: span 2;
                 border-radius: 12px;
                 margin-bottom: 12px;
+            }
+            .lightbox-overlay {
+                padding: 16px;
+            }
+            .lightbox-content {
+                max-height: 95vh;
+            }
+            .lightbox-body {
+                padding: 12px 16px 16px;
+            }
+            .lightbox-body h2 {
+                font-size: 1.1rem;
+            }
+            .lightbox-actions {
+                flex-direction: column;
+                gap: 8px;
+            }
+            .lightbox-actions button {
+                width: 100%;
+                justify-content: center;
             }
         }
 
@@ -249,6 +458,37 @@
             <div class="vault-grid" id="vaultGrid"></div>
         </div>
     </section>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox-overlay" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+            <div class="lightbox-image-wrap">
+                <img id="lbImage" src="" alt="" />
+            </div>
+            <div class="lightbox-body">
+                <span class="lb-category" id="lbCategory">AI Art</span>
+                <h2 id="lbTitle">Title</h2>
+                <p class="lb-description" id="lbDescription">Description</p>
+                <div class="lb-tags" id="lbTags"></div>
+                <div class="lightbox-actions">
+                    <button class="lb-btn-copy" onclick="copyLightboxPrompt()">📋 Copy Prompt</button>
+                    <div class="lb-share-dropdown">
+                        <button class="lb-btn-share" onclick="toggleShareMenu()">↗ Share</button>
+                        <div class="lb-share-menu" id="lbShareMenu">
+                            <a onclick="shareLightbox('twitter')">𝕏 Twitter</a>
+                            <a onclick="shareLightbox('facebook')">📘 Facebook</a>
+                            <a onclick="shareLightbox('linkedin')">🔗 LinkedIn</a>
+                            <a onclick="shareLightbox('whatsapp')">💬 WhatsApp</a>
+                            <a onclick="shareLightbox('pinterest')">📌 Pinterest</a>
+                            <a onclick="shareLightbox('bluesky')">🦋 Bluesky</a>
+                            <a onclick="shareLightbox('email')">✉ Email</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 <footer style="padding: 32px 0 24px; background: var(--color-bg); border-top: 2px solid var(--color-primary);">
         <div class="container">
@@ -353,106 +593,6 @@
         const vaultData = [
     {
         "id": 1,
-        "folder": "prompt-21",
-        "title": "Macro Scratchboard Vision",
-        "image": "laiqqureshi-engraved.jpg",
-        "tags": [
-            "AI Art"
-        ],
-        "isPanoramic": false
-    },
-    {
-        "id": 2,
-        "folder": "prompt-17",
-        "title": "The Intellectual Sketchbook Caricature",
-        "image": "laiq-qureshi.jpg",
-        "tags": [
-            "AI Art"
-        ],
-        "isPanoramic": false
-    },
-    {
-        "id": 3,
-        "folder": "prompt-22",
-        "title": "The Visionary Ink Study",
-        "image": "humera-khan-laiqverse.jpg",
-        "tags": [
-            "AI Art"
-        ],
-        "isPanoramic": false
-    },
-    {
-        "id": 4,
-        "folder": "prompt-3",
-        "title": "Refined Monochromatic Ink Profile",
-        "image": "laiqverse28.png",
-        "tags": [
-            "AI Art"
-        ],
-        "isPanoramic": false
-    },
-    {
-        "id": 5,
-        "folder": "prompt-8",
-        "title": "The Pen-and-Ink Editorial Caricature",
-        "image": "bajwa-laiqverse.jpg",
-        "tags": [
-            "AI Art"
-        ],
-        "isPanoramic": false
-    },
-    {
-        "id": 6,
-        "folder": "prompt-20",
-        "title": "Dimensional Papercraft Portrait",
-        "image": "asim-munir-laiqverse.jpg",
-        "tags": [
-            "AI Art"
-        ],
-        "isPanoramic": false
-    },
-    {
-        "id": 7,
-        "folder": "prompt-5",
-        "title": "The Monochromatic Blue Force Perspective",
-        "image": "bhutto-laiqverse.jpg",
-        "tags": [
-            "AI Art"
-        ],
-        "isPanoramic": false
-    },
-    {
-        "id": 8,
-        "folder": "prompt-2",
-        "title": "The Atelier Hybrid Portrait",
-        "image": "laiqverse.jpg",
-        "tags": [
-            "AI Art"
-        ],
-        "isPanoramic": false
-    },
-    {
-        "id": 9,
-        "folder": "prompt-19",
-        "title": "LaiqVerse Prompt Studio",
-        "image": "laiqqureshi.jpg",
-        "tags": [
-            "AI Art"
-        ],
-        "isPanoramic": false
-    },
-    {
-        "id": 10,
-        "folder": "prompt-14",
-        "title": "The Cue Master's Focus",
-        "image": "fazal-ur-rahman-laiqverse.jpg",
-        "tags": [
-            "AI Art"
-        ],
-        "isPanoramic": false
-    },
-    {
-        "id": 11,
         "folder": "prompt-15",
         "title": "The Melancholic City Night",
         "image": "shah-rukh-khan-laiqverse.jpg",
@@ -462,47 +602,7 @@
         "isPanoramic": false
     },
     {
-        "id": 12,
-        "folder": "prompt-7",
-        "title": "The Cinematic Hyper-Caricature",
-        "image": "fazal-ur-rehman-laiqverse.jpg",
-        "tags": [
-            "AI Art"
-        ],
-        "isPanoramic": false
-    },
-    {
-        "id": 13,
-        "folder": "prompt-13",
-        "title": "The Alpenglow Reflection Portrait",
-        "image": "shah-rukh-khan-laiqverse.jpg",
-        "tags": [
-            "AI Art"
-        ],
-        "isPanoramic": false
-    },
-    {
-        "id": 14,
-        "folder": "prompt-18",
-        "title": "The Refined Charcoal Profile",
-        "image": "pope-laiqverse.jpg",
-        "tags": [
-            "AI Art"
-        ],
-        "isPanoramic": false
-    },
-    {
-        "id": 15,
-        "folder": "prompt-10",
-        "title": "The Acoustic Sepia Caricature",
-        "image": "salma-hayek1-laiqverse.jpg",
-        "tags": [
-            "AI Art"
-        ],
-        "isPanoramic": false
-    },
-    {
-        "id": 16,
+        "id": 2,
         "folder": "prompt-11",
         "title": "The Vibrant Editorial Caricature",
         "image": "benazir-laiqverse.jpg",
@@ -512,9 +612,9 @@
         "isPanoramic": false
     },
     {
-        "id": 17,
-        "folder": "prompt-1",
-        "title": "The Illustrator's Sketchbook Page",
+        "id": 3,
+        "folder": "prompt-2",
+        "title": "The Atelier Hybrid Portrait",
         "image": "laiqverse.jpg",
         "tags": [
             "AI Art"
@@ -522,19 +622,19 @@
         "isPanoramic": false
     },
     {
-        "id": 18,
-        "folder": "prompt-24",
-        "title": "Maniacal Impasto Expressionist Portrait",
-        "image": "fazal-ur-rehman-laiqverse.jpg",
+        "id": 4,
+        "folder": "prompt-10",
+        "title": "The Acoustic Sepia Caricature",
+        "image": "salma-hayek1-laiqverse.jpg",
         "tags": [
             "AI Art"
         ],
         "isPanoramic": false
     },
     {
-        "id": 19,
-        "folder": "prompt-16",
-        "title": "The Neo-Baroque Engraving Portrait",
+        "id": 5,
+        "folder": "prompt-17",
+        "title": "The Intellectual Sketchbook Caricature",
         "image": "laiq-qureshi.jpg",
         "tags": [
             "AI Art"
@@ -542,7 +642,27 @@
         "isPanoramic": false
     },
     {
-        "id": 20,
+        "id": 6,
+        "folder": "prompt-5",
+        "title": "The Monochromatic Blue Force Perspective",
+        "image": "bhutto-laiqverse.jpg",
+        "tags": [
+            "AI Art"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 7,
+        "folder": "prompt-20",
+        "title": "Dimensional Papercraft Portrait",
+        "image": "asim-munir-laiqverse.jpg",
+        "tags": [
+            "AI Art"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 8,
         "folder": "prompt-4",
         "title": "Intaglio Financial Engraving Portrait",
         "image": "malalalaiqverse.png",
@@ -552,7 +672,37 @@
         "isPanoramic": false
     },
     {
-        "id": 21,
+        "id": 9,
+        "folder": "prompt-7",
+        "title": "The Cinematic Hyper-Caricature",
+        "image": "fazal-ur-rehman-laiqverse.jpg",
+        "tags": [
+            "AI Art"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 10,
+        "folder": "prompt-23",
+        "title": "The LaiqVerse Kinetic Portrait",
+        "image": "laiqqureshi-kinetic.jpg",
+        "tags": [
+            "AI Art"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 11,
+        "folder": "prompt-1",
+        "title": "The Illustrator's Sketchbook Page",
+        "image": "laiqverse.jpg",
+        "tags": [
+            "AI Art"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 12,
         "folder": "prompt-12",
         "title": "The Modern Geometric Editorial Portrait",
         "image": "irrfan-khan-laiq-verse.jpg",
@@ -562,10 +712,100 @@
         "isPanoramic": false
     },
     {
+        "id": 13,
+        "folder": "prompt-18",
+        "title": "The Refined Charcoal Profile",
+        "image": "pope-laiqverse.jpg",
+        "tags": [
+            "AI Art"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 14,
+        "folder": "prompt-14",
+        "title": "The Cue Master's Focus",
+        "image": "fazal-ur-rahman-laiqverse.jpg",
+        "tags": [
+            "AI Art"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 15,
+        "folder": "prompt-21",
+        "title": "Macro Scratchboard Vision",
+        "image": "laiqqureshi-engraved.jpg",
+        "tags": [
+            "AI Art"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 16,
+        "folder": "prompt-19",
+        "title": "LaiqVerse Prompt Studio",
+        "image": "laiqqureshi.jpg",
+        "tags": [
+            "AI Art"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 17,
+        "folder": "prompt-24",
+        "title": "Maniacal Impasto Expressionist Portrait",
+        "image": "fazal-ur-rehman-laiqverse.jpg",
+        "tags": [
+            "AI Art"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 18,
+        "folder": "prompt-6",
+        "title": "The Urban Chronicle Portrait",
+        "image": "malala-laiqverse.jpg",
+        "tags": [
+            "AI Art"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 19,
+        "folder": "prompt-22",
+        "title": "The Visionary Ink Study",
+        "image": "humera-khan-laiqverse.jpg",
+        "tags": [
+            "AI Art"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 20,
+        "folder": "prompt-13",
+        "title": "The Alpenglow Reflection Portrait",
+        "image": "shah-rukh-khan-laiqverse.jpg",
+        "tags": [
+            "AI Art"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 21,
+        "folder": "prompt-8",
+        "title": "The Pen-and-Ink Editorial Caricature",
+        "image": "bajwa-laiqverse.jpg",
+        "tags": [
+            "AI Art"
+        ],
+        "isPanoramic": false
+    },
+    {
         "id": 22,
-        "folder": "prompt-23",
-        "title": "The LaiqVerse Kinetic Portrait",
-        "image": "laiqqureshi-kinetic.jpg",
+        "folder": "prompt-16",
+        "title": "The Neo-Baroque Engraving Portrait",
+        "image": "laiq-qureshi.jpg",
         "tags": [
             "AI Art"
         ],
@@ -583,9 +823,9 @@
     },
     {
         "id": 24,
-        "folder": "prompt-6",
-        "title": "The Urban Chronicle Portrait",
-        "image": "malala-laiqverse.jpg",
+        "folder": "prompt-3",
+        "title": "Refined Monochromatic Ink Profile",
+        "image": "laiqverse28.png",
         "tags": [
             "AI Art"
         ],
@@ -1972,6 +2212,7 @@
         "isPanoramic": true
     }
 ];
+        let currentLightboxItem = null;
 
         function renderVault() {
             const grid = document.getElementById('vaultGrid');
@@ -1983,7 +2224,7 @@
                 const imagePath = item.folder + '/' + item.image;
                 const itemClass = isPanoramic ? 'vault-item-panoramic' : 'vault-item';
                 html += `
-                    <div class="${itemClass}">
+                    <div class="${itemClass}" onclick="openLightbox(${item.id})">
                         <img src="${imagePath}" alt="${item.title}" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect width=%22300%22 height=%22300%22 fill=%22%23e8e8ed%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-family=%22system-ui%22 fill=%22%23999%22%3ENo Image%3C/text%3E%3C/svg%3E'" />
                         <div class="vault-info">
                             <h3>${item.title}</h3>
@@ -1996,6 +2237,112 @@
             });
             
             grid.innerHTML = html;
+        }
+
+        function openLightbox(id) {
+            const item = vaultData.find(p => p.id === id);
+            if (!item) return;
+            currentLightboxItem = item;
+            document.getElementById('lbImage').src = item.folder + '/' + item.image;
+            document.getElementById('lbImage').alt = item.title;
+            document.getElementById('lbCategory').textContent = 'AI Art';
+            document.getElementById('lbTitle').textContent = item.title;
+            document.getElementById('lbDescription').textContent = item.prompt || 'No description available.';
+            document.getElementById('lbTags').innerHTML = item.tags.map(tag => `<span>${tag}</span>`).join('');
+            document.getElementById('lightbox').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('open');
+            document.body.style.overflow = '';
+            document.getElementById('lbShareMenu').classList.remove('show');
+        }
+
+        document.getElementById('lightbox').addEventListener('click', function(e) {
+            if (e.target === this) closeLightbox();
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeLightbox();
+        });
+
+        function copyLightboxPrompt() {
+            if (!currentLightboxItem) return;
+            const text = currentLightboxItem.prompt || 'No prompt available.';
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(() => {
+                    showToast('✨ Prompt copied!');
+                }).catch(() => fallbackCopy(text));
+            } else {
+                fallbackCopy(text);
+            }
+        }
+
+        function fallbackCopy(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                document.execCommand('copy');
+                showToast('✨ Prompt copied!');
+            } catch (e) {
+                showToast('📋 Please copy manually');
+            }
+            document.body.removeChild(textarea);
+        }
+
+        function toggleShareMenu() {
+            document.getElementById('lbShareMenu').classList.toggle('show');
+        }
+
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.lb-share-dropdown')) {
+                document.getElementById('lbShareMenu').classList.remove('show');
+            }
+        });
+
+        function shareLightbox(platform) {
+            if (!currentLightboxItem) return;
+            const item = currentLightboxItem;
+            const title = item.title;
+            const text = (item.prompt || '').substring(0, 300) + '...';
+            const url = window.location.href;
+            const imageUrl = window.location.origin + '/' + item.folder + '/' + item.image;
+            const brandMessage = '✨ ' + title + '\n\n' + text + '\n\n🎨 Prompt crafted by Laiq Ahmed Qureshi\n#LaiqVerse #AIinPakistan #TasteMatters';
+            let shareUrl = '';
+            switch(platform) {
+                case 'twitter': shareUrl = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(brandMessage) + '&url=' + encodeURIComponent(url); break;
+                case 'facebook': shareUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url) + '&quote=' + encodeURIComponent(title + ' — ' + brandMessage); break;
+                case 'linkedin': shareUrl = 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(url) + '&title=' + encodeURIComponent(title) + '&summary=' + encodeURIComponent(brandMessage); break;
+                case 'whatsapp': shareUrl = 'https://wa.me/?text=' + encodeURIComponent(brandMessage + '\n\n' + url); break;
+                case 'pinterest': shareUrl = 'https://pinterest.com/pin/create/button/?url=' + encodeURIComponent(url) + '&media=' + encodeURIComponent(imageUrl) + '&description=' + encodeURIComponent(title + ' — ' + brandMessage); break;
+                case 'bluesky': shareUrl = 'https://bsky.app/intent/compose?text=' + encodeURIComponent(brandMessage + '\n\n' + url); break;
+                case 'email': shareUrl = 'mailto:?subject=' + encodeURIComponent(title + ' — Premium AI Prompt') + '&body=' + encodeURIComponent(brandMessage + '\n\n' + url); break;
+                default: return;
+            }
+            if (shareUrl) window.open(shareUrl, '_blank', 'width=600,height=500');
+            document.getElementById('lbShareMenu').classList.remove('show');
+        }
+
+        function showToast(message) {
+            const existing = document.querySelector('.toast');
+            if (existing) existing.remove();
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.textContent = message;
+            Object.assign(toast.style, {
+                position: 'fixed', bottom: '32px', left: '50%', transform: 'translateX(-50%)',
+                background: 'rgba(0,0,0,0.85)', color: 'white', padding: '14px 32px',
+                borderRadius: '100px', fontFamily: '-apple-system, sans-serif', fontSize: '0.95rem',
+                fontWeight: '500', backdropFilter: 'blur(10px)', zIndex: '999',
+                boxShadow: '0 8px 30px rgba(0,0,0,0.2)', opacity: '0',
+                transition: 'opacity 0.3s ease'
+            });
+            document.body.appendChild(toast);
+            setTimeout(() => toast.style.opacity = '1', 10);
+            setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 300); }, 2500);
         }
 
         document.addEventListener('DOMContentLoaded', function() {
