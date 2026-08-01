@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>The Architecture of Unfinished Thought</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #1c1a17;
+      background-image: 
+        linear-gradient(rgba(45, 42, 38, 0.25) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(45, 42, 38, 0.15) 1px, transparent 1px);
+      background-size: 52px 52px;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      color: #e3dbd1;
+      line-height: 1.5;
+      padding: 2rem 1rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      max-width: 840px;
+      width: 100%;
+      margin: 0 auto;
+      background: rgba(26, 24, 21, 0.82);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border-radius: 48px;
+      box-shadow: 0 24px 72px -20px rgba(0, 0, 0, 0.75), 0 8px 32px rgba(0, 0, 0, 0.25);
+      padding: 3rem 2.5rem;
+      transition: all 0.2s ease;
+      border: 1px solid rgba(255, 235, 210, 0.06);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* aged / archaeological texture */
+    .container::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 180 180"><filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.10 0"/></filter><rect width="180" height="180" filter="url(%23grain)" opacity="0.35"/></svg>');
+      opacity: 0.2;
+      pointer-events: none;
+      mix-blend-mode: overlay;
+    }
+
+    .container > * {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* title block */
+    .title-section {
+      margin-bottom: 2.6rem;
+      border-bottom: 1px solid rgba(255, 235, 210, 0.06);
+      padding-bottom: 1.6rem;
+    }
+
+    h1 {
+      font-size: 2.7rem;
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      line-height: 1.1;
+      margin-bottom: 0.6rem;
+      color: #ede6db;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+      background: linear-gradient(145deg, #ede6db 20%, #c4b9aa 90%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .subhead {
+      font-size: 1rem;
+      font-weight: 360;
+      color: #cbc2b5;
+      letter-spacing: -0.01em;
+      line-height: 1.5;
+      margin-top: 0.2rem;
+      padding: 0.4rem 1.2rem 0.4rem 1.2rem;
+      background: rgba(60, 55, 48, 0.2);
+      border-radius: 40px;
+      display: inline-block;
+      backdrop-filter: blur(2px);
+      border: 0.5px solid rgba(255, 215, 180, 0.05);
+      color: #d6cdc0;
+    }
+
+    .subhead strong {
+      font-weight: 500;
+      color: #e8dfd2;
+    }
+
+    /* fine print — small description */
+    .fine-print {
+      font-size: 0.78rem;
+      color: #a89f94;
+      letter-spacing: 0.01em;
+      margin-top: 0.8rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem 0.6rem;
+    }
+
+    .fine-print span {
+      background: rgba(70, 64, 56, 0.2);
+      padding: 0.1rem 0.9rem;
+      border-radius: 40px;
+      border: 0.3px solid rgba(255, 215, 180, 0.04);
+      font-weight: 350;
+      color: #cbc2b5;
+    }
+
+    /* story */
+    .story {
+      margin-top: 0.2rem;
+    }
+
+    .story h2 {
+      font-size: 0.95rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #b0a69a;
+      border-bottom: 1px solid rgba(255, 235, 210, 0.06);
+      padding-bottom: 0.7rem;
+      margin-bottom: 1.8rem;
+      display: inline-block;
+    }
+
+    .story-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+    }
+
+    .story-content p {
+      font-size: 1.06rem;
+      font-weight: 350;
+      line-height: 1.7;
+      color: #e3dbd0;
+      letter-spacing: -0.002em;
+      margin: 0;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.15);
+    }
+
+    .story-content p:first-of-type {
+      margin-top: 0;
+    }
+    .story-content p:last-of-type {
+      margin-bottom: 0;
+    }
+
+    /* meta footer */
+    .story-meta {
+      margin-top: 2.4rem;
+      padding-top: 1.6rem;
+      border-top: 1px solid rgba(255, 235, 210, 0.06);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      color: #a89f94;
+      letter-spacing: 0.02em;
+    }
+
+    .story-meta span {
+      background: rgba(60, 55, 48, 0.2);
+      padding: 0.2rem 1.1rem;
+      border-radius: 40px;
+      backdrop-filter: blur(1px);
+      border: 0.4px solid rgba(255, 215, 180, 0.04);
+    }
+
+    .atmosphere-tag {
+      font-style: normal;
+      font-weight: 350;
+      color: #d6cdc0;
+      background: rgba(60, 55, 48, 0.2);
+      padding: 0.15rem 1rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      display: inline-block;
+      backdrop-filter: blur(1px);
+      border: 0.3px solid rgba(255, 215, 180, 0.04);
+    }
+
+    .divider {
+      width: 40px;
+      height: 2px;
+      background: #5f554a;
+      margin: 1rem 0 1.8rem 0;
+      border-radius: 4px;
+    }
+
+    /* responsive */
+    @media (max-width: 640px) {
+      body {
+        padding: 1rem 0.6rem;
+      }
+      .container {
+        padding: 2rem 1.4rem;
+        border-radius: 32px;
+      }
+      h1 {
+        font-size: 2.1rem;
+      }
+      .subhead {
+        font-size: 0.9rem;
+        padding: 0.3rem 1rem;
+      }
+      .story-content p {
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+      .story-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.6rem;
+      }
+    }
+
+    ::selection {
+      background: #6a5f52;
+      color: #f2ebe0;
+    }
+
+    /* small decorative */
+    .glow-dot {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #b58a6a;
+      box-shadow: 0 0 18px #b58a6a44;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+
+    .tag-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem 0.7rem;
+      margin-top: 1.2rem;
+      padding-top: 0.8rem;
+      border-top: 0.5px solid rgba(255, 235, 210, 0.04);
+      font-size: 0.7rem;
+      color: #a0988c;
+    }
+    .tag-group span {
+      background: rgba(60, 55, 48, 0.15);
+      padding: 0.1rem 0.9rem;
+      border-radius: 30px;
+      border: 0.3px solid rgba(255, 215, 180, 0.04);
+    }
+
+    .footer-note {
+      margin-top: 2rem;
+      font-size: 0.6rem;
+      color: #7f766b;
+      letter-spacing: 0.04em;
+      text-align: center;
+      border-top: 0.5px solid rgba(255, 235, 210, 0.04);
+      padding-top: 1rem;
+      opacity: 0.7;
+    }
+
+    .accent-copper {
+      color: #b58a6a;
+      font-weight: 400;
+    }
+    .accent-ivory {
+      color: #d6cdc0;
+      font-weight: 400;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- title + description -->
+    <div class="title-section">
+      <h1>The Architecture<br>of Unfinished Thought</h1>
+      <div class="subhead">
+        <span class="glow-dot"></span> 
+        There is no city here. No nation. No beginning. No destination. Only the architecture that every human quietly carries within.
+      </div>
+      <!-- description in small fonts -->
+      <div class="fine-print">
+        <span>skeletons of forgotten beliefs · pillars of certainty</span>
+        <span>faceless figures · staircases toward nothing · doorways without walls</span>
+        <span>broken spheres · birds of brushstrokes · fossilized books</span>
+      </div>
+      <div style="margin-top: 0.4rem; display: flex; flex-wrap: wrap; gap: 0.3rem 0.6rem;">
+        <span style="background:rgba(60,55,48,0.2); padding:0.1rem 0.9rem; border-radius:30px; font-size:0.7rem; color:#b0a69a;">carbon black · weathered ivory · ash gray · oxidized copper</span>
+        <span style="background:rgba(60,55,48,0.2); padding:0.1rem 0.9rem; border-radius:30px; font-size:0.7rem; color:#b0a69a;">archaeological · surrealist · abstract</span>
+      </div>
+    </div>
+
+    <!-- story -->
+    <div class="story">
+      <h2>Story</h2>
+      <div class="divider"></div>
+      <div class="story-content">
+        <p>There is no city here.</p>
+        <p>No nation. No beginning. No destination. Only the architecture that every human quietly carries within.</p>
+        <p>The towering forms were never buildings. They are the skeletons of forgotten beliefs—the invisible pillars that once supported certainty before time weathered them into questions. Some resemble ancient trees because every thought grows roots. Others resemble broken monuments because every conviction eventually fractures beneath experience.</p>
+        <p>The faceless figures drift through this immense void without walking. They are not individuals but fragments of every life ever lived. They emerge from charcoal and disappear into stone, suggesting that identity is never fixed—it is continuously carved, erased, and rewritten by memory.</p>
+        <p>Across the composition, staircases rise confidently toward nothing. Their purpose was never arrival. They represent humanity's endless desire to understand what forever remains just beyond reach.</p>
+        <p>Doorways appear without walls because every transformation begins long before a path becomes visible.</p>
+        <p>Broken spheres release birds made entirely of brushstrokes, reminding us that freedom is born not from perfection but from rupture. What appears shattered often becomes the source of unexpected flight.</p>
+        <p>Ancient books slowly fossilize into geological layers, suggesting that knowledge does not disappear. Given enough time, every idea becomes part of civilization's landscape, buried beneath newer generations waiting to rediscover it.</p>
+        <p>Roots transform into veins of light, dissolving the distinction between nature and consciousness. The same force that nourishes forests also sustains imagination.</p>
+        <p>Mirrors no longer reflect faces. Instead, they reveal constellations, implying that the deepest act of self-discovery is not looking inward but recognizing one's place within something immeasurably larger.</p>
+        <p>The monumental eye watching from the darkness does not judge. It remembers. It witnesses every forgotten dream, every abandoned ambition, every silent act of creation that history never records.</p>
+        <p>Gravity itself has disappeared. Nothing obeys physical law because this is not the external world—it is the landscape of thought, where emotion determines weight, memory shapes space, and silence possesses greater force than sound.</p>
+        <p>The restrained palette of carbon black, weathered ivory, ash gray, and traces of oxidized copper evokes an archaeological excavation of the human spirit. Each scraped surface and fractured texture suggests that truth is uncovered through erosion rather than construction.</p>
+        <p><span style="color: #d6cdc0; font-weight: 380;">The Architecture of Unfinished Thought</span> proposes that the human mind is never a completed monument. It is an ever-changing structure, built from memory, altered by loss, strengthened by imagination, and left intentionally unfinished so that each generation may continue its construction. In that incompleteness lies both our greatest uncertainty and our greatest hope.</p>
+      </div>
+
+      <!-- meta: atmosphere + details -->
+      <div class="story-meta">
+        <span class="atmosphere-tag">◈ unfinished · memory · thought · ruin · light</span>
+        <span>✦ <span style="font-weight:350;">surrealist · abstract · archaeological</span></span>
+        <span style="font-weight:350;"><span class="accent-copper">oxidized copper</span> · <span class="accent-ivory">weathered ivory</span></span>
+      </div>
+
+      <!-- extra small description tags -->
+      <div class="tag-group">
+        <span>skeletons of belief</span>
+        <span>faceless figures</span>
+        <span>staircases to nothing</span>
+        <span>doorways without walls</span>
+        <span>birds of brushstrokes</span>
+        <span>fossilized books</span>
+        <span>roots of light</span>
+        <span>monumental eye</span>
+        <span>gravity dissolved</span>
+      </div>
+    </div>
+
+    <!-- footer -->
+    <div class="footer-note">
+      “The Architecture of Unfinished Thought” — the human mind as ever-changing structure.
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>The Last Train Through the Monsoon</title>
+  <style>
+    /* Apple-inspired reset & base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #f5f2ed;
+      background-image: 
+        linear-gradient(rgba(245, 242, 237, 0.4) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(245, 242, 237, 0.3) 1px, transparent 1px);
+      background-size: 40px 40px;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      color: #1e1e1e;
+      line-height: 1.5;
+      padding: 2rem 1rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      max-width: 820px;
+      width: 100%;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
+      border-radius: 48px;
+      box-shadow: 0 20px 60px -20px rgba(0, 0, 0, 0.15), 0 8px 24px rgba(0, 0, 0, 0.04);
+      padding: 3rem 2.5rem;
+      transition: all 0.2s ease;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+
+    /* Title & prompt description – clean, editorial */
+    .title-section {
+      margin-bottom: 2.8rem;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      padding-bottom: 2rem;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 0.6rem;
+      color: #1c1c1e;
+      background: linear-gradient(145deg, #1e1e1e 0%, #3a3a3a 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .prompt-description {
+      font-size: 0.95rem;
+      font-weight: 380;
+      color: #4a4a4e;
+      letter-spacing: -0.01em;
+      line-height: 1.6;
+      margin-top: 0.4rem;
+      max-width: 90%;
+      background: rgba(235, 232, 225, 0.3);
+      padding: 0.8rem 1.2rem;
+      border-radius: 40px;
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
+      border: 0.5px solid rgba(255, 255, 255, 0.6);
+      color: #2c2c2e;
+    }
+
+    .prompt-description strong {
+      font-weight: 600;
+      color: #1c1c1e;
+    }
+
+    /* Story – hero */
+    .story {
+      margin-top: 0.8rem;
+    }
+
+    .story h2 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: #6b6b70;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+      padding-bottom: 0.75rem;
+      margin-bottom: 1.8rem;
+      display: inline-block;
+    }
+
+    .story-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .story-content p {
+      font-size: 1.08rem;
+      font-weight: 380;
+      line-height: 1.7;
+      color: #1d1d1f;
+      letter-spacing: -0.003em;
+      text-align: left;
+      margin: 0;
+      padding: 0 0.1rem;
+    }
+
+    .story-content p:first-of-type {
+      margin-top: 0;
+    }
+
+    .story-content p:last-of-type {
+      margin-bottom: 0;
+    }
+
+    /* small descriptive meta – like fine print */
+    .story-meta {
+      margin-top: 2.5rem;
+      padding-top: 1.8rem;
+      border-top: 1px solid rgba(0, 0, 0, 0.04);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      color: #6e6e73;
+      letter-spacing: 0.02em;
+    }
+
+    .story-meta span {
+      background: rgba(235, 232, 225, 0.3);
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      backdrop-filter: blur(1px);
+      -webkit-backdrop-filter: blur(1px);
+      border: 0.5px solid rgba(255, 255, 255, 0.3);
+      font-weight: 400;
+    }
+
+    .story-meta .medium {
+      font-weight: 350;
+    }
+
+    /* small fonts for description as requested */
+    .fine-print {
+      font-size: 0.75rem;
+      color: #6e6e73;
+      letter-spacing: 0.01em;
+      line-height: 1.5;
+      margin-top: 0.25rem;
+      opacity: 0.8;
+    }
+
+    /* responsive */
+    @media (max-width: 640px) {
+      body {
+        padding: 1rem 0.75rem;
+      }
+      .container {
+        padding: 2rem 1.5rem;
+        border-radius: 32px;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      .prompt-description {
+        font-size: 0.85rem;
+        max-width: 100%;
+        padding: 0.6rem 1rem;
+        border-radius: 28px;
+      }
+      .story-content p {
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+      .story-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.6rem;
+      }
+    }
+
+    /* subtle ink / texture hint */
+    .container {
+      position: relative;
+      overflow: hidden;
+    }
+    .container::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="1" stitchTiles="stitch"/><feColorMatrix type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.08 0"/></filter><rect width="100" height="100" filter="url(%23noise)" opacity="0.3"/></svg>');
+      opacity: 0.06;
+      pointer-events: none;
+      mix-blend-mode: multiply;
+    }
+
+    /* apple-style spacing */
+    .container > * {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* tiny tea-stall glow hint */
+    .glow-accent {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #f7b731;
+      box-shadow: 0 0 12px #f7b73155;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+
+    /* subtle divider */
+    .divider {
+      width: 40px;
+      height: 2px;
+      background: #d2cbc3;
+      margin: 1.2rem 0 1.8rem 0;
+      border-radius: 4px;
+    }
+
+    /* quote / atmospheric */
+    .atmosphere {
+      font-style: normal;
+      font-weight: 350;
+      color: #3a3a3c;
+      background: rgba(235, 232, 225, 0.2);
+      padding: 0.2rem 0.8rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      display: inline-block;
+      backdrop-filter: blur(1px);
+      border: 0.3px solid rgba(255, 255, 255, 0.3);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* custom selection */
+    ::selection {
+      background: #d4ccc3;
+      color: #1e1e1e;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Title & Prompt Description -->
+    <div class="title-section">
+      <h1>The Last Train<br>Through the Monsoon</h1>
+      <div class="prompt-description">
+        <span class="glow-accent"></span> 
+        <strong>Description:</strong> A cinematic South Asian dreamscape that transforms an ordinary railway station into a meditation on memory, waiting, and belonging. Beneath an enormous rain tree, a solitary reader pauses with a book while an old train emerges through monsoon mist. A tiny tea stall glows with warm amber light, surrounded by bicycles, umbrellas, rickshaws, wet platforms and everyday travelers. The flooded landscape beyond the tracks dissolves into palms, distant buildings and atmospheric rain clouds, creating a setting that feels culturally familiar across Pakistan, India and Bangladesh without belonging exclusively to any one place. The artwork combines cinematic realism with gouache and watercolor textures, archival paper grain, subtle ink contours and contemporary editorial art direction.
+      </div>
+      <!-- fine print as requested: description in small fonts -->
+      <div class="fine-print" style="margin-top: 0.6rem;">
+        <span style="background: rgba(210, 200, 190, 0.15); padding: 0.15rem 0.9rem; border-radius: 40px; border: 0.3px solid rgba(255,255,255,0.2);">gouache · watercolor · archival paper · ink contours · editorial</span>
+      </div>
+    </div>
+
+    <!-- Story of the AI Painting – hero -->
+    <div class="story">
+      <h2>Story of the painting</h2>
+      <div class="divider"></div>
+      <div class="story-content">
+        <p>The rain has almost stopped. At a forgotten railway station somewhere in the subcontinent, the platform glistens beneath the fading storm. Water gathers between the railway tracks, reflecting fragments of the gray sky, while the smell of wet earth mixes with the unmistakable fragrance of freshly brewed tea.</p>
+        <p>Beneath an enormous old rain tree, a solitary traveler sits with a book open in his hands. He isn't waiting for anyone in particular. Or perhaps he is. Across the platform, a tea seller prepares another cup beneath a small amber bulb. A bicycle rests against the wall. An occasional umbrella passes through the mist. Somewhere in the distance, a rickshaw disappears into the wet streets, while children and commuters continue their ordinary journeys.</p>
+        <p>Then, through the monsoon haze, the train appears. Its light is faint at first — almost indistinguishable from the pale horizon. Slowly, its shape emerges from the mist, carrying countless unseen stories: people leaving, people returning, people searching for places they once called home.</p>
+        <p>The reader closes his book. For a moment, everything seems suspended — the rain, the train, the tea stall, the birds, even the distant city. The painting lives inside that moment. It is not really about a railway station. It is about <strong>the feeling of standing between departure and arrival</strong>. About the places we leave behind. About the places we continue to carry within us.</p>
+        <p>And about the quiet realization that across the vast landscapes of South Asia, millions of lives can look completely different while sharing the same rain, the same tea, the same railway tracks, and the same human instinct to wait for something to arrive.</p>
+        <p>The train keeps moving. The traveler remains beneath the tree for one last moment. And the monsoon continues.</p>
+      </div>
+
+      <!-- story meta: atmospheric + small details, like apple style -->
+      <div class="story-meta">
+        <span class="atmosphere">🌧️ monsoon · memory · belonging</span>
+        <span>✦ <span class="medium">editorial · cinematic realism</span></span>
+        <span style="font-weight: 350;">Pakistan · India · Bangladesh</span>
+      </div>
+      <!-- extra small description in fine print (as requested) -->
+      <div style="margin-top: 1.2rem; font-size: 0.7rem; color: #6e6e73; letter-spacing: 0.01em; border-top: 0.5px solid rgba(0,0,0,0.03); padding-top: 0.8rem; display: flex; flex-wrap: wrap; gap: 0.4rem 0.8rem;">
+        <span style="background: rgba(210,200,190,0.1); padding: 0.1rem 0.8rem; border-radius: 20px;">rain tree · amber tea stall · rickshaw</span>
+        <span style="background: rgba(210,200,190,0.1); padding: 0.1rem 0.8rem; border-radius: 20px;">flooded tracks · palms · mist</span>
+        <span style="background: rgba(210,200,190,0.1); padding: 0.1rem 0.8rem; border-radius: 20px;">archival paper grain</span>
+      </div>
+    </div>
+
+    <!-- small footer note – apple style -->
+    <div style="margin-top: 2.2rem; font-size: 0.6rem; color: #8e8e93; letter-spacing: 0.04em; text-align: center; border-top: 0.5px solid rgba(0,0,0,0.03); padding-top: 1rem; opacity: 0.7;">
+      <span>“The Last Train Through the Monsoon” · a meditation on waiting & belonging</span>
+    </div>
+  </div>
+</body>
+</html>

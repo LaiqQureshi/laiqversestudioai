@@ -1,0 +1,4761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Vault — LaiqVerseStudioAI</title>
+    <meta name="description" content="Explore the complete collection of AI prompts and images from LaiqVerseStudioAI." />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="icon" href="logo.png" type="image/png" />
+    <style>
+        .page-header-vault {
+            padding: 40px 0 20px;
+            background: #ffffff;
+            border-bottom: 1px solid rgba(0,0,0,0.04);
+            text-align: center;
+        }
+        .page-header-vault h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin: 0;
+        }
+        .page-header-vault h1 span {
+            color: #fd4400;
+        }
+        .page-header-vault p {
+            color: #86868b;
+            font-size: 1.1rem;
+            margin: 4px 0 0 0;
+        }
+
+        .vault-wrapper {
+            padding: 40px 0 60px;
+            background: #f5f5f7;
+        }
+
+        .vault-grid {
+            column-count: 4;
+            column-gap: 16px;
+            padding: 0;
+        }
+
+        .vault-item {
+            break-inside: avoid;
+            margin-bottom: 16px;
+            border-radius: 16px;
+            overflow: hidden;
+            background: #ffffff;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .vault-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .vault-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .vault-item:hover img {
+            transform: scale(1.02);
+        }
+
+        .vault-item .vault-info {
+            padding: 12px 16px 16px;
+        }
+
+        .vault-item .vault-info h3 {
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin: 0 0 4px 0;
+            color: #1d1d1f;
+            line-height: 1.3;
+        }
+
+        .vault-item .vault-info .vault-tags {
+            display: flex;
+            gap: 4px;
+            flex-wrap: wrap;
+        }
+
+        .vault-item .vault-info .vault-tags span {
+            font-size: 0.6rem;
+            font-weight: 500;
+            color: #86868b;
+            background: #f5f5f7;
+            padding: 2px 10px;
+            border-radius: 100px;
+        }
+
+        .vault-divider {
+            break-inside: avoid;
+            padding: 24px 0 16px;
+            text-align: center;
+            background: #f0efed;
+            border-radius: 16px;
+            margin: 8px 0 16px;
+            border: 1px solid rgba(253, 68, 0, 0.06);
+        }
+        .vault-divider h2 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #1d1d1f;
+            letter-spacing: -0.02em;
+        }
+        .vault-divider p {
+            color: #86868b;
+            font-size: 0.8rem;
+            margin-top: 2px;
+        }
+        .vault-divider .line {
+            width: 40px;
+            height: 2px;
+            background: #fd4400;
+            margin: 6px auto 0;
+            border-radius: 2px;
+        }
+
+        .vault-item-panoramic {
+            break-inside: avoid;
+            margin-bottom: 16px;
+            border-radius: 16px;
+            overflow: hidden;
+            background: #ffffff;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            cursor: pointer;
+            position: relative;
+            grid-column: span 2;
+        }
+
+        .vault-item-panoramic:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .vault-item-panoramic img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .vault-item-panoramic:hover img {
+            transform: scale(1.02);
+        }
+
+        .vault-item-panoramic .vault-info {
+            padding: 12px 16px 16px;
+        }
+
+        .vault-item-panoramic .vault-info h3 {
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin: 0 0 4px 0;
+            color: #1d1d1f;
+            line-height: 1.3;
+        }
+
+        .vault-item-panoramic .vault-info .vault-tags {
+            display: flex;
+            gap: 4px;
+            flex-wrap: wrap;
+        }
+
+        .vault-item-panoramic .vault-info .vault-tags span {
+            font-size: 0.6rem;
+            font-weight: 500;
+            color: #86868b;
+            background: #f5f5f7;
+            padding: 2px 10px;
+            border-radius: 100px;
+        }
+
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            animation: lightboxFadeIn 0.3s ease;
+        }
+
+        .lightbox-overlay.open {
+            display: flex;
+        }
+
+        @keyframes lightboxFadeIn {
+            from { opacity: 0; transform: scale(0.96); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .lightbox-content {
+            background: #ffffff;
+            border-radius: 20px;
+            max-width: 900px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 40px 120px rgba(0, 0, 0, 0.3);
+            animation: lightboxSlideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes lightboxSlideUp {
+            from { opacity: 0; transform: translateY(20px) scale(0.96); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.06);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: #1d1d1f;
+            transition: all 0.3s ease;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(0, 0, 0, 0.12);
+            transform: rotate(90deg);
+        }
+
+        .lightbox-image-wrap {
+            padding: 20px 20px 0;
+        }
+
+        .lightbox-image-wrap img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            display: block;
+        }
+
+        .lightbox-body {
+            padding: 20px 28px 28px;
+        }
+
+        .lightbox-body .lb-category {
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: #fd4400;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .lightbox-body h2 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin: 4px 0 8px 0;
+            color: #1d1d1f;
+        }
+
+        .lightbox-body .lb-description {
+            font-size: 0.9rem;
+            color: #86868b;
+            line-height: 1.6;
+            margin-bottom: 16px;
+            max-height: 120px;
+            overflow-y: auto;
+        }
+
+        .lightbox-body .lb-tags {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .lightbox-body .lb-tags span {
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: #86868b;
+            background: #f5f5f7;
+            padding: 3px 12px;
+            border-radius: 100px;
+        }
+
+        .lightbox-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            border-top: 1px solid #f0f0f0;
+            padding-top: 16px;
+        }
+
+        .lightbox-actions button {
+            padding: 8px 20px;
+            border-radius: 980px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-family: var(--font);
+        }
+
+        .lb-btn-copy {
+            background: #fd4400;
+            color: white;
+        }
+        .lb-btn-copy:hover {
+            background: #e63d00;
+            transform: scale(1.02);
+        }
+
+        .lb-btn-share {
+            background: #f5f5f7;
+            color: #1d1d1f;
+            border: 1px solid #e5e5ea;
+        }
+        .lb-btn-share:hover {
+            background: #1d1d1f;
+            color: white;
+            border-color: #1d1d1f;
+        }
+
+        .lb-share-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .lb-share-menu {
+            display: none;
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-8px);
+            background: #ffffff;
+            border-radius: 14px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+            padding: 8px;
+            min-width: 160px;
+            border: 1px solid #f0f0f0;
+            z-index: 100;
+            margin-bottom: 8px;
+        }
+
+        .lb-share-menu.show {
+            display: block;
+            animation: shareFadeIn 0.2s ease;
+        }
+
+        @keyframes shareFadeIn {
+            from { opacity: 0; transform: translateX(-50%) translateY(-4px) scale(0.96); }
+            to { opacity: 1; transform: translateX(-50%) translateY(-8px) scale(1); }
+        }
+
+        .lb-share-menu a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            color: #1d1d1f;
+            text-decoration: none;
+            transition: background 0.15s ease;
+            cursor: pointer;
+        }
+
+        .lb-share-menu a:hover {
+            background: #f5f5f7;
+        }
+
+        @media (max-width: 1200px) {
+            .vault-grid {
+                column-count: 3;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .vault-grid {
+                column-count: 2;
+                column-gap: 12px;
+            }
+            .vault-item {
+                border-radius: 12px;
+                margin-bottom: 12px;
+            }
+            .vault-item-panoramic {
+                grid-column: span 2;
+                border-radius: 12px;
+                margin-bottom: 12px;
+            }
+            .lightbox-overlay {
+                padding: 16px;
+            }
+            .lightbox-content {
+                max-height: 95vh;
+            }
+            .lightbox-body {
+                padding: 12px 16px 16px;
+            }
+            .lightbox-body h2 {
+                font-size: 1.1rem;
+            }
+            .lightbox-actions {
+                flex-direction: column;
+                gap: 8px;
+            }
+            .lightbox-actions button {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .vault-grid {
+                column-count: 1;
+            }
+            .vault-item-panoramic {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="site-header">
+        <div class="container">
+            <div class="nav-wrapper">
+                <a href="index.html" class="logo">
+                    <img src="logo.png" alt="LaiqVerseStudioAI" class="logo-img" />
+                    <span class="logo-text">LaiqVerse<span>StudioAI</span></span>
+                </a>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="prompts.html">Prompts</a></li>
+                        <li><a href="gallery.html" class="active">The Vault</a></li>
+                        <li><a href="panoramic.html">Panoramic</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+                <button class="mobile-toggle" aria-label="Toggle menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-header-vault">
+        <div class="container">
+            <h1>The <span>Vault</span></h1>
+            <p>Explore the complete collection — images, prompts, and inspiration.</p>
+        </div>
+    </div>
+
+    <section class="vault-wrapper">
+        <div class="container">
+            <div class="vault-grid" id="vaultGrid">
+                <!-- Items will be injected by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox-overlay" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+            <div class="lightbox-image-wrap">
+                <img id="lbImage" src="" alt="" />
+            </div>
+            <div class="lightbox-body">
+                <span class="lb-category" id="lbCategory">AI Art</span>
+                <h2 id="lbTitle">Title</h2>
+                <p class="lb-description" id="lbDescription">Description</p>
+                <div class="lb-tags" id="lbTags"></div>
+                <div class="lightbox-actions">
+                    <button class="lb-btn-copy" onclick="copyLightboxPrompt()">📋 Copy Prompt</button>
+                    <div class="lb-share-dropdown">
+                        <button class="lb-btn-share" onclick="toggleShareMenu()">↗ Share</button>
+                        <div class="lb-share-menu" id="lbShareMenu">
+                            <a onclick="shareLightbox('twitter')">𝕏 Twitter</a>
+                            <a onclick="shareLightbox('facebook')">📘 Facebook</a>
+                            <a onclick="shareLightbox('linkedin')">🔗 LinkedIn</a>
+                            <a onclick="shareLightbox('whatsapp')">💬 WhatsApp</a>
+                            <a onclick="shareLightbox('pinterest')">📌 Pinterest</a>
+                            <a onclick="shareLightbox('bluesky')">🦋 Bluesky</a>
+                            <a onclick="shareLightbox('email')">✉ Email</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<footer style="padding: 32px 0 24px; background: var(--color-bg); border-top: 2px solid var(--color-primary);">
+        <div class="container">
+            
+            <!-- Footer Main Box - Compact -->
+            <div style="background: var(--color-surface); border-radius: 16px; padding: 24px 32px; border: 1.5px solid rgba(253, 68, 0, 0.15); box-shadow: 0 4px 20px rgba(0,0,0,0.04);">
+                
+                <!-- 3 Column Grid - Tighter spacing -->
+                <div style="display: grid; grid-template-columns: 1.8fr 1fr 1.2fr; gap: 24px;">
+                    
+                    <!-- Brand Column -->
+                    <div>
+                        <a href="index.html" class="logo" style="display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 1.1rem; color: var(--color-text); text-decoration: none;">
+                            <img src="logo.png" alt="LaiqVerseStudioAI" style="height: 28px; width: auto; border-radius: 6px;" />
+                            <span>LaiqVerse<span style="color: var(--color-primary);">StudioAI</span></span>
+                        </a>
+                        <p style="color: var(--color-text-secondary); font-size: 0.8rem; margin-top: 4px; line-height: 1.5;">
+                            Curated AI prompts for artists and creators.
+                        </p>
+                        <p style="color: var(--color-primary); font-size: 0.75rem; font-style: italic; margin-top: 2px;">
+                            "I direct machines to imagine."
+                        </p>
+                        
+                        <!-- Parent Site Link - Compact -->
+                        <div style="margin-top: 10px; display: inline-block; border: 1px solid rgba(253, 68, 0, 0.15); border-radius: 8px; padding: 4px 12px; transition: all 0.3s ease;">
+                            <a href="https://laiqverse11.wordpress.com/" target="_blank" style="color: var(--color-primary); font-size: 0.7rem; font-weight: 500; text-decoration: none; display: flex; align-items: center; gap: 4px;">
+                                <span>🌐</span> Parent Site
+                                <span style="font-size: 0.6rem;">→</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Pages Column - Tighter -->
+                    <div>
+                        <h4 style="font-size: 0.65rem; font-weight: 600; color: var(--color-text); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; border-bottom: 1.5px solid var(--color-primary); padding-bottom: 4px; display: inline-block;">
+                            Pages
+                        </h4>
+                        <ul style="list-style: none; padding: 0; margin: 0;">
+                            <li style="margin-bottom: 4px;"><a href="index.html" style="color: var(--color-text-secondary); text-decoration: none; font-size: 0.8rem; transition: color 0.2s ease;">Home</a></li>
+                            <li style="margin-bottom: 4px;"><a href="prompts.html" style="color: var(--color-text-secondary); text-decoration: none; font-size: 0.8rem; transition: color 0.2s ease;">Prompts</a></li>
+                            <li style="margin-bottom: 4px;"><a href="about.html" style="color: var(--color-text-secondary); text-decoration: none; font-size: 0.8rem; transition: color 0.2s ease;">About</a></li>
+                            <li style="margin-bottom: 0;"><a href="contact.html" style="color: var(--color-text-secondary); text-decoration: none; font-size: 0.8rem; transition: color 0.2s ease;">Contact</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Connect Column - Tighter -->
+                    <div>
+                        <h4 style="font-size: 0.65rem; font-weight: 600; color: var(--color-text); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; border-bottom: 1.5px solid var(--color-primary); padding-bottom: 4px; display: inline-block;">
+                            Connect
+                        </h4>
+                        <ul style="list-style: none; padding: 0; margin: 0;">
+                            <li style="margin-bottom: 4px;"><a href="https://x.com/LaiqVerse" target="_blank" style="color: var(--color-text-secondary); text-decoration: none; font-size: 0.8rem; transition: color 0.2s ease;">Twitter / X</a></li>
+                            <li style="margin-bottom: 4px;"><a href="https://www.facebook.com/groups/laiqverse" target="_blank" style="color: var(--color-text-secondary); text-decoration: none; font-size: 0.8rem; transition: color 0.2s ease;">Facebook</a></li>
+                            <li style="margin-bottom: 4px;"><a href="https://www.instagram.com/laiqverse/" target="_blank" style="color: var(--color-text-secondary); text-decoration: none; font-size: 0.8rem; transition: color 0.2s ease;">Instagram</a></li>
+                            <li style="margin-bottom: 4px;"><a href="https://www.pinterest.com/laiqqureshi/" target="_blank" style="color: var(--color-text-secondary); text-decoration: none; font-size: 0.8rem; transition: color 0.2s ease;">Pinterest</a></li>
+                            <li style="margin-bottom: 0;"><a href="https://bsky.app/profile/laiqai.bsky.social" target="_blank" style="color: var(--color-text-secondary); text-decoration: none; font-size: 0.8rem; transition: color 0.2s ease;">Bluesky</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Divider - Thin orange -->
+                <div style="border-top: 1.5px solid rgba(253, 68, 0, 0.12); margin: 16px 0 14px;"></div>
+                
+                <!-- Footer Bottom - Compact -->
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+                    <div>
+                        <p style="font-size: 0.7rem; color: var(--color-text-secondary); margin: 0;">
+                            &copy; 2026 LaiqVerseStudioAI
+                        </p>
+                        <p style="font-size: 0.65rem; color: var(--color-primary); margin: 2px 0 0; letter-spacing: 0.3px;">
+                            #LaiqVerse #AIinPakistan #TasteMatters
+                        </p>
+                    </div>
+                    
+                    <!-- CTA Buttons - Compact -->
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                        <a href="prompts.html" style="background: var(--color-primary); color: white; padding: 6px 16px; border-radius: 980px; font-weight: 600; font-size: 0.75rem; text-decoration: none; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 4px; border: 1.5px solid var(--color-primary);">
+                            Explore
+                            <span style="font-size: 0.65rem;">→</span>
+                        </a>
+                        <a href="https://laiqverse11.wordpress.com/" target="_blank" style="background: transparent; color: var(--color-text); padding: 6px 16px; border-radius: 980px; font-weight: 500; font-size: 0.75rem; text-decoration: none; transition: all 0.3s ease; border: 1.5px solid var(--color-border); display: inline-flex; align-items: center; gap: 4px;">
+                            Blog
+                            <span style="font-size: 0.65rem;">→</span>
+                        </a>
+                    </div>
+                </div>
+                
+            </div>
+            
+        </div>
+    
+            
+
+        <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; padding: 8px 0 16px; background: #1d1d1f;">
+                <a href="privacy.html" style="color: rgba(255,255,255,0.3) !important; font-size: 0.6rem !important; text-decoration: none !important;">Privacy Policy</a>
+                <span style="color: rgba(255,255,255,0.15); font-size: 0.5rem;">·</span>
+                <a href="terms.html" style="color: rgba(255,255,255,0.3) !important; font-size: 0.6rem !important; text-decoration: none !important;">Terms of Service</a>
+            </div>
+    </footer>
+    <script>
+        const vaultData = [
+    {
+        "id": 1,
+        "folder": "prompt-15",
+        "title": "The Melancholic City Night",
+        "image": "shah-rukh-khan-laiqverse.jpg",
+        "prompt": "A low-angle, cinematic close-up shot captured looking through a rain-slicked car window during a heavy rainstorm. The image must incorporate the exact facial identity and features of the subject from the reference photo.\n\nComposition: The subject is seen through a car window with rain droplets and neon city lights creating a melancholic, atmospheric mood. The rain and reflections add depth and emotional resonance.\n\nExecution: Cinematic photography with dramatic lighting, rain effects, and neon color grading. The aesthetic feels like a frame from an arthouse film.",
+        "tags": [
+            "Gemini Omni",
+            "Laiq Ahmed Qureshi",
+            "DeepSeek",
+            "LaiqVerse",
+            "Pakistan"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 2,
+        "folder": "prompt-9",
+        "title": "The Crimson Silhouette Portrait",
+        "image": "fazal-ur-rehman-laiqverse.jpg",
+        "prompt": "An ultra-realistic, cinematic close-up portrait (9:16 aspect ratio) of the subject from the reference photo. The image must strictly preserve 100% facial identity, skin texture, and features.\n\nLighting & Mood: Dramatic cinematic lighting with a deep crimson/monochromatic color scheme. The lighting emphasizes facial contours, creating a powerful and emotive portrait that feels both intimate and monumental.\n\nExecution: Museum-quality finishing with subtle texture, premium grading, and professional editorial aesthetics. The portrait should feel like a frame from a prestige cinema production or a high-end fashion editorial.",
+        "tags": [
+            "Gemini Omni",
+            "Laiq Ahmed Qureshi",
+            "DeepSeek",
+            "LaiqVerse",
+            "Pakistan"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 3,
+        "folder": "prompt-19",
+        "title": "LaiqVerse Prompt Studio",
+        "image": "laiqqureshi.jpg",
+        "prompt": "Prompt text not found",
+        "tags": [
+            "Gemini Omni",
+            "Laiq Ahmed Qureshi",
+            "DeepSeek",
+            "LaiqVerse",
+            "Pakistan"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 4,
+        "folder": "prompt-6",
+        "title": "The Urban Chronicle Portrait",
+        "image": "malala-laiqverse.jpg",
+        "prompt": "A hyperrealistic, museum-grade portrait collage of the subject captured in a moment of intense emotion (screaming, eyes closed). The image must strictly preserve the exact facial identity, skin texture, and features from the uploaded reference photo.\n\nComposition: The portrait is presented against a dynamic urban backdrop featuring abstract architectural elements, layered with subtle cultural references. The composition uses dramatic chiaroscuro lighting to emphasize the emotional intensity of the expression.\n\nStyle: Hyperrealistic with museum-grade finishing, combining editorial portrait techniques with fine art aesthetics. The image should feel both contemporary and timeless, capturing a moment of raw human emotion.",
+        "tags": [
+            "Gemini Omni",
+            "Laiq Ahmed Qureshi",
+            "DeepSeek",
+            "LaiqVerse",
+            "Pakistan"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 5,
+        "folder": "prompt-12",
+        "title": "The Modern Geometric Editorial Portrait",
+        "image": "irrfan-khan-laiq-verse.jpg",
+        "prompt": "A sophisticated modern geometric editorial portrait (vertical 4:5 aspect ratio) presented as a close-up bust portrait from a slightly low angle, where the subject's face is deconstructed into a refined composition of geometric shapes, angular planes, and faceted forms.\n\nStyle: The aesthetic merges cubist influences with contemporary editorial photography. The geometric deconstruction creates a unique visual language while preserving recognizable identity and features.\n\nExecution: Premium digital craftsmanship with refined color grading, subtle textures, and professional editorial finishing. The portrait feels both modern and timeless.",
+        "tags": [
+            "Gemini Omni",
+            "Laiq Ahmed Qureshi",
+            "DeepSeek",
+            "LaiqVerse",
+            "Pakistan"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 6,
+        "folder": "prompt-16",
+        "title": "The Neo-Baroque Engraving Portrait",
+        "image": "laiq-qureshi.jpg",
+        "prompt": "A masterful, symmetrical close-up portrait of Laiq Ahmed Qureshi, executed in a hybrid vintage engraving and ornate woodcut illustration style. The image must strictly adhere to the reference photo, preserving 100% identity accuracy\u2014including bone structure, facial features, hairstyle, and distinctive characteristics\u2014without beautification or alteration. Stylistic Execution The portrait is defined by elaborate, intricate linework and detailed cross-hatching that defines the subject's anatomy and form. The linocut detailing is so dense it mimics the textures of hair and clothing. The subject's figure is seamlessly blended with surrounding elaborate filigree, baroque scrollwork, and stylized swirling patterns that form a cohesive, decorative tapestry integrated into the portrait itself. Lighting &amp; Color Palette The artwork features dramatic chiaroscuro lighting, creating a stark, high-contrast graphic poster aesthetic. The background is a deep, moody teal and muted turquoise, overlaid with a subtle damask pattern. The main subject is rendered in monochromatic cream, off-white, and charcoal black linework. This is punctuated by a vibrant, high-saturation pop of orange-red applied to a single prominent accessory (e.g., a lapel pin or scarf detail). Composition &amp; Atmosphere The composition is a tight, symmetrical portrait with bold, vector-like outlines. The mood is cool, edgy, retro-modern, and stylishly surreal, presenting Laiq Ahmed Qureshi as a central figure within a sophisticated, hand-carved printmaking masterpiece. The final render is clean-edged, ultra-detailed, and commands attention as a premium gallery asset.",
+        "tags": [
+            "Gemini Omni",
+            "Laiq Ahmed Qureshi",
+            "DeepSeek",
+            "LaiqVerse",
+            "Pakistan"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 7,
+        "folder": "prompt-8",
+        "title": "The Pen-and-Ink Editorial Caricature",
+        "image": "bajwa-laiqverse.jpg",
+        "prompt": "A highly detailed, museum-quality black-and-white editorial caricature of the subject from the reference image, executed in the precise pen-and-ink art style.\n\nTechnique: The illustration uses expert cross-hatching, stippling, and varied line weights to create depth, texture, and three-dimensional form. The pen-and-ink technique emphasizes draftsmanship and traditional illustration craftsmanship.\n\nComposition: The subject is presented as a bobblehead-style caricature with a slight exaggeration of head proportions while maintaining recognizable identity. The aesthetic combines editorial illustration with fine art printmaking traditions.",
+        "tags": [
+            "Gemini Omni",
+            "Laiq Ahmed Qureshi",
+            "DeepSeek",
+            "LaiqVerse",
+            "Pakistan"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 8,
+        "folder": "prompt-2",
+        "title": "The Atelier Hybrid Portrait",
+        "image": "laiqverse.jpg",
+        "prompt": "Transform the uploaded portrait into a hybrid visual style combining contemporary fashion illustration, expressive atelier oil painting, and semi-abstract sketch aesthetics.\n\nIdentity & Fidelity: Preserve 100% of the subject's original facial identity, including hairstyle, skin tone, beard, mustache, glasses, hijab, makeup, age, gender expression, pose, body proportions, clothing silhouette, and all distinguishing features exactly as in the uploaded image.\n\nComposition: Place the subject on a clean isolated background featuring subtle warm sepia canvas stains fading into untouched white negative space. The artwork should appear partially refined and partially deconstructed\u2014highly accurate facial rendering emerging from layered gestural brushwork.\n\nArtistic Technique: Integrate dynamic line variation: razor-sharp technical contours mixed with soft unfinished sketch marks, spontaneous ink streaks, rough charcoal lines, palette knife textures, dry-brush pigment buildup, semi-transparent washes, scraped paint surfaces, and overlapping expressive drafting strokes extending outward into empty space.\n\nAtmosphere: Include subtle, illegible atelier construction marks and conceptual fashion-drawing textures. Strictly NO typography, letters, logos, watermarks, signatures, or readable text. Lighting should be soft and cinematic with subtle chiaroscuro transitions.",
+        "tags": [
+            "Fashion",
+            "Oil Painting",
+            "Portrait"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 9,
+        "folder": "prompt-17",
+        "title": "The Intellectual Sketchbook Caricature",
+        "image": "laiq-qureshi.jpg",
+        "prompt": "A highly detailed, museum-grade hand-drawn caricature portrait rendered in a premium sketchbook illustration style. The image must strictly use the uploaded photo as the identity anchor, ensuring 100% likeness accuracy regarding facial structure, hairline, skin tone, and distinctive features, while artistically exaggerating the subject's proportions for caricature impact. Artistic Execution Exaggerate distinctive features with an oversized head, elongated neck, enlarged black thick-rimmed eyeglasses, and slightly oversized ears. The subject's expression is mildly skeptical and intellectual, characterized by a dry sense of humor, a subtle side-eye, and one slightly raised eyebrow. The piece is an ultra-detailed pen-and-ink drawing blended with watercolor washes. Incorporate fine cross-hatching, scribbled sketch lines, and visible construction marks to maintain an authentic 'artist notebook' aesthetic. Hair is rendered with loose, expressive, and messy flyaway strokes; the clothing is a simple dark crew-neck shirt depicted with relaxed, confident sketchwork. Palette &amp; Texture The background is an aged sketchbook page featuring subtle coffee stains, ink splatters, and watercolor blotches on textured, organic paper. The palette is warm and muted, consisting of paper tones, watercolor browns, sepia inks, and subtle skin hues. Final Finish The result is an illustrator-portfolio-quality piece that feels intelligent, quirky, and eccentric. Absolutely NO cartoon animation style, NO plastic rendering, NO digital smoothness, and NO 3D CGI appearance. The final output is an 8K, 4:5 portrait suitable for a professional editorial magazine feature.",
+        "tags": [
+            "Gemini Omni",
+            "Laiq Ahmed Qureshi",
+            "DeepSeek",
+            "LaiqVerse",
+            "Pakistan"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 10,
+        "folder": "prompt-1",
+        "title": "The Illustrator's Sketchbook Page",
+        "image": "laiqverse.jpg",
+        "prompt": "A spontaneous, chaotic, and densely packed sketchbook page, presented as if an illustrator has quickly sketched, doodled, and stacked multiple drawings at will. The entire composition is set against a clean, bright white textured paper background. The subject's exact facial identity, short dark hair, and full beard must be preserved across all sketches, maintaining perfect likeness and anatomical accuracy, especially on the close-ups.\n\nFreely Distributed Sketches:\n- Face Close-ups: Multiple expressive portraits capturing the subject's personality and subtle smile.\n- Full-body drawings: Several figures showcasing the subject's specific style: V-neck black T-shirts, black or blue jeans, and heavy, rugged combat boots.\n- Accessories: Beaded bracelets and a digital wrist watch visible on hands and wrists.\n- Activity Sketches: Subject shown using MacBook Pro and iPad with Apple Pencil.\n- Chibi/Deformed: Humorous 'chibi' versions scattered among realistic sketches.\n\nStyle: Free, stripped, raw black ink, pencil, and charcoal sketch lines. Loose, energetic, expressive lines with visible hatching and cross-hatching. NO organized character sheet, NO grid layout, NO clean digital lines.",
+        "tags": [
+            "Sketchbook",
+            "Hand-Drawn",
+            "Character"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 11,
+        "folder": "prompt-10",
+        "title": "The Acoustic Sepia Caricature",
+        "image": "salma-hayek1-laiqverse.jpg",
+        "prompt": "A highly detailed digital caricature illustration of the subject from the reference image, transforming her into a stylized caricature while strictly preserving facial identity and recognizable features.\n\nConcept: The subject is depicted playing an acoustic guitar, adding a musical and artistic dimension to the portrait. The caricature style uses warm sepia tones, creating a nostalgic and artistic atmosphere.\n\nExecution: The illustration combines traditional caricature techniques with digital refinement. The warm sepia palette adds depth and emotional resonance, while the guitar prop creates narrative interest.",
+        "tags": [
+            "Gemini Omni",
+            "Laiq Ahmed Qureshi",
+            "DeepSeek",
+            "LaiqVerse",
+            "Pakistan"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 12,
+        "folder": "prompt-3",
+        "title": "Refined Monochromatic Ink Profile",
+        "image": "laiqverse28.png",
+        "prompt": "A refined, museum-quality monochromatic ink portrait on a pristine, pure white textured fine art paper background. The composition features a clean, sharp side profile of the subject facing left, strictly preserving the exact facial identity, bone structure, proportions, and likeness from the uploaded reference image.\n\nArtistic Execution: The portrait is rendered using deep charcoal-gray ink, expertly balanced to achieve subtle tonal variations that define the contours of the face and hair. The rendering blends precision portraiture with expressive, fluid art techniques: controlled ink splatter accents are visible, alongside delicate watercolor diffusion effects that give the shadows a soft, organic quality. The edges of the silhouette are not hard-lined; instead, they feature a faint, mist-like dispersion where the ink dissolves into the negative space, creating an ethereal and elegant fade.\n\nAtmosphere: The lighting is soft and even, highlighting the texture of both the ink and the paper. The final image must feel contemporary yet timeless, emphasizing minimalist beauty and absolute subject accuracy through a sophisticated, hand-painted monochromatic medium.",
+        "tags": [
+            "Minimalist",
+            "Ink",
+            "Profile"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 13,
+        "folder": "prompt-5",
+        "title": "The Monochromatic Blue Force Perspective",
+        "image": "bhutto-laiqverse.jpg",
+        "prompt": "An ultra-realistic fashion editorial portrait (9:16 aspect ratio), captured with a low-angle 24mm lens. The image must strictly preserve the exact facial and physical identity of the subject from the reference photo, maintaining identical face structure, skin texture, beard pattern, glasses, hairstyle, and expression without any beautification or alteration.\n\nStyling & Composition: The subject wears a sharply tailored, premium bright blue suit, paired with a crisp white shirt and a solid blue tie. They are seated confidently in a minimalist blue architectural chair.\n\nForced Perspective & Elements: The composition relies on an extreme forced-perspective illusion. A pair of oversized, chunky blue, white, and black designer performance sneakers dominates the extreme foreground, appearing disproportionately large.",
+        "tags": [
+            "Gemini Omni",
+            "Laiq Ahmed Qureshi",
+            "DeepSeek",
+            "LaiqVerse",
+            "Pakistan"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 14,
+        "folder": "prompt-11",
+        "title": "The Vibrant Editorial Caricature",
+        "image": "benazir-laiqverse.jpg",
+        "prompt": "A premium 3D digital caricature and editorial illustration of the subject, captured mid-laugh with a vibrant, expressive personality. The image must unmistakably preserve the identity while applying a stylized caricature aesthetic.\n\nStyle: The caricature combines 3D rendering with editorial illustration techniques. The expression captures a moment of genuine laughter and joy, adding warmth and humanity to the stylized portrait.\n\nExecution: Premium digital craftsmanship with vibrant colors, professional lighting, and refined texturing. The aesthetic balances artistic interpretation with recognizable identity, creating a memorable and engaging portrait.",
+        "tags": [
+            "Gemini Omni",
+            "Laiq Ahmed Qureshi",
+            "DeepSeek",
+            "LaiqVerse",
+            "Pakistan"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 15,
+        "folder": "prompt-7",
+        "title": "The Cinematic Hyper-Caricature",
+        "image": "fazal-ur-rehman-laiqverse.jpg",
+        "prompt": "A premium, ultra-high-quality 3D cinematic hyper-caricature of the subject from the uploaded image. The image must strictly preserve 100% facial identity and recognizable features while applying a refined caricature aesthetic.\n\nStyling: The subject is depicted holding an oversized chai ka cup (tea cup) as a central prop, emphasizing cultural authenticity. The caricature style uses subtle exaggeration of defining features while maintaining dignity and respect.\n\nExecution: Professional 3D rendering with cinematic lighting, soft shadows, and premium texturing. The aesthetic balances hyper-realism with artistic interpretation, creating a unique portrait that celebrates identity with warmth and humor.",
+        "tags": [
+            "Gemini Omni",
+            "Laiq Ahmed Qureshi",
+            "DeepSeek",
+            "LaiqVerse",
+            "Pakistan"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 16,
+        "folder": "prompt-22",
+        "title": "The Visionary Ink Study",
+        "image": "humera-khan-laiqverse.jpg",
+        "prompt": "A museum-grade, high-contrast close-up portrait (mid-neck upward framing) rendered as an expressive ink-wash masterpiece on textured, off-white fine-art paper. The image must use the reference as the sole facial guide, preserving 100% identity accuracy\u2014including bone structure, skin tone, hairstyle, and unique features\u2014without any beautification or alteration. Pose &amp; Composition The subject is posed in a three-quarter profile, body angled right, with the chin gently raised in a powerful, visionary stance. The gaze is soft and distant, directed slightly above the horizon. The subject occupies 65\u201370% of the frame, surrounded by intentional negative space, with a large, soft circular ink wash creating a diffused, organic halo behind the head. The camera uses a subtle low-angle perspective to convey grandeur and presence. Style &amp; Texture The subject wears a structured dark leather tactical-style jacket with detailed metallic zippers and subtle gold accents near the collar. The rendering style avoids smooth digital gradients, favoring authentic ink-density variation. Use fine-line facial detailing for the eyes, brows, and lips, transitioning into bold, expressive brushstrokes for the hair and clothing. Incorporate organic watercolor bleeds, ink diffusion, and dry-brush textures throughout. Lighting &amp; Palette Dramatic lighting originates from the upper-left, carving out highlights on the forehead, nose bridge, cheekbones, and lips, while deep, dense ink shadows define the jawline and neck. The palette is strictly monochromatic black with subtle, aged sepia undertones. The background features natural paper grain, complemented by organic ink splashes, droplets, and energetic flicked brush marks. Final Finish The result is a clean-edged, ultra-detailed 8K vertical composition (4:5 aspect ratio) that celebrates natural ink imperfections. Absolutely NO plastic skin effects, NO artificial blurring, and NO digital smoothness.",
+        "tags": [
+            "Gemini Omni",
+            "Laiq Ahmed Qureshi",
+            "DeepSeek",
+            "LaiqVerse",
+            "Pakistan"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 17,
+        "folder": "prompt-4",
+        "title": "Intaglio Financial Engraving Portrait",
+        "image": "malalalaiqverse.png",
+        "prompt": "An ultra-detailed, professional steel-plate and intaglio engraving of the subject, rendered as a vintage financial banknote portrait. Strictly preserve the exact facial identity, bone structure, ethnicity, gender, age, hairstyle, beard, mustache, glasses, and expression of the subject.\n\nTechnical Execution: The entire portrait is composed of monochrome, micro-fine black linework on a solid, pure white background (#FFFFFF). Depth and 3D volume are achieved exclusively through masterful line-weight variation:\n- Facial Rendering: Smooth, concentric contour lines wrap around facial geometry to create realistic shading and depth transitions.\n- Texture: Intricate cross-hatching and fine stippling define skin tones, while dense linework captures the textures of clothing, fabric folds, and accessories.\n- Hair: Crisp, high-contrast black-and-white lines define individual locks and highlights, emphasizing flowing, sculptural form.\n\nLighting: The portrait features dramatic, high-contrast studio lighting, where light and shadow are defined entirely by the density and thickness of the engraving lines.\n\nWatermark: Include a microscopic, ultra-thin, low-opacity sans-serif watermark reading 'LAIQVERSE' positioned cleanly in the bottom right corner.",
+        "tags": [
+            "Engraving",
+            "Banknote",
+            "Ultra-Detailed"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 18,
+        "folder": "prompt-20",
+        "title": "Dimensional Papercraft Portrait",
+        "image": "asim-munir-laiqverse.jpg",
+        "prompt": "A sophisticated, layered papercraft portrait meticulously constructed from folded geometric paper pieces. The image must strictly preserve the facial identity and proportions of the subject from the reference photo, ensuring 100% likeness accuracy while rendering the face in a precise, low-poly structure. Artistic Execution The portrait is a physical-style study where each facial plane is represented by distinct paper layers. Use realistic paper texture\u2014complete with subtle fibers and weight\u2014to create a handcrafted origami aesthetic. Soft, natural light cascades across the folds, generating gentle, realistic drop shadows that define the depth and three-dimensional volume of the face. Composition &amp; Detail The composition is clean and minimalist, set against a subtle, textured off-white background that allows the papercraft elements to stand out. Every feature, from the eye sockets and nose bridge to the jawline and hair, is simplified into geometric facets that remain instantly recognizable and true to the source image. Final Finish The result is a highly detailed, gallery-quality asset. The lighting should feel soft and studio-grade, emphasizing the material quality of the paper. Absolutely NO smooth or digital skin effects; every surface must retain the distinct, crisp edges and tangible depth of professional paper-cutting art.",
+        "tags": [
+            "Gemini Omni",
+            "Laiq Ahmed Qureshi",
+            "DeepSeek",
+            "LaiqVerse",
+            "Pakistan"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 19,
+        "folder": "prompt-18",
+        "title": "The Refined Charcoal Profile",
+        "image": "pope-laiqverse.jpg",
+        "prompt": "A refined, monochromatic fine-art ink portrait of the subject, meticulously rendered as a clean, sharp side profile facing left. The image must strictly preserve the exact facial identity, bone structure, proportions, and distinct characteristics of the subject from the reference photo, ensuring 100% likeness accuracy without any alteration. Artistic Execution The portrait is executed in soft, deep charcoal-gray ink on a stark, pure white (#FFFFFF) background. The rendering relies on subtle tonal variations achieved through controlled ink density rather than hard lines. The edges of the silhouette are not uniform; they feature delicate, faint mist-like dispersion and feathering, giving the portrait an ethereal quality. Texture &amp; Atmosphere The artwork incorporates organic, controlled splatter accents and subtle watercolor diffusion effects within the portrait itself, adding depth and a handcrafted feel. The composition is minimalist and clean, focusing entirely on the profile against the negative space. Absolutely NO text, NO watermarks, NO signatures, and NO typography are present. Final Finish The lighting is soft and even, highlighting the subtle texture of the charcoal on paper. The piece is a premium, gallery-quality asset that embodies elegance, artistic restraint, and sophisticated craftsmanship.",
+        "tags": [
+            "Gemini Omni",
+            "Laiq Ahmed Qureshi",
+            "DeepSeek",
+            "LaiqVerse",
+            "Pakistan"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 20,
+        "folder": "prompt-23",
+        "title": "The LaiqVerse Kinetic Portrait",
+        "image": "laiqqureshi-kinetic.jpg",
+        "prompt": "An ultra-hyper-realistic, high-definition caricature-style portrait meticulously crafted to honor the facial structure and distinct identity of Laiq Ahmed Qureshi. The portrait captures an intensely maniacal expression of shocked euphoria\u2014eyes wide and bulging, mouth agape in a vibrant, screaming smile that reveals clear dental and gum detail, with the head tilted in dynamic motion. Artistic Execution The artwork is defined by extreme textural depth, utilizing thick, coarse impasto oil paint. Every pore, wrinkle, and skin fold of the subject is rendered with hyper-real detail, captured through visible, directional brushstrokes. The subject is depicted with his signature spiky, untamed hair, textured facial hair, and the iconic distressed blue jacket. Lighting &amp; Palette The composition uses a limited, expressive palette: rich blues, creamy highlights, gold-toned skin undertones, and striking purple accents. Dramatic, directional lighting creates deep, cavernous shadows within the folds of the skin and the open mouth, emphasizing the high-voltage energy of the character. Atmosphere The background features raw, visible canvas textures accented by spontaneous, artistic stray scribbles. This render is a hyper-detailed oil painting on canvas\u2014a sophisticated, modern piece that visually represents the innovative digital frontier of AI in Pakistan within the broader #LaiqVerse creative ecosystem.",
+        "tags": [
+            "Gemini Omni",
+            "Laiq Ahmed Qureshi",
+            "DeepSeek",
+            "LaiqVerse",
+            "Pakistan"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 21,
+        "folder": "prompt-24",
+        "title": "Maniacal Impasto Expressionist Portrait",
+        "image": "fazal-ur-rehman-laiqverse.jpg",
+        "prompt": "An ultra-hyper-realistic, high-definition caricature portrait that serves as a visceral study of intense human emotion. Strictly adhere to the subject's exact facial structure, bone proportions, and identity from the reference image, while amplifying their expression into a state of shocked euphoria\u2014eyes wide and bulging, mouth agape in an intense, screaming smile that clearly defines the gums and teeth, with the head tilted dynamically. Artistic Execution The artwork is defined by extreme textural quality, utilizing thick, coarse impasto oil paint. Every pore, skin fold, and wrinkle is rendered with hyper-detailed realism, yet embedded within visible, directional brushstrokes that reveal the raw canvas texture beneath. The subject's hair is styled in a spiky, untamed, and highly textured manner, paired with their specific facial hair (or lack thereof) to ensure complete identity preservation. The subject wears the recognizable distressed blue jacket from the reference. Lighting &amp; Palette Utilize a limited, expressive color palette of deep blues, creamy highlights, gold-toned skin undertones, and rich purple accents. Lighting is aggressively dramatic and directional, casting deep, cavernous shadows within the open mouth and across the folds of the skin to emphasize the manic, high-voltage energy of the moment. Atmosphere The background features raw canvas textures layered with spontaneous, artistic stray scribbles. The final render is a masterpiece of modern expressionism\u2014hyper-detailed, tactile, and overflowing with visceral, insane energy.",
+        "tags": [
+            "Gemini Omni",
+            "Laiq Ahmed Qureshi",
+            "DeepSeek",
+            "LaiqVerse",
+            "Pakistan"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 22,
+        "folder": "prompt-14",
+        "title": "The Cue Master's Focus",
+        "image": "fazal-ur-rahman-laiqverse.jpg",
+        "prompt": "A cinematic, ultra-realistic close-up photograph of a man taking a precise billiards shot. The image must strictly use the uploaded photo as an exact reference for the subject's identity and features.\n\nComposition: The subject is captured in a moment of intense concentration, taking a billiards shot. The composition emphasizes precision, focus, and strategic thinking.\n\nExecution: Cinematic lighting with shallow depth of field, premium color grading, and professional editorial finishing. The image feels like a frame from a high-production-value film.",
+        "tags": [
+            "Gemini Omni",
+            "Laiq Ahmed Qureshi",
+            "DeepSeek",
+            "LaiqVerse",
+            "Pakistan"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 23,
+        "folder": "prompt-13",
+        "title": "The Alpenglow Reflection Portrait",
+        "image": "shah-rukh-khan-laiqverse.jpg",
+        "prompt": "A museum-grade luxury sports editorial portrait featuring the subject exactly as he appears in the reference photo. The image must strictly preserve 100% facial identity, features, and expression.\n\nComposition: The subject is depicted as a luxury athletic creator in a cinematic Swiss Alps setting. The composition uses forced perspective with oversized elements and dramatic alpenglow lighting.\n\nExecution: Ultra-premium editorial photography with cinematic lighting, professional grading, and museum-quality finishing. The portrait feels aspirational and luxurious.",
+        "tags": [
+            "Gemini Omni",
+            "Laiq Ahmed Qureshi",
+            "DeepSeek",
+            "LaiqVerse",
+            "Pakistan"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 24,
+        "folder": "prompt-21",
+        "title": "Macro Scratchboard Vision",
+        "image": "laiqqureshi-engraved.jpg",
+        "prompt": "An extreme close-up, macro-level portrait rendered in a highly detailed and intricate colored scratchboard art style. The image must use the reference as the sole facial guide, preserving 100% identity accuracy\u2014including bone structure, skin tone, hairstyle, and unique features\u2014within the demanding technical constraints of the medium. Artistic Execution The entire portrait is constructed from thousands of precise, colored lines etched onto a solid black field. There are no brushstrokes or soft gradients; instead, the shape of the skin pores, facial features, hair, and beard is defined entirely through complex, intersecting, and concentric linework. The stroke rhythm follows the underlying anatomy, with varying line density creating depth, shadow, and skin texture transitions. Lighting &amp; Focus The focus is sharply directed on the eyes, which are rendered with intense, vivid colors that capture and reflect light, providing a brilliant focal point against the dark, etched background. The portrait is presented in a dramatic partial profile, emphasizing the sculptural quality of the face. Atmosphere The result is a technical masterpiece of line-based portraiture. The aesthetic is sharp, tactile, and highly disciplined, capturing a sense of profound introspection. The vibrant colors of the lines contrast beautifully against the deep, velvet-black field, creating a luminous, high-contrast effect that feels both modern and classically precise.",
+        "tags": [
+            "Gemini Omni",
+            "Laiq Ahmed Qureshi",
+            "DeepSeek",
+            "LaiqVerse",
+            "Pakistan"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 25,
+        "folder": "panoramic/panoramic-2",
+        "title": "Between Day and Night",
+        "image": "laiqverse-AI-painting2.jpg",
+        "prompt": "A panoramic AI artwork.",
+        "tags": [
+            "Panoramic",
+            "LaiqVerse",
+            "AI Art"
+        ],
+        "isPanoramic": true
+    },
+    {
+        "id": 26,
+        "folder": "panoramic/panoramic-5",
+        "title": "The Observatoryat the Edge of Memory",
+        "image": "laiqverse-AI-painting5.jpg",
+        "prompt": "A panoramic AI artwork.",
+        "tags": [
+            "Panoramic",
+            "LaiqVerse",
+            "AI Art"
+        ],
+        "isPanoramic": true
+    },
+    {
+        "id": 27,
+        "folder": "panoramic/panoramic-4",
+        "title": "The Architectureof Unfinished Thought",
+        "image": "laiqverse-AI-painting4.jpg",
+        "prompt": "A panoramic AI artwork.",
+        "tags": [
+            "Panoramic",
+            "LaiqVerse",
+            "AI Art"
+        ],
+        "isPanoramic": true
+    },
+    {
+        "id": 28,
+        "folder": "panoramic/panoramic-3",
+        "title": "The Last ReaderBefore Dawn",
+        "image": "laiqverse-AI-painting3.jpg",
+        "prompt": "A panoramic AI artwork.",
+        "tags": [
+            "Panoramic",
+            "LaiqVerse",
+            "AI Art"
+        ],
+        "isPanoramic": true
+    },
+    {
+        "id": 29,
+        "folder": "panoramic/panoramic-1",
+        "title": "The Last TrainThrough the Monsoon",
+        "image": "laiqverse-AI-painting1.jpg",
+        "prompt": "A panoramic AI artwork.",
+        "tags": [
+            "Panoramic",
+            "LaiqVerse",
+            "AI Art"
+        ],
+        "isPanoramic": true
+    },
+    {
+        "id": 30,
+        "folder": "vault",
+        "title": "LaiqVerse ArtWork #1",
+        "image": "fazalbylaiqverse1.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 31,
+        "folder": "vault",
+        "title": "LaiqVerse ArtWork #2",
+        "image": "benazirbylaiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 32,
+        "folder": "vault",
+        "title": "LaiqVerse ArtWork #3",
+        "image": "bhuttobylaiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 33,
+        "folder": "vault",
+        "title": "LaiqVerse ArtWork #4",
+        "image": "imranbylaiqverse1.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 34,
+        "folder": "vault",
+        "title": "LaiqVerse ArtWork #5",
+        "image": "fazalbylaiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 35,
+        "folder": "vault",
+        "title": "LaiqVerse ArtWork #1",
+        "image": "laiqverse40.png",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 36,
+        "folder": "vault",
+        "title": "LaiqVerse ArtWork #2",
+        "image": "laiqverse41.png",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 37,
+        "folder": "vault",
+        "title": "LaiqVerse ArtWork #3",
+        "image": "faizbylaiqverse2.png",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 38,
+        "folder": "vault",
+        "title": "LaiqVerse ArtWork #4",
+        "image": "trumpbylaiqverse.png",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 39,
+        "folder": "vault",
+        "title": "LaiqVerse ArtWork #5",
+        "image": "sameulbylaiqverse.png",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 40,
+        "folder": "vault",
+        "title": "LaiqVerse ArtWork #6",
+        "image": "benazirbylaiqverse.png",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 41,
+        "folder": "vault",
+        "title": "LaiqVerse ArtWork #7",
+        "image": "laiqverse44.png",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 42,
+        "folder": "vault",
+        "title": "LaiqVerse ArtWork #8",
+        "image": "laiqverse37.png",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 43,
+        "folder": "vault",
+        "title": "LaiqVerse ArtWork #9",
+        "image": "shabnambylaiqverse.png",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 44,
+        "folder": "vault",
+        "title": "LaiqVerse ArtWork #10",
+        "image": "laiqverse34.png",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 45,
+        "folder": "vault",
+        "title": "LaiqVerse ArtWork #11",
+        "image": "popebylaiqverse.png",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 46,
+        "folder": "vault",
+        "title": "LaiqVerse ArtWork #12",
+        "image": "laiqverse35.png",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 47,
+        "folder": "vault",
+        "title": "LaiqVerse ArtWork #13",
+        "image": "khamnaibylaiqverse.png",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 48,
+        "folder": "vault",
+        "title": "LaiqVerse ArtWork #14",
+        "image": "laiqverse31.png",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 49,
+        "folder": "vault",
+        "title": "LaiqVerse ArtWork #15",
+        "image": "laiqverse25.png",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 50,
+        "folder": "vault",
+        "title": "LaiqVerse ArtWork #16",
+        "image": "malala2bylaiqverse.png",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 51,
+        "folder": "vault",
+        "title": "LaiqVerse ArtWork #17",
+        "image": "imran2bylaiqverse.png",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 52,
+        "folder": "vault",
+        "title": "LaiqVerse ArtWork #18",
+        "image": "laiqverse30.png",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 53,
+        "folder": "vault",
+        "title": "LaiqVerse ArtWork #19",
+        "image": "laiqverse26.png",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 54,
+        "folder": "vault",
+        "title": "LaiqVerse ArtWork #20",
+        "image": "laiqverse32.png",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 55,
+        "folder": "vault",
+        "title": "LaiqVerse ArtWork #21",
+        "image": "rana2bylaiqverse.png",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 56,
+        "folder": "vault",
+        "title": "LaiqVerse ArtWork #22",
+        "image": "dilipbylaiqverse.png",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 57,
+        "folder": "vault",
+        "title": "LaiqVerse ArtWork #23",
+        "image": "hadiqabylaiqverse.png",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 58,
+        "folder": "vault",
+        "title": "LaiqVerse ArtWork #24",
+        "image": "zardaribylaiqverse2.png",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 59,
+        "folder": "vault",
+        "title": "LaiqVerse ArtWork #25",
+        "image": "laiqverse38.png",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 60,
+        "folder": "vault",
+        "title": "LaiqVerse ArtWork #26",
+        "image": "beenbylaiqverse.png",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 61,
+        "folder": "vault",
+        "title": "LaiqVerse ArtWork #27",
+        "image": "laiqverse11.png",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 62,
+        "folder": "vault",
+        "title": "LaiqVerse ArtWork #28",
+        "image": "nawaz2bylaiqverse.png",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 63,
+        "folder": "vault",
+        "title": "LaiqVerse ArtWork #29",
+        "image": "fazalbylaiqverse.png",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 64,
+        "folder": "vault",
+        "title": "LaiqVerse ArtWork #30",
+        "image": "lv1.png",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 65,
+        "folder": "vault",
+        "title": "LaiqVerse ArtWork #31",
+        "image": "alanfaqeerlaiqverse2.png",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 66,
+        "folder": "vault",
+        "title": "LaiqVerse ArtWork #32",
+        "image": "laiqverse.png",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 67,
+        "folder": "vault",
+        "title": "LaiqVerse ArtWork #33",
+        "image": "shahrukhbylaiqverse.png",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 68,
+        "folder": "vault",
+        "title": "LaiqVerse ArtWork #34",
+        "image": "fazal2bylaiqverse.png",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 69,
+        "folder": "vault-2",
+        "title": "LaiqVerse ArtWork #1",
+        "image": "allan-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 70,
+        "folder": "vault-2",
+        "title": "LaiqVerse ArtWork #2",
+        "image": "nusrat-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 71,
+        "folder": "vault-2",
+        "title": "LaiqVerse ArtWork #3",
+        "image": "abro-khuda-bux-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 72,
+        "folder": "vault-2",
+        "title": "LaiqVerse ArtWork #4",
+        "image": "imranbylaiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 73,
+        "folder": "vault-2",
+        "title": "LaiqVerse ArtWork #5",
+        "image": "tina-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 74,
+        "folder": "vault-2",
+        "title": "LaiqVerse ArtWork #6",
+        "image": "nawaz-sharif-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 75,
+        "folder": "vault-2",
+        "title": "LaiqVerse ArtWork #7",
+        "image": "rana-sana-ullah-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 76,
+        "folder": "vault-2",
+        "title": "LaiqVerse ArtWork #8",
+        "image": "bilawalbylaiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 77,
+        "folder": "vault-2",
+        "title": "LaiqVerse ArtWork #9",
+        "image": "faiz-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 78,
+        "folder": "vault-2",
+        "title": "LaiqVerse ArtWork #10",
+        "image": "atif-aslam-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 79,
+        "folder": "vault-2",
+        "title": "LaiqVerse ArtWork #11",
+        "image": "arif-imam-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 80,
+        "folder": "vault-2",
+        "title": "LaiqVerse ArtWork #12",
+        "image": "ayubbylaiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 81,
+        "folder": "vault-2",
+        "title": "LaiqVerse ArtWork #13",
+        "image": "gandapur-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 82,
+        "folder": "vault-2",
+        "title": "LaiqVerse ArtWork #14",
+        "image": "fahad-mustafa-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 83,
+        "folder": "vault-2",
+        "title": "LaiqVerse ArtWork #15",
+        "image": "laiq-qureshi-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 84,
+        "folder": "vault-2",
+        "title": "LaiqVerse ArtWork #16",
+        "image": "saba-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 85,
+        "folder": "vault-2",
+        "title": "LaiqVerse ArtWork #17",
+        "image": "LaiqVerse1.png",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 86,
+        "folder": "vault-2",
+        "title": "LaiqVerse ArtWork #18",
+        "image": "ranasanaullahbylaiqverse.png",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 87,
+        "folder": "vault-2",
+        "title": "LaiqVerse ArtWork #19",
+        "image": "bilawalbylaiqverse.png",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 88,
+        "folder": "vault-2",
+        "title": "LaiqVerse ArtWork #20",
+        "image": "LaiqVerse9.png",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 89,
+        "folder": "vault-2",
+        "title": "LaiqVerse ArtWork #21",
+        "image": "Gemini_Generated_Image_z1kv8fz1kv8fz1kv.png",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 90,
+        "folder": "vault-2",
+        "title": "LaiqVerse ArtWork #22",
+        "image": "fazalurrehmanbylaiqverse.png",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 91,
+        "folder": "vault-2",
+        "title": "LaiqVerse ArtWork #23",
+        "image": "nawaz-sharif-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 92,
+        "folder": "vault-2",
+        "title": "LaiqVerse ArtWork #24",
+        "image": "rana-sana-ullah-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 93,
+        "folder": "vault-2",
+        "title": "LaiqVerse ArtWork #25",
+        "image": "gandapur-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 94,
+        "folder": "vault-2",
+        "title": "LaiqVerse ArtWork #26",
+        "image": "laiq-qureshi-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 95,
+        "folder": "vault-4",
+        "title": "LaiqVerse ArtWork #27",
+        "image": "laiqverse-cubist-graphite-benazir-bhutto.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 96,
+        "folder": "vault-4",
+        "title": "LaiqVerse ArtWork #28",
+        "image": "laiqverse-cubist-graphite-malala.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 97,
+        "folder": "vault-4",
+        "title": "LaiqVerse ArtWork #29",
+        "image": "laiqverse-cubist-graphite-allama-iqbal.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 98,
+        "folder": "vault-4",
+        "title": "LaiqVerse ArtWork #30",
+        "image": "laiqverse-cubist-graphite-noor-jehan.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 99,
+        "folder": "vault-4",
+        "title": "LaiqVerse ArtWork #31",
+        "image": "maryam-nawaz-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 100,
+        "folder": "vault-2",
+        "title": "LaiqVerse ArtWork #32",
+        "image": "nawaz-sharif-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 101,
+        "folder": "vault-4",
+        "title": "LaiqVerse ArtWork #33",
+        "image": "laiqverse-cubist-graphite-laiqqureshi.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 102,
+        "folder": "vault-4",
+        "title": "LaiqVerse ArtWork #34",
+        "image": "laiqverse-cubist-graphite-edhi.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 103,
+        "folder": "vault-2",
+        "title": "LaiqVerse ArtWork #35",
+        "image": "gandapur-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 104,
+        "folder": "vault-4",
+        "title": "LaiqVerse ArtWork #36",
+        "image": "rana-sanaullah-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 105,
+        "folder": "vault-2",
+        "title": "LaiqVerse ArtWork #37",
+        "image": "laiq-qureshi-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 106,
+        "folder": "vault-4",
+        "title": "LaiqVerse ArtWork #38",
+        "image": "laiqverse-cubist-graphite-laiq.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 107,
+        "folder": "vault-5",
+        "title": "LaiqVerse ArtWork #39",
+        "image": "dhaka-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 108,
+        "folder": "vault-5",
+        "title": "LaiqVerse ArtWork #40",
+        "image": "benazir-bhutto-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 109,
+        "folder": "vault-5",
+        "title": "LaiqVerse ArtWork #41",
+        "image": "manila-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 110,
+        "folder": "vault-5",
+        "title": "LaiqVerse ArtWork #42",
+        "image": "mumbai-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 111,
+        "folder": "vault-5",
+        "title": "LaiqVerse ArtWork #43",
+        "image": "tamil-nadu-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 112,
+        "folder": "vault-5",
+        "title": "LaiqVerse ArtWork #44",
+        "image": "colin-david-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 113,
+        "folder": "vault-5",
+        "title": "LaiqVerse ArtWork #45",
+        "image": "kathmandu-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 114,
+        "folder": "vault-5",
+        "title": "LaiqVerse ArtWork #46",
+        "image": "kolkata-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 115,
+        "folder": "vault-5",
+        "title": "LaiqVerse ArtWork #47",
+        "image": "allama-iqbal-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 116,
+        "folder": "vault-5",
+        "title": "LaiqVerse ArtWork #48",
+        "image": "quetta-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 117,
+        "folder": "vault-5",
+        "title": "LaiqVerse ArtWork #49",
+        "image": "mutan-pakistan-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 118,
+        "folder": "vault-5",
+        "title": "LaiqVerse ArtWork #50",
+        "image": "karachi-food-street-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 119,
+        "folder": "vault-5",
+        "title": "LaiqVerse ArtWork #51",
+        "image": "lahore-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 120,
+        "folder": "vault-5",
+        "title": "LaiqVerse ArtWork #52",
+        "image": "peshawar-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 121,
+        "folder": "vault-5",
+        "title": "LaiqVerse ArtWork #53",
+        "image": "islamabad-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 122,
+        "folder": "vault-5",
+        "title": "LaiqVerse ArtWork #54",
+        "image": "laiq-ahmed-qureshi-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 123,
+        "folder": "vault-5",
+        "title": "LaiqVerse ArtWork #55",
+        "image": "delhi-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 124,
+        "folder": "vault-5",
+        "title": "LaiqVerse ArtWork #56",
+        "image": "edhi-by-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 125,
+        "folder": "vault-5",
+        "title": "LaiqVerse ArtWork #57",
+        "image": "karachi-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 126,
+        "folder": "vault-5",
+        "title": "LaiqVerse ArtWork #58",
+        "image": "gawadar-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 127,
+        "folder": "vault-5",
+        "title": "LaiqVerse ArtWork #59",
+        "image": "multan-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 128,
+        "folder": "vault-5",
+        "title": "LaiqVerse ArtWork #60",
+        "image": "bangkok-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 129,
+        "folder": "vault-5",
+        "title": "LaiqVerse ArtWork #61",
+        "image": "benazir-bhutto-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 130,
+        "folder": "vault-6",
+        "title": "LaiqVerse ArtWork #62",
+        "image": "Mohammad-Ali-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 131,
+        "folder": "vault-6",
+        "title": "LaiqVerse ArtWork #63",
+        "image": "Jinnah-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 132,
+        "folder": "vault-6",
+        "title": "LaiqVerse ArtWork #64",
+        "image": "laiqverse-image-2.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 133,
+        "folder": "vault-6",
+        "title": "LaiqVerse ArtWork #65",
+        "image": "laiqverse-image-3.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 134,
+        "folder": "vault-6",
+        "title": "LaiqVerse ArtWork #66",
+        "image": "laiqverse-image-1.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 135,
+        "folder": "vault-6",
+        "title": "LaiqVerse ArtWork #67",
+        "image": "amitabh-rekha-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 136,
+        "folder": "vault-6",
+        "title": "LaiqVerse ArtWork #68",
+        "image": "nida-yasir-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 137,
+        "folder": "vault-6",
+        "title": "LaiqVerse ArtWork #69",
+        "image": "laiqverse-fazal-ur-rahman.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 138,
+        "folder": "vault-2",
+        "title": "LaiqVerse ArtWork #70",
+        "image": "nawaz-sharif-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 139,
+        "folder": "vault-6",
+        "title": "LaiqVerse ArtWork #71",
+        "image": "Shah-Rukh-Khan-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 140,
+        "folder": "vault-5",
+        "title": "LaiqVerse ArtWork #72",
+        "image": "laiq-ahmed-qureshi-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 141,
+        "folder": "vault-6",
+        "title": "LaiqVerse ArtWork #73",
+        "image": "nusrat-fateh-ali-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 142,
+        "folder": "vault-6",
+        "title": "LaiqVerse ArtWork #74",
+        "image": "Atiqa-Odho-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 143,
+        "folder": "vault-6",
+        "title": "LaiqVerse ArtWork #75",
+        "image": "mia-khalifa-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 144,
+        "folder": "vault-7",
+        "title": "LaiqVerse ArtWork #76",
+        "image": "donald-trump-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 145,
+        "folder": "vault-5",
+        "title": "LaiqVerse ArtWork #77",
+        "image": "benazir-bhutto-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 146,
+        "folder": "vault-6",
+        "title": "LaiqVerse ArtWork #78",
+        "image": "Mohammad-Ali-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 147,
+        "folder": "vault-7",
+        "title": "LaiqVerse ArtWork #79",
+        "image": "imran-khan-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 148,
+        "folder": "vault-6",
+        "title": "LaiqVerse ArtWork #80",
+        "image": "amitabh-rekha-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 149,
+        "folder": "vault-7",
+        "title": "LaiqVerse ArtWork #81",
+        "image": "Idris-Elba-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 150,
+        "folder": "vault-7",
+        "title": "LaiqVerse ArtWork #82",
+        "image": "Indira-Gandhi-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 151,
+        "folder": "vault-4",
+        "title": "LaiqVerse ArtWork #83",
+        "image": "maryam-nawaz-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 152,
+        "folder": "vault-7",
+        "title": "LaiqVerse ArtWork #84",
+        "image": "tom-cruise-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 153,
+        "folder": "vault-7",
+        "title": "LaiqVerse ArtWork #85",
+        "image": "a-r-rahman-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 154,
+        "folder": "vault-2",
+        "title": "LaiqVerse ArtWork #86",
+        "image": "nawaz-sharif-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 155,
+        "folder": "vault-2",
+        "title": "LaiqVerse ArtWork #87",
+        "image": "rana-sana-ullah-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 156,
+        "folder": "vault-6",
+        "title": "LaiqVerse ArtWork #88",
+        "image": "Shah-Rukh-Khan-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 157,
+        "folder": "vault-5",
+        "title": "LaiqVerse ArtWork #89",
+        "image": "laiq-ahmed-qureshi-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 158,
+        "folder": "vault-7",
+        "title": "LaiqVerse ArtWork #90",
+        "image": "salma-hayek-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 159,
+        "folder": "vault-7",
+        "title": "LaiqVerse ArtWork #91",
+        "image": "fatima-jinnah-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 160,
+        "folder": "vault-7",
+        "title": "LaiqVerse ArtWork #92",
+        "image": "ChatGPT Image Jul 21, 2026, 09_43_55 PM.png",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 161,
+        "folder": "vault-7",
+        "title": "LaiqVerse ArtWork #93",
+        "image": "ChatGPT Image Jul 21, 2026, 09_46_40 PM.png",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 162,
+        "folder": "vault-7",
+        "title": "LaiqVerse ArtWork #94",
+        "image": "ChatGPT Image Jul 21, 2026, 09_44_06 PM.png",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 163,
+        "folder": "vault-7",
+        "title": "LaiqVerse ArtWork #95",
+        "image": "ChatGPT Image Jul 21, 2026, 09_49_25 PM.png",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 164,
+        "folder": "vault-8",
+        "title": "LaiqVerse ArtWork #96",
+        "image": "shah-rukh-khan-laiq-verse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 165,
+        "folder": "vault-7",
+        "title": "LaiqVerse ArtWork #97",
+        "image": "donald-trump-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 166,
+        "folder": "vault-8",
+        "title": "LaiqVerse ArtWork #98",
+        "image": "salma-hayek-laiq-verse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 167,
+        "folder": "vault-8",
+        "title": "LaiqVerse ArtWork #99",
+        "image": "laiq-qureshi-laiq-verse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 168,
+        "folder": "vault-8",
+        "title": "LaiqVerse ArtWork #100",
+        "image": "ibn-e-insha-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 169,
+        "folder": "vault-8",
+        "title": "LaiqVerse ArtWork #101",
+        "image": "malala-laiq-verse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 170,
+        "folder": "vault-7",
+        "title": "LaiqVerse ArtWork #102",
+        "image": "Idris-Elba-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 171,
+        "folder": "vault-8",
+        "title": "LaiqVerse ArtWork #103",
+        "image": "idris-alba-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 172,
+        "folder": "vault-4",
+        "title": "LaiqVerse ArtWork #104",
+        "image": "maryam-nawaz-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 173,
+        "folder": "vault-7",
+        "title": "LaiqVerse ArtWork #105",
+        "image": "tom-cruise-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 174,
+        "folder": "vault-7",
+        "title": "LaiqVerse ArtWork #106",
+        "image": "a-r-rahman-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 175,
+        "folder": "vault-8",
+        "title": "LaiqVerse ArtWork #107",
+        "image": "fazal-ur-rahman-laiq-verse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 176,
+        "folder": "vault-8",
+        "title": "LaiqVerse ArtWork #108",
+        "image": "rana-sanaullah-laiq-verse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 177,
+        "folder": "vault-5",
+        "title": "LaiqVerse ArtWork #109",
+        "image": "laiq-ahmed-qureshi-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 178,
+        "folder": "vault-7",
+        "title": "LaiqVerse ArtWork #110",
+        "image": "salma-hayek-laiqverse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 179,
+        "folder": "vault-8",
+        "title": "LaiqVerse ArtWork #111",
+        "image": "bilawal-bhutto-laiq-verse.jpg",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 180,
+        "folder": "vault-8",
+        "title": "LaiqVerse ArtWork #112",
+        "image": "Gemini_Generated_Image_hi21p4hi21p4hi21.png",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 181,
+        "folder": "vault-8",
+        "title": "LaiqVerse ArtWork #113",
+        "image": "Gemini_Generated_Image_rdjh8vrdjh8vrdjh.png",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 182,
+        "folder": "vault-8",
+        "title": "LaiqVerse ArtWork #114",
+        "image": "Gemini_Generated_Image_gfdstdgfdstdgfds.png",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 183,
+        "folder": "vault-8",
+        "title": "LaiqVerse ArtWork #115",
+        "image": "Gemini_Generated_Image_cbzdhscbzdhscbzd.png",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 184,
+        "folder": "vault-8",
+        "title": "LaiqVerse ArtWork #116",
+        "image": "Gemini_Generated_Image_e6mpffe6mpffe6mp.png",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 185,
+        "folder": "vault-8",
+        "title": "LaiqVerse ArtWork #117",
+        "image": "sabeen2.png",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 186,
+        "folder": "vault-8",
+        "title": "LaiqVerse ArtWork #118",
+        "image": "sabeen.png",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 187,
+        "folder": "vault-8",
+        "title": "LaiqVerse ArtWork #119",
+        "image": "the architect.png",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 188,
+        "folder": "vault-8",
+        "title": "LaiqVerse ArtWork #120",
+        "image": "009a.png",
+        "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+        "tags": [
+            "Vault",
+            "AI Art",
+            "LaiqVerse",
+            "AI in Pakistan"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 189,
+        "folder": "panoramic/panoramic-6",
+        "title": "Threads That Hold the Sky",
+        "image": "laiqverse-AI-painting6.jpg",
+        "prompt": "There is an old belief whispered across the rooftops of Lahore: every Basant, the sky borrows the dreams of the city.\n\nIn this painting, the rooftops are more than bricks and walls\u2014they are stages whe...",
+        "tags": [
+            "Panoramic",
+            "LaiqVerse",
+            "AI Art"
+        ],
+        "isPanoramic": true
+    }
+]
+
+        function renderVault() {
+            const grid = document.getElementById('vaultGrid');
+            if (!grid) return;
+            let html = '';
+            let panoramicCount = 0;
+            let vaultOnlyCount = 0;
+            
+            // Separate items
+            const regularItems = vaultData.filter(item => !item.isPanoramic && !item.isVaultOnly);
+            const panoItems = vaultData.filter(item => item.isPanoramic);
+            const vaultOnlyItems = vaultData.filter(item => item.isVaultOnly);
+            
+            // Shuffle regular items
+            const shuffledRegular = [...regularItems,
+    {
+    "id": 69,
+    "folder": "vault-2",
+    "title": "LaiqVerse ArtWork #1",
+    "image": "allan-laiqverse.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 70,
+    "folder": "vault-2",
+    "title": "LaiqVerse ArtWork #2",
+    "image": "nusrat-laiqverse.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 71,
+    "folder": "vault-2",
+    "title": "LaiqVerse ArtWork #3",
+    "image": "abro-khuda-bux-laiqverse.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 72,
+    "folder": "vault-2",
+    "title": "LaiqVerse ArtWork #4",
+    "image": "imranbylaiqverse.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 73,
+    "folder": "vault-2",
+    "title": "LaiqVerse ArtWork #5",
+    "image": "tina-laiqverse.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 74,
+    "folder": "vault-2",
+    "title": "LaiqVerse ArtWork #6",
+    "image": "nawaz-sharif-laiqverse.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 75,
+    "folder": "vault-2",
+    "title": "LaiqVerse ArtWork #7",
+    "image": "rana-sana-ullah-laiqverse.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 76,
+    "folder": "vault-2",
+    "title": "LaiqVerse ArtWork #8",
+    "image": "bilawalbylaiqverse.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 77,
+    "folder": "vault-2",
+    "title": "LaiqVerse ArtWork #9",
+    "image": "faiz-laiqverse.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 78,
+    "folder": "vault-2",
+    "title": "LaiqVerse ArtWork #10",
+    "image": "atif-aslam-laiqverse.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 79,
+    "folder": "vault-2",
+    "title": "LaiqVerse ArtWork #11",
+    "image": "arif-imam-laiqverse.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 80,
+    "folder": "vault-2",
+    "title": "LaiqVerse ArtWork #12",
+    "image": "ayubbylaiqverse.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 81,
+    "folder": "vault-2",
+    "title": "LaiqVerse ArtWork #13",
+    "image": "gandapur-laiqverse.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 82,
+    "folder": "vault-2",
+    "title": "LaiqVerse ArtWork #14",
+    "image": "fahad-mustafa-laiqverse.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 83,
+    "folder": "vault-2",
+    "title": "LaiqVerse ArtWork #15",
+    "image": "laiq-qureshi-laiqverse.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 84,
+    "folder": "vault-2",
+    "title": "LaiqVerse ArtWork #16",
+    "image": "saba-laiqverse.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 85,
+    "folder": "vault-2",
+    "title": "LaiqVerse ArtWork #17",
+    "image": "LaiqVerse1.png",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 86,
+    "folder": "vault-2",
+    "title": "LaiqVerse ArtWork #18",
+    "image": "ranasanaullahbylaiqverse.png",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 87,
+    "folder": "vault-2",
+    "title": "LaiqVerse ArtWork #19",
+    "image": "bilawalbylaiqverse.png",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 88,
+    "folder": "vault-2",
+    "title": "LaiqVerse ArtWork #20",
+    "image": "LaiqVerse9.png",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 89,
+    "folder": "vault-2",
+    "title": "LaiqVerse ArtWork #21",
+    "image": "Gemini_Generated_Image_z1kv8fz1kv8fz1kv.png",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 90,
+    "folder": "vault-2",
+    "title": "LaiqVerse ArtWork #22",
+    "image": "fazalurrehmanbylaiqverse.png",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+}
+]
+            for (let i = shuffledRegular.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffledRegular[i], shuffledRegular[j]] = [shuffledRegular[j], shuffledRegular[i],
+    {
+    "id": 69,
+    "folder": "vault-3",
+    "title": "LaiqVerse ArtWork #1",
+    "image": "nawaz-sharif-laiqverse.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 70,
+    "folder": "vault-3",
+    "title": "LaiqVerse ArtWork #2",
+    "image": "rana-sana-ullah-laiqverse.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 71,
+    "folder": "vault-3",
+    "title": "LaiqVerse ArtWork #3",
+    "image": "gandapur-laiqverse.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 72,
+    "folder": "vault-3",
+    "title": "LaiqVerse ArtWork #4",
+    "image": "laiq-qureshi-laiqverse.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+}
+]
+            }
+            
+            // Shuffle vault only items
+            const shuffledVault = [...vaultOnlyItems,
+    {
+    "id": 69,
+    "folder": "vault-4",
+    "title": "LaiqVerse ArtWork #1",
+    "image": "laiqverse-cubist-graphite-benazir-bhutto.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 70,
+    "folder": "vault-4",
+    "title": "LaiqVerse ArtWork #2",
+    "image": "laiqverse-cubist-graphite-malala.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 71,
+    "folder": "vault-4",
+    "title": "LaiqVerse ArtWork #3",
+    "image": "laiqverse-cubist-graphite-allama-iqbal.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 72,
+    "folder": "vault-4",
+    "title": "LaiqVerse ArtWork #4",
+    "image": "laiqverse-cubist-graphite-noor-jehan.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 73,
+    "folder": "vault-4",
+    "title": "LaiqVerse ArtWork #5",
+    "image": "maryam-nawaz-laiqverse.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 74,
+    "folder": "vault-4",
+    "title": "LaiqVerse ArtWork #6",
+    "image": "nawaz-sharif-laiqverse.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 75,
+    "folder": "vault-4",
+    "title": "LaiqVerse ArtWork #7",
+    "image": "laiqverse-cubist-graphite-laiqqureshi.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 76,
+    "folder": "vault-4",
+    "title": "LaiqVerse ArtWork #8",
+    "image": "laiqverse-cubist-graphite-edhi.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 77,
+    "folder": "vault-4",
+    "title": "LaiqVerse ArtWork #9",
+    "image": "gandapur-laiqverse.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 78,
+    "folder": "vault-4",
+    "title": "LaiqVerse ArtWork #10",
+    "image": "rana-sanaullah-laiqverse.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 79,
+    "folder": "vault-4",
+    "title": "LaiqVerse ArtWork #11",
+    "image": "laiq-qureshi-laiqverse.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 80,
+    "folder": "vault-4",
+    "title": "LaiqVerse ArtWork #12",
+    "image": "laiqverse-cubist-graphite-laiq.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+}
+]
+            for (let i = shuffledVault.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffledVault[i], shuffledVault[j]] = [shuffledVault[j], shuffledVault[i],
+    {
+    "id": 69,
+    "folder": "vault-5",
+    "title": "LaiqVerse ArtWork #1",
+    "image": "dhaka-laiqverse.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 70,
+    "folder": "vault-5",
+    "title": "LaiqVerse ArtWork #2",
+    "image": "benazir-bhutto-laiqverse.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 71,
+    "folder": "vault-5",
+    "title": "LaiqVerse ArtWork #3",
+    "image": "manila-laiqverse.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 72,
+    "folder": "vault-5",
+    "title": "LaiqVerse ArtWork #4",
+    "image": "mumbai-laiqverse.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 73,
+    "folder": "vault-5",
+    "title": "LaiqVerse ArtWork #5",
+    "image": "tamil-nadu-laiqverse.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 74,
+    "folder": "vault-5",
+    "title": "LaiqVerse ArtWork #6",
+    "image": "colin-david-laiqverse.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 75,
+    "folder": "vault-5",
+    "title": "LaiqVerse ArtWork #7",
+    "image": "kathmandu-laiqverse.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 76,
+    "folder": "vault-5",
+    "title": "LaiqVerse ArtWork #8",
+    "image": "kolkata-laiqverse.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 77,
+    "folder": "vault-5",
+    "title": "LaiqVerse ArtWork #9",
+    "image": "allama-iqbal-laiqverse.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 78,
+    "folder": "vault-5",
+    "title": "LaiqVerse ArtWork #10",
+    "image": "quetta-laiqverse.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 79,
+    "folder": "vault-5",
+    "title": "LaiqVerse ArtWork #11",
+    "image": "mutan-pakistan-laiqverse.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 80,
+    "folder": "vault-5",
+    "title": "LaiqVerse ArtWork #12",
+    "image": "karachi-food-street-laiqverse.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 81,
+    "folder": "vault-5",
+    "title": "LaiqVerse ArtWork #13",
+    "image": "lahore-laiqverse.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 82,
+    "folder": "vault-5",
+    "title": "LaiqVerse ArtWork #14",
+    "image": "peshawar-laiqverse.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 83,
+    "folder": "vault-5",
+    "title": "LaiqVerse ArtWork #15",
+    "image": "islamabad-laiqverse.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 84,
+    "folder": "vault-5",
+    "title": "LaiqVerse ArtWork #16",
+    "image": "laiq-ahmed-qureshi-laiqverse.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 85,
+    "folder": "vault-5",
+    "title": "LaiqVerse ArtWork #17",
+    "image": "delhi-laiqverse.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 86,
+    "folder": "vault-5",
+    "title": "LaiqVerse ArtWork #18",
+    "image": "edhi-by-laiqverse.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 87,
+    "folder": "vault-5",
+    "title": "LaiqVerse ArtWork #19",
+    "image": "karachi-laiqverse.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 88,
+    "folder": "vault-5",
+    "title": "LaiqVerse ArtWork #20",
+    "image": "gawadar-laiqverse.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 89,
+    "folder": "vault-5",
+    "title": "LaiqVerse ArtWork #21",
+    "image": "multan-laiqverse.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 90,
+    "folder": "vault-5",
+    "title": "LaiqVerse ArtWork #22",
+    "image": "bangkok-laiqverse.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+}
+]
+            }
+            
+            // Build the gallery - mix regular and vault items
+            let allItems = [,
+    {
+    "id": 69,
+    "folder": "vault-6",
+    "title": "LaiqVerse ArtWork #1",
+    "image": "benazir-bhutto-laiqverse.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 70,
+    "folder": "vault-6",
+    "title": "LaiqVerse ArtWork #2",
+    "image": "Mohammad-Ali-laiqverse.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 71,
+    "folder": "vault-6",
+    "title": "LaiqVerse ArtWork #3",
+    "image": "Jinnah-laiqverse.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 72,
+    "folder": "vault-6",
+    "title": "LaiqVerse ArtWork #4",
+    "image": "laiqverse-image-2.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 73,
+    "folder": "vault-6",
+    "title": "LaiqVerse ArtWork #5",
+    "image": "laiqverse-image-3.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 74,
+    "folder": "vault-6",
+    "title": "LaiqVerse ArtWork #6",
+    "image": "laiqverse-image-1.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 75,
+    "folder": "vault-6",
+    "title": "LaiqVerse ArtWork #7",
+    "image": "amitabh-rekha-laiqverse.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 76,
+    "folder": "vault-6",
+    "title": "LaiqVerse ArtWork #8",
+    "image": "nida-yasir-laiqverse.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 77,
+    "folder": "vault-6",
+    "title": "LaiqVerse ArtWork #9",
+    "image": "laiqverse-fazal-ur-rahman.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 78,
+    "folder": "vault-6",
+    "title": "LaiqVerse ArtWork #10",
+    "image": "nawaz-sharif-laiqverse.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 79,
+    "folder": "vault-6",
+    "title": "LaiqVerse ArtWork #11",
+    "image": "Shah-Rukh-Khan-laiqverse.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 80,
+    "folder": "vault-6",
+    "title": "LaiqVerse ArtWork #12",
+    "image": "laiq-ahmed-qureshi-laiqverse.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 81,
+    "folder": "vault-6",
+    "title": "LaiqVerse ArtWork #13",
+    "image": "nusrat-fateh-ali-laiqverse.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 82,
+    "folder": "vault-6",
+    "title": "LaiqVerse ArtWork #14",
+    "image": "Atiqa-Odho-laiqverse.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+},
+    {
+    "id": 83,
+    "folder": "vault-6",
+    "title": "LaiqVerse ArtWork #15",
+    "image": "mia-khalifa-laiqverse.jpg",
+    "prompt": "AI artwork by Laiq Ahmed Qureshi \u2014 LaiqVerse \u2014 AI in Pakistan",
+    "tags": [
+        "Vault",
+        "AI Art",
+        "LaiqVerse",
+        "AI in Pakistan"
+    ],
+    "isPanoramic": false,
+    "isVaultOnly": true
+}
+]
+            
+            // Add regular items
+            shuffledRegular.forEach((item) => {
+                allItems.push({...item, type: 'regular'});
+            });
+            
+            // Insert vault items at random positions among regular items
+            if (shuffledVault.length > 0) {
+                // Insert vault items after some regular items
+                const insertPos = Math.floor(shuffledRegular.length / 2);
+                for (let i = 0; i < shuffledVault.length; i++) {
+                    const pos = Math.min(insertPos + i * 2, allItems.length);
+                    allItems.splice(pos, 0, {...shuffledVault[i], type: 'vault'});
+                }
+            }
+            
+            // Add panoramic items at the end with divider
+            if (panoItems.length > 0) {
+                allItems.push({type: 'divider'});
+                panoItems.forEach((item) => {
+                    allItems.push({...item, type: 'panoramic'});
+                });
+            }
+            
+            // Render all items
+            allItems.forEach((item) => {
+                if (item.type === 'divider') {
+                    html += `
+                        <div class="vault-divider">
+                            <h2>Panoramic Collection</h2>
+                            <p>Wide-format panoramic artworks</p>
+                            <div class="line"></div>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                const isPanoramic = item.isPanoramic || false;
+                const imagePath = `${item.folder}/${item.image}`;
+                const itemClass = isPanoramic ? 'vault-item-panoramic' : 'vault-item';
+                html += `
+                    <div class="${itemClass}" onclick="openLightbox(${item.id})">
+                        <img src="${imagePath}" alt="${item.title}" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect width=%22300%22 height=%22300%22 fill=%22%23e8e8ed%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-family=%22system-ui%22 fill=%22%23999%22%3ENo Image%3C/text%3E%3C/svg%3E'" />
+                        <div class="vault-info">
+                            <h3>${item.title}</h3>
+                            <div class="vault-tags">
+                                ${item.tags.slice(0, 3).map(tag => `<span>${tag}</span>`).join('')}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            grid.innerHTML = html;
+        }
+
+        let currentLightboxItem = null;
+
+        function openLightbox(id) {
+            const item = vaultData.find(p => p.id === id);
+            if (!item) return;
+            currentLightboxItem = item;
+            document.getElementById('lbImage').src = `${item.folder}/${item.image}`;
+            document.getElementById('lbImage').alt = item.title;
+            document.getElementById('lbCategory').textContent = 'AI Art';
+            document.getElementById('lbTitle').textContent = item.title;
+            document.getElementById('lbDescription').textContent = item.prompt || 'No description available.';
+            document.getElementById('lbTags').innerHTML = item.tags.map(tag => `<span>${tag}</span>`).join('');
+            document.getElementById('lightbox').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('open');
+            document.body.style.overflow = '';
+            document.getElementById('lbShareMenu').classList.remove('show');
+        }
+
+        document.getElementById('lightbox').addEventListener('click', function(e) {
+            if (e.target === this) closeLightbox();
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeLightbox();
+        });
+
+        function copyLightboxPrompt() {
+            if (!currentLightboxItem) return;
+            const text = currentLightboxItem.prompt || 'No prompt available.';
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(() => {
+                    showToast('✨ Prompt copied!');
+                }).catch(() => fallbackCopy(text));
+            } else {
+                fallbackCopy(text);
+            }
+        }
+
+        function fallbackCopy(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                document.execCommand('copy');
+                showToast('✨ Prompt copied!');
+            } catch (e) {
+                showToast('📋 Please copy manually');
+            }
+            document.body.removeChild(textarea);
+        }
+
+        function toggleShareMenu() {
+            document.getElementById('lbShareMenu').classList.toggle('show');
+        }
+
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.lb-share-dropdown')) {
+                document.getElementById('lbShareMenu').classList.remove('show');
+            }
+        });
+
+        function shareLightbox(platform) {
+            if (!currentLightboxItem) return;
+            const item = currentLightboxItem;
+            const title = item.title;
+            const text = (item.prompt || '').substring(0, 300) + '...';
+            const url = window.location.href;
+            const imageUrl = `${window.location.origin}/${item.folder}/${item.image}`;
+            const brandMessage = `✨ ${title}\n\n${text}\n\n🎨 Prompt crafted by Laiq Ahmed Qureshi\n#LaiqVerse #AIinPakistan #TasteMatters`;
+            let shareUrl = '';
+            switch(platform) {
+                case 'twitter': shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(brandMessage)}&url=${encodeURIComponent(url)}`; break;
+                case 'facebook': shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(title + ' — ' + brandMessage)}`; break;
+                case 'linkedin': shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}&summary=${encodeURIComponent(brandMessage)}`; break;
+                case 'whatsapp': shareUrl = `https://wa.me/?text=${encodeURIComponent(brandMessage + '\n\n' + url)}`; break;
+                case 'pinterest': shareUrl = `https://pinterest.com/pin/create/button/?url=${encodeURIComponent(url)}&media=${encodeURIComponent(imageUrl)}&description=${encodeURIComponent(title + ' — ' + brandMessage)}`; break;
+                case 'bluesky': shareUrl = `https://bsky.app/intent/compose?text=${encodeURIComponent(brandMessage + '\n\n' + url)}`; break;
+                case 'email': shareUrl = `mailto:?subject=${encodeURIComponent(title + ' — Premium AI Prompt')}&body=${encodeURIComponent(brandMessage + '\n\n' + url)}`; break;
+                default: return;
+            }
+            if (shareUrl) window.open(shareUrl, '_blank', 'width=600,height=500');
+            document.getElementById('lbShareMenu').classList.remove('show');
+        }
+
+        function showToast(message) {
+            const existing = document.querySelector('.toast');
+            if (existing) existing.remove();
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.textContent = message;
+            Object.assign(toast.style, {
+                position: 'fixed', bottom: '32px', left: '50%', transform: 'translateX(-50%)',
+                background: 'rgba(0,0,0,0.85)', color: 'white', padding: '14px 32px',
+                borderRadius: '100px', fontFamily: '-apple-system, sans-serif', fontSize: '0.95rem',
+                fontWeight: '500', backdropFilter: 'blur(10px)', zIndex: '999',
+                boxShadow: '0 8px 30px rgba(0,0,0,0.2)', opacity: '0',
+                transition: 'opacity 0.3s ease'
+            });
+            document.body.appendChild(toast);
+            setTimeout(() => toast.style.opacity = '1', 10);
+            setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 300); }, 2500);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🏛️ The Vault loaded with ' + vaultData.length + ' items!');
+            renderVault();
+        });
+    </script>
+</body>
+</html>

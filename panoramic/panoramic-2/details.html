@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Between Day and Night · South Asian dreamscape</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #f3efe8;
+      background-image: 
+        linear-gradient(rgba(235, 225, 215, 0.25) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(235, 225, 215, 0.15) 1px, transparent 1px);
+      background-size: 44px 44px;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      color: #1c1c1e;
+      line-height: 1.5;
+      padding: 2rem 1rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      max-width: 820px;
+      width: 100%;
+      margin: 0 auto;
+      background: rgba(255, 252, 248, 0.7);
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
+      border-radius: 48px;
+      box-shadow: 0 20px 60px -20px rgba(0, 0, 0, 0.12), 0 8px 28px rgba(0, 0, 0, 0.03);
+      padding: 3rem 2.5rem;
+      transition: all 0.2s ease;
+      border: 1px solid rgba(255, 248, 240, 0.6);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .container::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="1" stitchTiles="stitch"/><feColorMatrix type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.06 0"/></filter><rect width="120" height="120" filter="url(%23noise)" opacity="0.25"/></svg>');
+      opacity: 0.1;
+      pointer-events: none;
+      mix-blend-mode: multiply;
+    }
+
+    .container > * {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* title block */
+    .title-section {
+      margin-bottom: 2.6rem;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+      padding-bottom: 1.8rem;
+    }
+
+    h1 {
+      font-size: 2.9rem;
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(145deg, #1c1c1e 0%, #3b3b3f 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .subhead {
+      font-size: 1rem;
+      font-weight: 380;
+      color: #4a4a4e;
+      letter-spacing: -0.01em;
+      line-height: 1.5;
+      margin-top: 0.2rem;
+      padding: 0.4rem 1.2rem 0.4rem 1.2rem;
+      background: rgba(225, 215, 200, 0.2);
+      border-radius: 40px;
+      display: inline-block;
+      backdrop-filter: blur(2px);
+      border: 0.5px solid rgba(255, 245, 235, 0.5);
+      color: #2e2e30;
+    }
+
+    .subhead strong {
+      font-weight: 500;
+      color: #1a1a1c;
+    }
+
+    /* fine print / description small */
+    .fine-print {
+      font-size: 0.78rem;
+      color: #6b6b70;
+      letter-spacing: 0.01em;
+      margin-top: 0.8rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem 0.6rem;
+    }
+
+    .fine-print span {
+      background: rgba(210, 195, 180, 0.15);
+      padding: 0.1rem 0.9rem;
+      border-radius: 40px;
+      border: 0.3px solid rgba(255, 245, 235, 0.3);
+      font-weight: 350;
+    }
+
+    /* story */
+    .story {
+      margin-top: 0.2rem;
+    }
+
+    .story h2 {
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: #6e6e73;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+      padding-bottom: 0.7rem;
+      margin-bottom: 1.8rem;
+      display: inline-block;
+    }
+
+    .story-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+    }
+
+    .story-content p {
+      font-size: 1.06rem;
+      font-weight: 370;
+      line-height: 1.7;
+      color: #1d1d1f;
+      letter-spacing: -0.002em;
+      margin: 0;
+    }
+
+    .story-content p:first-of-type {
+      margin-top: 0;
+    }
+    .story-content p:last-of-type {
+      margin-bottom: 0;
+    }
+
+    /* meta footer */
+    .story-meta {
+      margin-top: 2.4rem;
+      padding-top: 1.6rem;
+      border-top: 1px solid rgba(0, 0, 0, 0.04);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      color: #6e6e73;
+      letter-spacing: 0.02em;
+    }
+
+    .story-meta span {
+      background: rgba(225, 215, 200, 0.15);
+      padding: 0.2rem 1.1rem;
+      border-radius: 40px;
+      backdrop-filter: blur(1px);
+      border: 0.4px solid rgba(255, 245, 235, 0.2);
+    }
+
+    .atmosphere-tag {
+      font-style: normal;
+      font-weight: 350;
+      color: #3a3a3c;
+      background: rgba(215, 200, 185, 0.15);
+      padding: 0.15rem 1rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      display: inline-block;
+      backdrop-filter: blur(1px);
+      border: 0.3px solid rgba(255, 245, 235, 0.2);
+    }
+
+    .divider {
+      width: 40px;
+      height: 2px;
+      background: #d0c5b8;
+      margin: 1rem 0 1.8rem 0;
+      border-radius: 4px;
+    }
+
+    /* responsive */
+    @media (max-width: 640px) {
+      body {
+        padding: 1rem 0.6rem;
+      }
+      .container {
+        padding: 2rem 1.4rem;
+        border-radius: 32px;
+      }
+      h1 {
+        font-size: 2.1rem;
+      }
+      .subhead {
+        font-size: 0.9rem;
+        padding: 0.3rem 1rem;
+      }
+      .story-content p {
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+      .story-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.6rem;
+      }
+    }
+
+    ::selection {
+      background: #d6cbc0;
+      color: #1c1c1e;
+    }
+
+    /* small decorative glow */
+    .glow-dot {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #d9a066;
+      box-shadow: 0 0 14px #d9a06655;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+
+    .tag-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem 0.7rem;
+      margin-top: 1.2rem;
+      padding-top: 0.8rem;
+      border-top: 0.5px solid rgba(0,0,0,0.03);
+      font-size: 0.7rem;
+      color: #6e6e73;
+    }
+    .tag-group span {
+      background: rgba(210,195,180,0.08);
+      padding: 0.1rem 0.9rem;
+      border-radius: 30px;
+      border: 0.3px solid rgba(255,240,230,0.2);
+    }
+
+    .footer-note {
+      margin-top: 2rem;
+      font-size: 0.6rem;
+      color: #8a8a8f;
+      letter-spacing: 0.04em;
+      text-align: center;
+      border-top: 0.5px solid rgba(0,0,0,0.03);
+      padding-top: 1rem;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- title + description -->
+    <div class="title-section">
+      <h1>Between Day and Night</h1>
+      <div class="subhead">
+        <span class="glow-dot"></span> 
+        A visual memory of South Asia suspended between the ordinary and the dreamlike.
+      </div>
+      <!-- description in small fonts as requested -->
+      <div class="fine-print">
+        <span>At the edge of evening, a solitary man sits on an old charpai above a sprawling city, watching the last light disappear.</span>
+        <span>chai · notebook · jasmine · water tanks · electrical wires</span>
+        <span>Neo-Art Deco collage · indigo · burnt orange · terracotta · dusty rose · antique brass</span>
+      </div>
+      <div style="margin-top: 0.4rem; display: flex; flex-wrap: wrap; gap: 0.3rem 0.6rem;">
+        <span style="background:rgba(210,195,180,0.1); padding:0.1rem 0.9rem; border-radius:30px; font-size:0.7rem; color:#5e5e62;">Pakistan · India · Bangladesh</span>
+        <span style="background:rgba(210,195,180,0.1); padding:0.1rem 0.9rem; border-radius:30px; font-size:0.7rem; color:#5e5e62;">geometric architecture · cut-paper · silkscreen</span>
+      </div>
+    </div>
+
+    <!-- story -->
+    <div class="story">
+      <h2>The Hour Between</h2>
+      <div class="divider"></div>
+      <div class="story-content">
+        <p>There is a particular hour in every South Asian city when the day has not completely disappeared, but night has already begun to arrive.</p>
+        <p>The rooftops become quieter. The heat begins to leave the brick walls. Someone calls a child home. Laundry moves gently in the evening breeze. A kettle begins to whistle somewhere nearby. Lights flicker on, one rooftop at a time, while birds cross the changing sky looking for their final place to land.</p>
+        <p>On one of those rooftops, a man sits alone on an old charpai. He is not waiting for anyone. He is simply watching. Beside him sits a cup of chai, still warm enough to send a thin trail of steam into the fading air. An open notebook rests nearby, its pages holding thoughts that may never become words. He looks toward the city as if trying to understand something larger than himself.</p>
+        <p>Below, life continues. Children play cricket between concrete walls. A cyclist disappears into a narrow street. A food seller prepares the evening meal beneath a small glowing cart. On another rooftop, someone hangs the last pieces of laundry before darkness arrives.</p>
+        <p>Nothing extraordinary is happening. And yet, everything feels important.</p>
+        <p>Beyond the crowded rooftops, the city begins to dissolve into water, haze and light. Buildings lose their sharp edges. Familiar architectural forms merge together. Domes, balconies, towers, old facades and modern structures become fragments of one immense shared landscape.</p>
+        <p>The horizon glows one final time. For a few moments, day and night exist together. That is where this painting lives.</p>
+        <p>It is about the quiet moments that rarely become history—the cup of tea, the rooftop conversation, the cricket game, the evening prayer heard from far away, the fading sunlight on old walls, the stranger cycling home, the notebook waiting to be filled.</p>
+        <p>It is also about belonging. Across Pakistan, India and Bangladesh, millions of lives unfold within different cities, languages and histories, yet many of their memories occupy the same emotional landscape: rooftops, monsoon skies, crowded streets, chai, family, distance, ambition, resilience and hope.</p>
+        <p>The man on the charpai could be anyone. Perhaps he is remembering where he came from. Perhaps he is imagining where he is going. Or perhaps, for once, he is simply allowing the city to exist without asking it for an answer.</p>
+        <p>As darkness slowly takes the sky, the lights of the city begin to appear. One by one. And the night does not feel empty. It feels full of possibility.</p>
+      </div>
+
+      <!-- meta: atmosphere + details -->
+      <div class="story-meta">
+        <span class="atmosphere-tag">🌆 dusk · charpai · chai · jasmine</span>
+        <span>✦ <span style="font-weight:350;">Neo-Art Deco · collage · silkscreen</span></span>
+        <span style="font-weight:350;">indigo · terracotta · antique brass</span>
+      </div>
+
+      <!-- extra small description tags -->
+      <div class="tag-group">
+        <span>old charpai</span>
+        <span>open notebook</span>
+        <span>hanging laundry</span>
+        <span>water tanks</span>
+        <span>colonial facades · minarets · domes</span>
+        <span>cut-paper forms · hand-drawn contours</span>
+      </div>
+    </div>
+
+    <!-- footer -->
+    <div class="footer-note">
+      “Between Day and Night” — a portrait of a feeling, not a city.
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LaiqVerseStudioAI — Premium AI Prompts</title>
+    <meta name="description" content="Curated, tested, and refined AI prompts for Midjourney, ChatGPT, DALL-E, and more. Unlock the full potential of AI creativity." />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="icon" href="logo.png" type="image/png" />
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="site-header">
+        <div class="container">
+            <div class="nav-wrapper">
+                <a href="index.html" class="logo">
+                    <img src="logo.png" alt="LaiqVerseStudioAI" class="logo-img" />
+                    <span class="logo-text">LaiqVerse<span>StudioAI</span></span>
+                </a>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="index.html" class="active">Home</a></li>
+                        <li><a href="prompts.html">Prompts</a></li>
+                        <li><a href="gallery.html">The Vault</a></li>
+                        <li><a href="panoramic.html">Panoramic</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+                <button class="mobile-toggle" aria-label="Toggle menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <span class="hero-badge">✦ Premium AI Prompts</span>
+                <h1>Your Gateway to <br /><span class="gradient-text">AI Creativity</span></h1>
+                <p class="hero-sub">
+                    Curated, tested, and refined prompts for Midjourney, ChatGPT, 
+                    DALL-E, and more. Unlock the full potential of AI.
+                </p>
+                <div class="hero-actions">
+                    <a href="prompts.html" class="btn-primary">Explore Prompts →</a>
+                    <a href="about.html" class="btn-secondary">Learn More</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-image-container" style="position:relative;width:100%;max-width:500px;border-radius:16px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,0.08);aspect-ratio:4/5;">
+                    <img src="vault-2/allan-laiqverse.jpg" alt="LaiqVerse ArtWork" class="hero-image" style="width:100%;height:100%;object-fit:cover;display:block;" onerror="this.src='prompt-4/malalalaiqverse.png'" />
+                    <div class="hero-image-overlay" style="position:absolute;bottom:0;left:0;right:0;padding:20px 24px;background:linear-gradient(transparent,rgba(0,0,0,0.7));">
+                        <span class="overlay-badge" style="display:inline-block;background:#fd4400;color:#fff;font-size:0.6rem;font-weight:600;letter-spacing:0.5px;padding:3px 12px;border-radius:100px;text-transform:uppercase;margin-bottom:4px;">✦ Featured</span>
+                        <p class="overlay-text" style="color:#fff;font-size:0.9rem;font-weight:500;margin:0;">LaiqVerse ArtWork</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURED PROMPTS -->
+    <section class="featured-prompts">
+        <div class="container">
+            <div class="section-header">
+                <h2>Featured Prompts</h2>
+                <p>Handpicked from our collection — ready to inspire your next creation.</p>
+            </div>
+            <div class="prompt-grid" id="promptGrid">
+                <!-- Cards will be injected here by JavaScript -->
+            </div>
+            <div class="section-footer">
+                <a href="prompts.html" class="btn-outline">View All Prompts →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- RANDOM BLOG POST -->
+    <section class="philosophy-section" id="random-blog">
+        <div class="container">
+            <div class="philosophy-content">
+                <span class="philosophy-badge">✦ Featured Article</span>
+                <h2 id="blog-title">Loading...</h2>
+                <p class="philosophy-sub" id="blog-subtitle"></p>
+                <div class="philosophy-divider"></div>
+                <p class="philosophy-text" id="blog-excerpt"></p>
+                <a href="#" target="_blank" class="btn-philosophy" id="blog-link">Read the Full Story →</a>
+            </div>
+            <div class="philosophy-visual">
+                <div class="philosophy-quote-block">
+                    <span class="quote-mark">"</span>
+                    <p class="quote-text" id="blog-quote">Every technological revolution eventually makes tools easier to use.</p>
+                    <p class="quote-attribution" id="blog-attribution">— Laiq Ahmed Qureshi</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CATEGORIES -->
+    <div style="padding: 20px 0 30px; background: var(--color-surface); border-top: 1px solid rgba(0,0,0,0.04);">
+        <div class="container">
+            <p style="text-align: center; font-size: 0.7rem; font-weight: 600; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px;">
+                Browse Categories
+            </p>
+            <div class="category-grid-tiny">
+                <span class="category-tiny"><span class="cat-icon-small">🎨</span> AI Art</span>
+                <span class="category-tiny"><span class="cat-icon-small">💬</span> ChatGPT</span>
+                <span class="category-tiny"><span class="cat-icon-small">📈</span> Marketing</span>
+                <span class="category-tiny"><span class="cat-icon-small">🛠️</span> Developer</span>
+                <span class="category-tiny"><span class="cat-icon-small">✍️</span> Writing</span>
+                <span class="category-tiny"><span class="cat-icon-small">🎯</span> Productivity</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <img src="logo.png" alt="LaiqVerseStudioAI" class="logo-img" />
+                        <span class="logo-text">LaiqVerse<span>StudioAI</span></span>
+                    </a>
+                    <p>Crafted with precision for the AI creator.</p>
+                    <p class="footer-tagline">"I direct machines to imagine."</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Pages</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="prompts.html">Prompts</a></li>
+                        <li><a href="gallery.html">The Vault</a></li>
+                        <li><a href="panoramic.html">Panoramic</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="https://x.com/LaiqVerse" target="_blank">Twitter / X</a></li>
+                        <li><a href="https://www.facebook.com/groups/laiqverse" target="_blank">Facebook</a></li>
+                        <li><a href="https://www.instagram.com/laiqverse/" target="_blank">Instagram</a></li>
+                        <li><a href="https://www.pinterest.com/laiqqureshi/" target="_blank">Pinterest</a></li>
+                        <li><a href="https://bsky.app/profile/laiqai.bsky.social" target="_blank">Bluesky</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 LaiqVerseStudioAI. All rights reserved.</p>
+                <p class="footer-hashtags">#LaiqVerse #AIinPakistan #TasteMatters</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const blogPosts = [{"title": "The Prompt Era Is Over", "subtitle": "Taste Is the New Competitive Advantage", "excerpt": "There was a time when finding the perfect AI prompt felt like discovering a hidden shortcut. That era is ending. Not because prompts have become useless. Because they have become common.", "link": "https://laiqverse11.wordpress.com/"}, {"title": "The Death of the Job Title", "subtitle": "Why Your Skill Stack Is Your New Identity in the AI Era", "excerpt": "For years, job titles made life easy. But the shortcut is breaking. AI is changing how work gets done so quickly that many titles now describe a past version of a role.", "link": "https://laiqverse11.wordpress.com/"}, {"title": "The Death of the Portfolio", "subtitle": "Why Creators Need Proof, Not Projects", "excerpt": "For decades, creative professionals lived by a simple rule: Build a portfolio. Then artificial intelligence arrived.", "link": "https://laiqverse11.wordpress.com/"}, {"title": "Beyond the Prompt", "subtitle": "Reclaiming Your Creative Identity in the Age of AI", "excerpt": "If AI can write like me, design like me, and think like me\u2026 what exactly am I for? This isn't a productivity bottleneck. It's an existential one.", "link": "https://laiqverse11.wordpress.com/"}, {"title": "LaiqVerse Repo Explorer", "subtitle": "Turn Any GitHub Repository Into a Visual Dashboard", "excerpt": "My design philosophy is simple: I direct machines to imagine.", "link": "https://laiqverse11.wordpress.com/"}];
+        const vaultImages = [{"folder": "vault-2", "image": "allan-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-2", "image": "nusrat-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-2", "image": "abro-khuda-bux-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-2", "image": "imranbylaiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-2", "image": "tina-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-2", "image": "nawaz-sharif-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-2", "image": "rana-sana-ullah-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-2", "image": "bilawalbylaiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-2", "image": "faiz-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-2", "image": "atif-aslam-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-2", "image": "arif-imam-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-2", "image": "ayubbylaiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-2", "image": "malala-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-2", "image": "fazalbylaiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-2", "image": "gandapur-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-2", "image": "fahad-mustafa-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-2", "image": "asim-munir-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-2", "image": "laiq-qureshi-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-2", "image": "benazir-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-2", "image": "saba-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-2", "image": "fazal-ur-rahman-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-2", "image": "LaiqVerse1.png", "title": "LaiqVerse ArtWork"}, {"folder": "vault-2", "image": "ranasanaullahbylaiqverse.png", "title": "LaiqVerse ArtWork"}, {"folder": "vault-2", "image": "bilawalbylaiqverse.png", "title": "LaiqVerse ArtWork"}, {"folder": "vault-2", "image": "LaiqVerse9.png", "title": "LaiqVerse ArtWork"}, {"folder": "vault-2", "image": "Gemini_Generated_Image_z1kv8fz1kv8fz1kv.png", "title": "LaiqVerse ArtWork"}, {"folder": "vault-2", "image": "fazalurrehmanbylaiqverse.png", "title": "LaiqVerse ArtWork"}, {"folder": "vault-3", "image": "nawaz-sharif-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-3", "image": "rana-sana-ullah-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-3", "image": "gandapur-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-3", "image": "laiq-qureshi-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-3", "image": "fazal-ur-rahman-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-4", "image": "laiqverse-cubist-graphite-benazir-bhutto.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-4", "image": "laiqverse-cubist-graphite-malala.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-4", "image": "laiqverse-cubist-graphite-allama-iqbal.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-4", "image": "laiqverse-cubist-graphite-noor-jehan.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-4", "image": "maryam-nawaz-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-4", "image": "nawaz-sharif-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-4", "image": "shah-rukh-khan-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-4", "image": "malala-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-4", "image": "laiqverse-cubist-graphite-laiqqureshi.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-4", "image": "laiqverse-cubist-graphite-edhi.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-4", "image": "gandapur-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-4", "image": "fazal-ur-rehman-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-4", "image": "rana-sanaullah-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-4", "image": "laiq-qureshi-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-4", "image": "laiqverse-cubist-graphite-laiq.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-5", "image": "dhaka-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-5", "image": "benazir-bhutto-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-5", "image": "manila-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-5", "image": "mumbai-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-5", "image": "tamil-nadu-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-5", "image": "colin-david-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-5", "image": "kathmandu-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-5", "image": "kolkata-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-5", "image": "allama-iqbal-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-5", "image": "quetta-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-5", "image": "mutan-pakistan-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-5", "image": "karachi-food-street-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-5", "image": "lahore-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-5", "image": "peshawar-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-5", "image": "islamabad-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-5", "image": "laiq-ahmed-qureshi-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-5", "image": "delhi-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-5", "image": "edhi-by-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-5", "image": "karachi-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-5", "image": "gawadar-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-5", "image": "multan-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-5", "image": "bangkok-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-6", "image": "benazir-bhutto-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-6", "image": "Mohammad-Ali-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-6", "image": "Jinnah-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-6", "image": "laiqverse-image-2.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-6", "image": "laiqverse-image-3.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-6", "image": "laiqverse-image-1.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-6", "image": "amitabh-rekha-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-6", "image": "nida-yasir-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-6", "image": "laiqverse-fazal-ur-rahman.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-6", "image": "nawaz-sharif-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-6", "image": "Shah-Rukh-Khan-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-6", "image": "laiq-ahmed-qureshi-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-6", "image": "bajwa-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-6", "image": "malala-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-6", "image": "nusrat-fateh-ali-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-6", "image": "fazal-ur-rehman-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-6", "image": "Atiqa-Odho-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-6", "image": "mia-khalifa-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-7", "image": "donald-trump-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-7", "image": "benazir-bhutto-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-7", "image": "Mohammad-Ali-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-7", "image": "imran-khan-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-7", "image": "amitabh-rekha-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-7", "image": "Idris-Elba-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-7", "image": "Indira-Gandhi-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-7", "image": "maryam-nawaz-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-7", "image": "tom-cruise-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-7", "image": "a-r-rahman-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-7", "image": "nawaz-sharif-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-7", "image": "rana-sana-ullah-laiqverse.jpg", "title": "LaiqVerse ArtWork"}, {"folder": "vault-7", "image": "salma-hayek1-laiqverse.jpg", "title": "LaiqVerse ArtWork"}];
+
+        (function() {
+            // Random blog post
+            const blogIndex = Math.floor(Math.random() * blogPosts.length);
+            const post = blogPosts[blogIndex];
+            const titleEl = document.getElementById('blog-title');
+            const subtitleEl = document.getElementById('blog-subtitle');
+            const excerptEl = document.getElementById('blog-excerpt');
+            const linkEl = document.getElementById('blog-link');
+            if (titleEl) titleEl.textContent = post.title;
+            if (subtitleEl) subtitleEl.textContent = post.subtitle;
+            if (excerptEl) excerptEl.textContent = post.excerpt;
+            if (linkEl) linkEl.href = post.link;
+
+            // Random featured image
+            const imgIndex = Math.floor(Math.random() * vaultImages.length);
+            const img = vaultImages[imgIndex];
+            const heroImg = document.querySelector('.hero-image');
+            const overlayText = document.querySelector('.overlay-text');
+            if (heroImg) {
+                heroImg.src = img.folder + '/' + img.image;
+                heroImg.alt = img.title;
+                if (overlayText) {
+                    overlayText.textContent = img.title;
+                }
+            }
+        })();
+    </script>
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Threads That Hold the Sky</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #1f1b16;
+      background-image:
+        linear-gradient(rgba(50, 44, 38, 0.25) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(50, 44, 38, 0.15) 1px, transparent 1px);
+      background-size: 48px 48px;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      color: #e8dfd4;
+      line-height: 1.5;
+      padding: 2rem 1rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      max-width: 840px;
+      width: 100%;
+      margin: 0 auto;
+      background: rgba(30, 27, 23, 0.82);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border-radius: 48px;
+      box-shadow: 0 24px 72px -20px rgba(0, 0, 0, 0.75), 0 8px 32px rgba(0, 0, 0, 0.25);
+      padding: 3rem 2.5rem;
+      transition: all 0.2s ease;
+      border: 1px solid rgba(255, 215, 180, 0.06);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* warm textile / rooftop texture */
+    .container::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160"><filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.10 0"/></filter><rect width="160" height="160" filter="url(%23grain)" opacity="0.3"/></svg>');
+      opacity: 0.15;
+      pointer-events: none;
+      mix-blend-mode: overlay;
+    }
+
+    .container > * {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* title block */
+    .title-section {
+      margin-bottom: 2.4rem;
+      border-bottom: 1px solid rgba(255, 215, 180, 0.06);
+      padding-bottom: 1.6rem;
+    }
+
+    h1 {
+      font-size: 2.7rem;
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
+      color: #f0e6da;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+      background: linear-gradient(145deg, #f0e6da 15%, #c9b8a4 85%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .subhead {
+      font-size: 1rem;
+      font-weight: 360;
+      color: #d4c9bb;
+      letter-spacing: -0.01em;
+      line-height: 1.5;
+      margin-top: 0.2rem;
+      padding: 0.4rem 1.2rem;
+      background: rgba(70, 62, 54, 0.25);
+      border-radius: 40px;
+      display: inline-block;
+      backdrop-filter: blur(2px);
+      border: 0.5px solid rgba(255, 215, 180, 0.05);
+      color: #d6cdc0;
+    }
+
+    .subhead strong {
+      font-weight: 500;
+      color: #ece2d6;
+    }
+
+    /* fine print — small description */
+    .fine-print {
+      font-size: 0.78rem;
+      color: #b0a69a;
+      letter-spacing: 0.01em;
+      margin-top: 0.8rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem 0.6rem;
+    }
+
+    .fine-print span {
+      background: rgba(70, 62, 54, 0.2);
+      padding: 0.1rem 0.9rem;
+      border-radius: 40px;
+      border: 0.3px solid rgba(255, 215, 180, 0.04);
+      font-weight: 350;
+      color: #cbc2b5;
+    }
+
+    /* story */
+    .story {
+      margin-top: 0.2rem;
+    }
+
+    .story h2 {
+      font-size: 0.95rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #b8aea2;
+      border-bottom: 1px solid rgba(255, 215, 180, 0.06);
+      padding-bottom: 0.7rem;
+      margin-bottom: 1.8rem;
+      display: inline-block;
+    }
+
+    .story-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+    }
+
+    .story-content p {
+      font-size: 1.06rem;
+      font-weight: 350;
+      line-height: 1.7;
+      color: #e3dbd0;
+      letter-spacing: -0.002em;
+      margin: 0;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+    }
+
+    .story-content p:first-of-type {
+      margin-top: 0;
+    }
+    .story-content p:last-of-type {
+      margin-bottom: 0;
+    }
+
+    /* meta footer */
+    .story-meta {
+      margin-top: 2.4rem;
+      padding-top: 1.6rem;
+      border-top: 1px solid rgba(255, 215, 180, 0.06);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      color: #b0a69a;
+      letter-spacing: 0.02em;
+    }
+
+    .story-meta span {
+      background: rgba(60, 55, 48, 0.2);
+      padding: 0.2rem 1.1rem;
+      border-radius: 40px;
+      backdrop-filter: blur(1px);
+      border: 0.4px solid rgba(255, 215, 180, 0.04);
+    }
+
+    .atmosphere-tag {
+      font-style: normal;
+      font-weight: 350;
+      color: #d6cdc0;
+      background: rgba(60, 55, 48, 0.2);
+      padding: 0.15rem 1rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      display: inline-block;
+      backdrop-filter: blur(1px);
+      border: 0.3px solid rgba(255, 215, 180, 0.04);
+    }
+
+    .divider {
+      width: 40px;
+      height: 2px;
+      background: #6a5f52;
+      margin: 1rem 0 1.8rem 0;
+      border-radius: 4px;
+    }
+
+    /* responsive */
+    @media (max-width: 640px) {
+      body {
+        padding: 1rem 0.6rem;
+      }
+      .container {
+        padding: 2rem 1.4rem;
+        border-radius: 32px;
+      }
+      h1 {
+        font-size: 2.1rem;
+      }
+      .subhead {
+        font-size: 0.9rem;
+        padding: 0.3rem 1rem;
+      }
+      .story-content p {
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+      .story-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.6rem;
+      }
+    }
+
+    ::selection {
+      background: #7a6c5e;
+      color: #f2ebe0;
+    }
+
+    /* decorative */
+    .glow-dot {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #d4a373;
+      box-shadow: 0 0 20px #d4a37355;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+
+    .tag-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem 0.7rem;
+      margin-top: 1.2rem;
+      padding-top: 0.8rem;
+      border-top: 0.5px solid rgba(255, 215, 180, 0.04);
+      font-size: 0.7rem;
+      color: #a0988c;
+    }
+    .tag-group span {
+      background: rgba(60, 55, 48, 0.15);
+      padding: 0.1rem 0.9rem;
+      border-radius: 30px;
+      border: 0.3px solid rgba(255, 215, 180, 0.04);
+    }
+
+    .footer-note {
+      margin-top: 2rem;
+      font-size: 0.6rem;
+      color: #8a7f73;
+      letter-spacing: 0.04em;
+      text-align: center;
+      border-top: 0.5px solid rgba(255, 215, 180, 0.04);
+      padding-top: 1rem;
+      opacity: 0.7;
+    }
+
+    .accent-crimson {
+      color: #c0392b;
+      font-weight: 400;
+    }
+    .accent-gold {
+      color: #d4a373;
+      font-weight: 400;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- title + description -->
+    <div class="title-section">
+      <h1>Threads That Hold<br />the Sky</h1>
+      <div class="subhead">
+        <span class="glow-dot"></span>
+        There is an old belief whispered across the rooftops of Lahore: every Basant, the sky borrows the dreams of the city.
+      </div>
+      <div class="fine-print">
+        <span>Basant · rooftops · kites · crimson · dhol · clay cups</span>
+        <span>Mughal heritage · truck art · folklore · resilience</span>
+        <span>thread · wind · connection · tradition · celebration</span>
+      </div>
+      <div style="margin-top: 0.4rem; display: flex; flex-wrap: wrap; gap: 0.3rem 0.6rem;">
+        <span style="background:rgba(60,55,48,0.2); padding:0.1rem 0.9rem; border-radius:30px; font-size:0.7rem; color:#b0a69a;">Lahore · Basant · rooftops · kites</span>
+        <span style="background:rgba(60,55,48,0.2); padding:0.1rem 0.9rem; border-radius:30px; font-size:0.7rem; color:#b0a69a;">truck art · folk · Mughal · contemporary</span>
+      </div>
+    </div>
+
+    <!-- story -->
+    <div class="story">
+      <h2>Story</h2>
+      <div class="divider"></div>
+      <div class="story-content">
+        <p>There is an old belief whispered across the rooftops of Lahore: every Basant, the sky borrows the dreams of the city.</p>
+        <p>In this painting, the rooftops are more than bricks and walls—they are stages where generations meet. Grandparents pour steaming tea into clay cups, musicians awaken forgotten rhythms with the dhol, children sprint with tangled spools of thread, and neighbors become teammates and rivals beneath the same open sky. Every rooftop tells its own story, yet together they form one living heartbeat.</p>
+        <p>At the center stands a young kite flyer, holding a magnificent crimson kite before its release. The kite is not merely paper and bamboo—it carries hope, memory, courage, and the weight of countless unspoken wishes. Around it, hundreds of strings stretch across the heavens like invisible connections between strangers, families, and centuries of tradition. They cross, tighten, and drift apart, reminding us that lives often become meaningful through the people they touch.</p>
+        <p>The flattened architecture and layered perspectives refuse to obey ordinary reality. Time folds into itself. Yesterday's Lahore stands beside today's, while echoes of Mughal heritage, folk craftsmanship, and contemporary city life coexist in a single vibrant moment. Decorative patterns inspired by truck art bloom across walls and rooftops, transforming everyday surfaces into celebrations of identity, resilience, and imagination.</p>
+        <p>Above, the sky becomes a vast woven tapestry of soaring kites, circling pigeons, fractured clouds, and sweeping ribbons of color. It is no longer just a backdrop—it is the emotional landscape of the city itself. The swirling forms suggest freedom balanced with fragility, for every kite flies only because it remains connected to the hand that guides it.</p>
+        <p>As the final golden sunlight washes across the rooftops, long shadows unite the figures into one collective composition. Individual stories dissolve into a shared celebration, where laughter, music, competition, and community become inseparable.</p>
+        <p><span style="color: #d6cdc0; font-weight: 400; letter-spacing: 0.01em;">Threads That Hold the Sky</span> is ultimately a painting about connection. It reminds us that cultures are not preserved in monuments alone, but in ordinary moments shared between people—on rooftops, beneath open skies, where a single crimson kite can carry an entire city's spirit into the wind.</p>
+      </div>
+
+      <!-- meta: atmosphere + details -->
+      <div class="story-meta">
+        <span class="atmosphere-tag">🪁 Basant · kite · rooftop · thread · dhol</span>
+        <span>✦ <span style="font-weight:350;">folk · Mughal · truck art · contemporary</span></span>
+        <span style="font-weight:350;"><span class="accent-crimson">crimson</span> · <span class="accent-gold">golden</span> · terracotta</span>
+      </div>
+
+      <!-- extra small description tags -->
+      <div class="tag-group">
+        <span>Lahore rooftops</span>
+        <span>clay cups · chai</span>
+        <span>dhol · musicians</span>
+        <span>tangled thread</span>
+        <span>crimson kite</span>
+        <span>Mughal echoes</span>
+        <span>truck art patterns</span>
+        <span>pigeons · clouds</span>
+        <span>golden sunlight</span>
+        <span>community · celebration</span>
+      </div>
+    </div>
+
+    <!-- footer -->
+    <div class="footer-note">
+      “Threads That Hold the Sky” — connection, tradition, and the spirit of Basant.
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>The Observatory at the Edge of Memory</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #141210;
+      background-image:
+        linear-gradient(rgba(40, 36, 32, 0.3) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(40, 36, 32, 0.2) 1px, transparent 1px);
+      background-size: 52px 52px;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      color: #e0d7cc;
+      line-height: 1.5;
+      padding: 2rem 1rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      max-width: 840px;
+      width: 100%;
+      margin: 0 auto;
+      background: rgba(24, 22, 19, 0.85);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border-radius: 48px;
+      box-shadow: 0 24px 72px -20px rgba(0, 0, 0, 0.8), 0 8px 32px rgba(0, 0, 0, 0.3);
+      padding: 3rem 2.5rem;
+      transition: all 0.2s ease;
+      border: 1px solid rgba(255, 235, 210, 0.05);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* desert / salt – textured overlay */
+    .container::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 180 180"><filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.10 0"/></filter><rect width="180" height="180" filter="url(%23grain)" opacity="0.3"/></svg>');
+      opacity: 0.2;
+      pointer-events: none;
+      mix-blend-mode: overlay;
+    }
+
+    .container > * {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* title block */
+    .title-section {
+      margin-bottom: 2.4rem;
+      border-bottom: 1px solid rgba(255, 235, 210, 0.06);
+      padding-bottom: 1.6rem;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
+      color: #ede6db;
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+      background: linear-gradient(145deg, #ede6db 15%, #c4b9aa 85%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .subhead {
+      font-size: 1rem;
+      font-weight: 360;
+      color: #cbc2b5;
+      letter-spacing: -0.01em;
+      line-height: 1.5;
+      margin-top: 0.2rem;
+      padding: 0.4rem 1.2rem;
+      background: rgba(60, 55, 48, 0.2);
+      border-radius: 40px;
+      display: inline-block;
+      backdrop-filter: blur(2px);
+      border: 0.5px solid rgba(255, 215, 180, 0.05);
+      color: #d6cdc0;
+    }
+
+    .subhead strong {
+      font-weight: 500;
+      color: #e8dfd2;
+    }
+
+    /* fine print — small description */
+    .fine-print {
+      font-size: 0.78rem;
+      color: #a89f94;
+      letter-spacing: 0.01em;
+      margin-top: 0.8rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem 0.6rem;
+    }
+
+    .fine-print span {
+      background: rgba(70, 64, 56, 0.2);
+      padding: 0.1rem 0.9rem;
+      border-radius: 40px;
+      border: 0.3px solid rgba(255, 215, 180, 0.04);
+      font-weight: 350;
+      color: #cbc2b5;
+    }
+
+    /* story */
+    .story {
+      margin-top: 0.2rem;
+    }
+
+    .story h2 {
+      font-size: 0.95rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #b0a69a;
+      border-bottom: 1px solid rgba(255, 235, 210, 0.06);
+      padding-bottom: 0.7rem;
+      margin-bottom: 1.8rem;
+      display: inline-block;
+    }
+
+    .story-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+    }
+
+    .story-content p {
+      font-size: 1.06rem;
+      font-weight: 350;
+      line-height: 1.7;
+      color: #e3dbd0;
+      letter-spacing: -0.002em;
+      margin: 0;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+    }
+
+    .story-content p:first-of-type {
+      margin-top: 0;
+    }
+    .story-content p:last-of-type {
+      margin-bottom: 0;
+    }
+
+    /* meta footer */
+    .story-meta {
+      margin-top: 2.4rem;
+      padding-top: 1.6rem;
+      border-top: 1px solid rgba(255, 235, 210, 0.06);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      color: #a89f94;
+      letter-spacing: 0.02em;
+    }
+
+    .story-meta span {
+      background: rgba(60, 55, 48, 0.2);
+      padding: 0.2rem 1.1rem;
+      border-radius: 40px;
+      backdrop-filter: blur(1px);
+      border: 0.4px solid rgba(255, 215, 180, 0.04);
+    }
+
+    .atmosphere-tag {
+      font-style: normal;
+      font-weight: 350;
+      color: #d6cdc0;
+      background: rgba(60, 55, 48, 0.2);
+      padding: 0.15rem 1rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      display: inline-block;
+      backdrop-filter: blur(1px);
+      border: 0.3px solid rgba(255, 215, 180, 0.04);
+    }
+
+    .divider {
+      width: 40px;
+      height: 2px;
+      background: #5f554a;
+      margin: 1rem 0 1.8rem 0;
+      border-radius: 4px;
+    }
+
+    /* responsive */
+    @media (max-width: 640px) {
+      body {
+        padding: 1rem 0.6rem;
+      }
+      .container {
+        padding: 2rem 1.4rem;
+        border-radius: 32px;
+      }
+      h1 {
+        font-size: 2.1rem;
+      }
+      .subhead {
+        font-size: 0.9rem;
+        padding: 0.3rem 1rem;
+      }
+      .story-content p {
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+      .story-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.6rem;
+      }
+    }
+
+    ::selection {
+      background: #6a5f52;
+      color: #f2ebe0;
+    }
+
+    /* small decorative */
+    .glow-dot {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #c4a07a;
+      box-shadow: 0 0 20px #c4a07a55;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+
+    .tag-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem 0.7rem;
+      margin-top: 1.2rem;
+      padding-top: 0.8rem;
+      border-top: 0.5px solid rgba(255, 235, 210, 0.04);
+      font-size: 0.7rem;
+      color: #a0988c;
+    }
+    .tag-group span {
+      background: rgba(60, 55, 48, 0.15);
+      padding: 0.1rem 0.9rem;
+      border-radius: 30px;
+      border: 0.3px solid rgba(255, 215, 180, 0.04);
+    }
+
+    .footer-note {
+      margin-top: 2rem;
+      font-size: 0.6rem;
+      color: #7f766b;
+      letter-spacing: 0.04em;
+      text-align: center;
+      border-top: 0.5px solid rgba(255, 235, 210, 0.04);
+      padding-top: 1rem;
+      opacity: 0.7;
+    }
+
+    .accent-sand {
+      color: #c4a07a;
+      font-weight: 400;
+    }
+    .accent-silver {
+      color: #b8b0a4;
+      font-weight: 400;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- title + description -->
+    <div class="title-section">
+      <h1>The Observatory<br />at the Edge of Memory</h1>
+      <div class="subhead">
+        <span class="glow-dot"></span>
+        At the edge of an endless salt desert, where the ruins of an ancient caravanserai disappear into the night, there stands an observatory that seems to belong to no single age.
+      </div>
+      <div class="fine-print">
+        <span>caravanserai · silk · manuscripts · spices · stories</span>
+        <span>astronomer · sandstone platform · ancient well</span>
+        <span>celestial maps · constellations · architectural fragments</span>
+      </div>
+      <div style="margin-top: 0.4rem; display: flex; flex-wrap: wrap; gap: 0.3rem 0.6rem;">
+        <span style="background:rgba(60,55,48,0.2); padding:0.1rem 0.9rem; border-radius:30px; font-size:0.7rem; color:#b0a69a;">salt desert · ruins · caravanserai · night sky</span>
+        <span style="background:rgba(60,55,48,0.2); padding:0.1rem 0.9rem; border-radius:30px; font-size:0.7rem; color:#b0a69a;">sandstone · weathered · celestial · memory</span>
+      </div>
+    </div>
+
+    <!-- story -->
+    <div class="story">
+      <h2>The Story</h2>
+      <div class="divider"></div>
+      <div class="story-content">
+        <p>At the edge of an endless salt desert, where the ruins of an ancient caravanserai disappear into the night, there stands an observatory that seems to belong to no single age.</p>
+        <p>Long ago, travelers crossed this desert carrying silk, manuscripts, spices, stories and fragments of knowledge from distant civilizations. The caravanserai was their refuge. Its walls witnessed merchants, poets, wandering scholars, astronomers and ordinary families gathering beneath the stars. Over generations, the building collapsed, the caravans disappeared, and the desert slowly reclaimed its courtyards.</p>
+        <p>But the sky remembered.</p>
+        <p>On certain nights, an old astronomer returns to the ruins and climbs onto the weathered sandstone platform with his instruments. Around him, silent travelers gather beside the ancient well. Children look upward. Women sit beneath the broken arches. Scholars open forgotten manuscripts. In the distance, a caravan moves slowly across the salt plain like a procession of shadows.</p>
+        <p>Then something impossible happens. The heavens begin to unfold. Immense celestial maps stretch across the sky like translucent sheets of memory. Ancient constellations overlap with unknown geometries. Architectural fragments float above the horizon. The desert becomes a mirror, reflecting a universe that seems to exist both above and beneath the earth.</p>
+        <p>The astronomer realizes that he is not merely studying the stars. He is standing at the boundary between the knowledge of the past and the uncertainty of the future.</p>
+        <p>Every generation has looked upward searching for answers. They have asked where they came from, where they are going, and whether the universe contains a pattern that human beings have not yet understood. In this place, those questions become visible.</p>
+        <p>The ruined caravanserai therefore becomes more than an archaeological remnant. It becomes a metaphor for civilization itself: constantly breaking apart, constantly rebuilding, and forever carrying knowledge forward.</p>
+        <p>The people remain silent as the night deepens. No one knows what the celestial maps are revealing. Perhaps they are memories of worlds that disappeared. Perhaps they are maps of worlds yet to exist. Or perhaps they are simply reminding humanity of something it has always known but repeatedly forgotten:</p>
+        <p><span style="color: #d6cdc0; font-weight: 400; letter-spacing: 0.01em;">the future does not begin when the past ends. It begins when we learn how to see the past differently.</span></p>
+        <p>And beneath that enormous, mysterious sky, the travelers continue to watch. The lamps remain lit. The well remains open. And the astronomer keeps searching.</p>
+      </div>
+
+      <!-- meta: atmosphere + details -->
+      <div class="story-meta">
+        <span class="atmosphere-tag">✦ desert · stars · memory · ruin · caravan</span>
+        <span>⬩ <span style="font-weight:350;">observatory · caravanserai · celestial maps</span></span>
+        <span style="font-weight:350;"><span class="accent-sand">sandstone</span> · <span class="accent-silver">salt</span> · night</span>
+      </div>
+
+      <!-- extra small description tags -->
+      <div class="tag-group">
+        <span>salt desert</span>
+        <span>ancient caravanserai</span>
+        <span>weathered platform</span>
+        <span>old astronomer</span>
+        <span>silent travelers</span>
+        <span>broken arches</span>
+        <span>celestial maps</span>
+        <span>architectural fragments</span>
+        <span>desert mirror</span>
+        <span>lamps · well · searching</span>
+      </div>
+    </div>
+
+    <!-- footer -->
+    <div class="footer-note">
+      “The Observatory at the Edge of Memory” — the boundary between knowledge and uncertainty.
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,9 @@
+# robots.txt for LaiqVerseStudioAI
+User-agent: *
+Allow: /
+Sitemap: https://laiqversestudioai.github.io/sitemap.xml
+
+# Disallow sensitive directories
+Disallow: /assets/
+Disallow: /css/
+Disallow: /js/

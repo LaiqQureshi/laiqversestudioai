@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About — LaiqVerseStudioAI</title>
+    <meta name="description" content="About Laiq Ahmed Qureshi — Creative Director, AI Visual Artist, and Imagineer." />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="icon" href="logo.png" type="image/png" />
+    <style>
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+            background: #f5f5f7;
+            color: #1d1d1f;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ===== HEADER ===== */
+        .site-header {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+        }
+
+        .nav-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 68px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: #1d1d1f;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            height: 36px;
+            width: auto;
+            border-radius: 6px;
+        }
+
+        .logo-text span {
+            color: #fd4400;
+        }
+
+        .main-nav ul {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .main-nav a {
+            color: #86868b;
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 4px 0;
+            border-bottom: 2px solid transparent;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .main-nav a:hover,
+        .main-nav a.active {
+            color: #1d1d1f;
+            border-bottom-color: #fd4400;
+        }
+
+        .main-nav a.active {
+            color: #1d1d1f;
+        }
+
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .mobile-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: #1d1d1f;
+            transition: all 0.3s ease;
+        }
+
+        /* ===== ABOUT HERO ===== */
+        .about-hero {
+            background: #ffffff;
+            padding: 60px 0 0;
+        }
+
+        .about-hero .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-hero-content {
+            padding: 20px 0 40px;
+        }
+
+        .about-hero-content .badge {
+            display: inline-block;
+            background: rgba(253, 68, 0, 0.08);
+            color: #fd4400;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            padding: 4px 14px;
+            border-radius: 100px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .about-hero-content h1 {
+            font-size: 3.2rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.05;
+            margin-bottom: 12px;
+        }
+
+        .about-hero-content h1 span {
+            color: #fd4400;
+        }
+
+        .about-hero-content .subtitle {
+            font-size: 1.1rem;
+            color: #86868b;
+            font-weight: 400;
+            margin-bottom: 16px;
+        }
+
+        .about-hero-content .subtitle span {
+            color: #fd4400;
+            font-weight: 500;
+        }
+
+        .about-hero-content .description {
+            font-size: 1rem;
+            color: #1d1d1f;
+            line-height: 1.7;
+            max-width: 480px;
+            margin-bottom: 24px;
+        }
+
+        .about-hero-image {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            aspect-ratio: 4/5;
+        }
+
+        .about-hero-image .image-credit {
+            position: absolute;
+            bottom: 16px;
+            right: 20px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.6rem;
+            letter-spacing: 0.5px;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 4px 12px;
+            border-radius: 100px;
+            backdrop-filter: blur(10px);
+        }
+
+        /* ===== STATS BAR ===== */
+        .stats-bar {
+            background: #ffffff;
+            padding: 32px 0;
+            border-top: 1px solid rgba(0, 0, 0, 0.04);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            text-align: center;
+        }
+
+        .stats-grid .stat-item .number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #fd4400;
+            display: block;
+        }
+
+        .stats-grid .stat-item .label {
+            font-size: 0.8rem;
+            color: #86868b;
+            font-weight: 500;
+        }
+
+        /* ===== BIO SECTION ===== */
+        .bio-section {
+            padding: 60px 0;
+            background: #f5f5f7;
+        }
+
+        .bio-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .bio-text h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
+
+        .bio-text h2 span {
+            color: #fd4400;
+        }
+
+        .bio-text p {
+            font-size: 0.95rem;
+            color: #1d1d1f;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .bio-text strong {
+            color: #fd4400;
+        }
+
+        .bio-text .highlight-quote {
+            font-size: 1.1rem;
+            color: #fd4400;
+            font-weight: 500;
+            font-style: italic;
+            padding: 16px 20px;
+            background: rgba(253, 68, 0, 0.05);
+            border-radius: 12px;
+            border-left: 4px solid #fd4400;
+            margin: 20px 0;
+        }
+
+        .bio-image-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .bio-image-grid .bio-img {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+        }
+
+        .bio-image-grid .bio-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .bio-image-grid .bio-img:hover img {
+            transform: scale(1.03);
+        }
+
+        .bio-image-grid .bio-img:first-child {
+            grid-row: span 2;
+            aspect-ratio: 3/4;
+        }
+
+        .bio-image-grid .bio-img:not(:first-child) {
+            aspect-ratio: 1/1;
+        }
+
+        /* ===== BADGES / EXPERTISE ===== */
+        .expertise-section {
+            padding: 60px 0;
+            background: #ffffff;
+        }
+
+        .expertise-section .section-label {
+            text-align: center;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #86868b;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 8px;
+        }
+
+        .expertise-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 32px;
+        }
+
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .expertise-card {
+            background: #f5f5f7;
+            border-radius: 16px;
+            padding: 24px 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .expertise-card:hover {
+            background: #ffffff;
+            border-color: rgba(253, 68, 0, 0.15);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+            transform: translateY(-4px);
+        }
+
+        .expertise-card .icon {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .expertise-card h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .expertise-card p {
+            font-size: 0.75rem;
+            color: #86868b;
+            margin: 0;
+        }
+
+        /* ===== CTA SECTION ===== */
+        .cta-section {
+            padding: 60px 0;
+            background: #1d1d1f;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            color: #ffffff;
+            font-size: 2.4rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+        }
+
+        .cta-section p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.1rem;
+            margin-bottom: 24px;
+        }
+
+        .cta-section .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-section .btn-primary {
+            background: #fd4400;
+            color: white;
+            padding: 12px 32px;
+            border-radius: 980px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .cta-section .btn-primary:hover {
+            background: #e63d00;
+            transform: scale(1.02);
+        }
+
+        .cta-section .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 12px 32px;
+            border-radius: 980px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .cta-section .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* ===== FOOTER ===== */
+        .site-footer {
+            background: #1d1d1f;
+            color: rgba(255, 255, 255, 0.6);
+            padding: 48px 0 24px;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .about-hero .container {
+                gap: 40px;
+            }
+            .about-hero-content h1 {
+                font-size: 2.6rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-nav {
+                display: none;
+            }
+            .mobile-toggle {
+                display: flex;
+            }
+
+            .about-hero .container {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .about-hero-content {
+                padding: 0;
+                text-align: center;
+            }
+
+            .about-hero-content .description {
+                max-width: 100%;
+            }
+
+            .about-hero-image img {
+                aspect-ratio: 16/10;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+            }
+
+            .bio-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .bio-image-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .bio-image-grid .bio-img:first-child {
+                grid-row: span 1;
+                aspect-ratio: 1/1;
+            }
+
+            .expertise-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .about-hero-content h1 {
+                font-size: 2.2rem;
+            }
+
+            .cta-section h2 {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .about-hero-content h1 {
+                font-size: 1.8rem;
+            }
+
+            .expertise-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .cta-section .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cta-section .btn-primary,
+            .cta-section .btn-secondary {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="site-header">
+        <div class="container">
+            <div class="nav-wrapper">
+                <a href="index.html" class="logo">
+                    <img src="logo.png" alt="LaiqVerseStudioAI" class="logo-img" />
+                    <span class="logo-text">LaiqVerse<span>StudioAI</span></span>
+                </a>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="prompts.html">Prompts</a></li>
+                        <li><a href="about.html" class="active">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+                <button class="mobile-toggle" aria-label="Toggle menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== ABOUT HERO ===== -->
+    <section class="about-hero">
+        <div class="container">
+            <div class="about-hero-content">
+                <span class="badge">✦ Creative Director</span>
+                <h1><span>Laiq Ahmed</span> Qureshi</h1>
+                <p class="subtitle">AI Visual Artist / <span>Imagineer</span></p>
+                <p class="description">
+                    Blending 20+ years of design expertise with artificial intelligence to create 
+                    immersive visual experiences that blur the line between the real and the virtual.
+                </p>
+            </div>
+            <div class="about-hero-image">
+                <img src="laiq/laiq-ahmed-qureshi-death-of-job-title-ai-skill-stack.jpg" alt="Laiq Ahmed Qureshi" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22500%22%3E%3Crect width=%22400%22 height=%22500%22 fill=%22%23f5f5f7%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-family=%22system-ui%22 fill=%22%23999%22%3EPhoto%3C/text%3E%3C/svg%3E'" />
+                <span class="image-credit">✦ LaiqVerse Studio</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== STATS BAR ===== -->
+    <section class="stats-bar">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="number">20+</span>
+                    <span class="label">Years of Experience</span>
+                </div>
+                <div class="stat-item">
+                    <span class="number">100+</span>
+                    <span class="label">AI Projects</span>
+                </div>
+                <div class="stat-item">
+                    <span class="number">∞</span>
+                    <span class="label">Creative Possibilities</span>
+                </div>
+                <div class="stat-item">
+                    <span class="number">#1</span>
+                    <span class="label">AI in Pakistan</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== BIO SECTION ===== -->
+    <section class="bio-section">
+        <div class="container">
+            <div class="bio-grid">
+                <div class="bio-text">
+                    <h2>The <span>Creative</span> Journey</h2>
+                    <p>
+                        With over <strong>20 years of experience</strong> in design, visual communication, 
+                        and digital innovation, Laiq brings together artistic intuition and emerging technologies 
+                        to create immersive visual experiences. His work transforms data, algorithms, and 
+                        generative systems into concept-driven digital art.
+                    </p>
+                    <p>
+                        Laiq approaches artificial intelligence <strong>not simply as a tool, but as a 
+                        creative collaborator</strong>—using it to expand imagination, emotion, and visual 
+                        storytelling rather than replace the human touch.
+                    </p>
+                    <div class="highlight-quote">
+                        "I direct machines to imagine. AI isn't the future — it's the room we're already working in."
+                    </div>
+                    <p>
+                        Working primarily online as a freelance AI artist and creative technologist, 
+                        Laiq creates digital artworks, experimental visuals, and narrative-driven projects 
+                        shared across social platforms, digital exhibitions, and generative art communities.
+                    </p>
+                </div>
+                <div class="bio-image-grid">
+                    <div class="bio-img">
+                        <img src="laiq/laiq-ahmed-qureshi-death-of-job-title-ai-skill-stack.jpg" alt="Laiq working" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22400%22%3E%3Crect width=%22300%22 height=%22400%22 fill=%22%23e8e8ed%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-family=%22system-ui%22 fill=%22%23999%22%3EPortrait%3C/text%3E%3C/svg%3E'" />
+                    </div>
+                    <div class="bio-img">
+                        <img src="laiq/laiq-ahmed-qureshi-laiqverse 2.jpg" alt="Studio" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect width=%22300%22 height=%22300%22 fill=%22%23e8e8ed%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-family=%22system-ui%22 fill=%22%23999%22%3EStudio%3C/text%3E%3C/svg%3E'" />
+                    </div>
+                    <div class="bio-img">
+                        <img src="laiq/laiq-ahmed-qureshi-laiqverse.jpg" alt="Creative process" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect width=%22300%22 height=%22300%22 fill=%22%23e8e8ed%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-family=%22system-ui%22 fill=%22%23999%22%3ECreative%3C/text%3E%3C/svg%3E'" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== EXPERTISE ===== -->
+    <section class="expertise-section">
+        <div class="container">
+            <p class="section-label">✦ Expertise</p>
+            <h2>What I <span style="color:#fd4400;">Do</span></h2>
+            <div class="expertise-grid">
+                <div class="expertise-card">
+                    <span class="icon">🎨</span>
+                    <h4>AI Visual Art</h4>
+                    <p>Generative art, neural models, and creative AI</p>
+                </div>
+                <div class="expertise-card">
+                    <span class="icon">✨</span>
+                    <h4>Creative Direction</h4>
+                    <p>Visual storytelling and brand strategy</p>
+                </div>
+                <div class="expertise-card">
+                    <span class="icon">📝</span>
+                    <h4>Prompt Engineering</h4>
+                    <p>Advanced prompt crafting for AI models</p>
+                </div>
+                <div class="expertise-card">
+                    <span class="icon">⚡</span>
+                    <h4>Creative Technology</h4>
+                    <p>Digital innovation and emerging tech</p>
+                </div>
+                <div class="expertise-card">
+                    <span class="icon">🖌️</span>
+                    <h4>Generative Art</h4>
+                    <p>Algorithmic and data-driven art</p>
+                </div>
+                <div class="expertise-card">
+                    <span class="icon">🚀</span>
+                    <h4>Imagineering</h4>
+                    <p>Blending imagination with technology</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CTA SECTION ===== -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Let's Create Something <span style="color:#fd4400;">Extraordinary</span></h2>
+            <p>Explore the intersection of art, design, and artificial intelligence.</p>
+            <div class="cta-buttons">
+                <a href="prompts.html" class="btn-primary">Explore Prompts →</a>
+                <a href="contact.html" class="btn-secondary">Get in Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer style="padding: 32px 0 24px; background: var(--color-bg); border-top: 2px solid var(--color-primary);">
+        <div class="container">
+            
+            <!-- Footer Main Box - Compact -->
+            <div style="background: var(--color-surface); border-radius: 16px; padding: 24px 32px; border: 1.5px solid rgba(253, 68, 0, 0.15); box-shadow: 0 4px 20px rgba(0,0,0,0.04);">
+                
+                <!-- 3 Column Grid - Tighter spacing -->
+                <div style="display: grid; grid-template-columns: 1.8fr 1fr 1.2fr; gap: 24px;">
+                    
+                    <!-- Brand Column -->
+                    <div>
+                        <a href="index.html" class="logo" style="display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 1.1rem; color: var(--color-text); text-decoration: none;">
+                            <img src="logo.png" alt="LaiqVerseStudioAI" style="height: 28px; width: auto; border-radius: 6px;" />
+                            <span>LaiqVerse<span style="color: var(--color-primary);">StudioAI</span></span>
+                        </a>
+                        <p style="color: var(--color-text-secondary); font-size: 0.8rem; margin-top: 4px; line-height: 1.5;">
+                            Curated AI prompts for artists and creators.
+                        </p>
+                        <p style="color: var(--color-primary); font-size: 0.75rem; font-style: italic; margin-top: 2px;">
+                            "I direct machines to imagine."
+                        </p>
+                        
+                        <!-- Parent Site Link - Compact -->
+                        <div style="margin-top: 10px; display: inline-block; border: 1px solid rgba(253, 68, 0, 0.15); border-radius: 8px; padding: 4px 12px; transition: all 0.3s ease;">
+                            <a href="https://laiqverse11.wordpress.com/" target="_blank" style="color: var(--color-primary); font-size: 0.7rem; font-weight: 500; text-decoration: none; display: flex; align-items: center; gap: 4px;">
+                                <span>🌐</span> Parent Site
+                                <span style="font-size: 0.6rem;">→</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Pages Column - Tighter -->
+                    <div>
+                        <h4 style="font-size: 0.65rem; font-weight: 600; color: var(--color-text); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; border-bottom: 1.5px solid var(--color-primary); padding-bottom: 4px; display: inline-block;">
+                            Pages
+                        </h4>
+                        <ul style="list-style: none; padding: 0; margin: 0;">
+                            <li style="margin-bottom: 4px;"><a href="index.html" style="color: var(--color-text-secondary); text-decoration: none; font-size: 0.8rem; transition: color 0.2s ease;">Home</a></li>
+                            <li style="margin-bottom: 4px;"><a href="prompts.html" style="color: var(--color-text-secondary); text-decoration: none; font-size: 0.8rem; transition: color 0.2s ease;">Prompts</a></li>
+                            <li style="margin-bottom: 4px;"><a href="about.html" style="color: var(--color-text-secondary); text-decoration: none; font-size: 0.8rem; transition: color 0.2s ease;">About</a></li>
+                            <li style="margin-bottom: 0;"><a href="contact.html" style="color: var(--color-text-secondary); text-decoration: none; font-size: 0.8rem; transition: color 0.2s ease;">Contact</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Connect Column - Tighter -->
+                    <div>
+                        <h4 style="font-size: 0.65rem; font-weight: 600; color: var(--color-text); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; border-bottom: 1.5px solid var(--color-primary); padding-bottom: 4px; display: inline-block;">
+                            Connect
+                        </h4>
+                        <ul style="list-style: none; padding: 0; margin: 0;">
+                            <li style="margin-bottom: 4px;"><a href="https://x.com/LaiqVerse" target="_blank" style="color: var(--color-text-secondary); text-decoration: none; font-size: 0.8rem; transition: color 0.2s ease;">Twitter / X</a></li>
+                            <li style="margin-bottom: 4px;"><a href="https://www.facebook.com/groups/laiqverse" target="_blank" style="color: var(--color-text-secondary); text-decoration: none; font-size: 0.8rem; transition: color 0.2s ease;">Facebook</a></li>
+                            <li style="margin-bottom: 4px;"><a href="https://www.instagram.com/laiqverse/" target="_blank" style="color: var(--color-text-secondary); text-decoration: none; font-size: 0.8rem; transition: color 0.2s ease;">Instagram</a></li>
+                            <li style="margin-bottom: 4px;"><a href="https://www.pinterest.com/laiqqureshi/" target="_blank" style="color: var(--color-text-secondary); text-decoration: none; font-size: 0.8rem; transition: color 0.2s ease;">Pinterest</a></li>
+                            <li style="margin-bottom: 0;"><a href="https://bsky.app/profile/laiqai.bsky.social" target="_blank" style="color: var(--color-text-secondary); text-decoration: none; font-size: 0.8rem; transition: color 0.2s ease;">Bluesky</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Divider - Thin orange -->
+                <div style="border-top: 1.5px solid rgba(253, 68, 0, 0.12); margin: 16px 0 14px;"></div>
+                
+                <!-- Footer Bottom - Compact -->
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+                    <div>
+                        <p style="font-size: 0.7rem; color: var(--color-text-secondary); margin: 0;">
+                            &copy; 2026 LaiqVerseStudioAI
+                        </p>
+                        <p style="font-size: 0.65rem; color: var(--color-primary); margin: 2px 0 0; letter-spacing: 0.3px;">
+                            #LaiqVerse #AIinPakistan #TasteMatters
+                        </p>
+                    </div>
+                    
+                    <!-- CTA Buttons - Compact -->
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                        <a href="prompts.html" style="background: var(--color-primary); color: white; padding: 6px 16px; border-radius: 980px; font-weight: 600; font-size: 0.75rem; text-decoration: none; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 4px; border: 1.5px solid var(--color-primary);">
+                            Explore
+                            <span style="font-size: 0.65rem;">→</span>
+                        </a>
+                        <a href="https://laiqverse11.wordpress.com/" target="_blank" style="background: transparent; color: var(--color-text); padding: 6px 16px; border-radius: 980px; font-weight: 500; font-size: 0.75rem; text-decoration: none; transition: all 0.3s ease; border: 1.5px solid var(--color-border); display: inline-flex; align-items: center; gap: 4px;">
+                            Blog
+                            <span style="font-size: 0.65rem;">→</span>
+                        </a>
+                    </div>
+                </div>
+                
+            </div>
+            
+        </div>
+    </footer>
+
+</body>
+</html>

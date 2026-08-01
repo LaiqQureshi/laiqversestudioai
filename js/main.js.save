@@ -1,0 +1,366 @@
+// ============================================
+// ALL 4 PROMPTS - Complete with your content
+// ============================================
+
+const promptsData = [
+    {
+        id: 1,
+        folder: "prompt-1",
+        title: "The Illustrator's Sketchbook Page",
+        category: "AI Art",
+        tags: ["Sketchbook", "Hand-Drawn", "Character"],
+        image: "laiqverse.jpg",
+        prompt: `A spontaneous, chaotic, and densely packed sketchbook page, presented as if an illustrator has quickly sketched, doodled, and stacked multiple drawings at will. The entire composition is set against a clean, bright white textured paper background. The subject's exact facial identity, short dark hair, and full beard must be preserved across all sketches, maintaining perfect likeness and anatomical accuracy, especially on the close-ups.
+
+Freely Distributed Sketches:
+- Face Close-ups: Multiple expressive portraits capturing the subject's personality and subtle smile.
+- Full-body drawings: Several figures showcasing the subject's specific style: V-neck black T-shirts, black or blue jeans, and heavy, rugged combat boots.
+- Accessories: Beaded bracelets and a digital wrist watch visible on hands and wrists.
+- Activity Sketches: Subject shown using MacBook Pro and iPad with Apple Pencil.
+- Chibi/Deformed: Humorous 'chibi' versions scattered among realistic sketches.
+
+Style: Free, stripped, raw black ink, pencil, and charcoal sketch lines. Loose, energetic, expressive lines with visible hatching and cross-hatching. NO organized character sheet, NO grid layout, NO clean digital lines.`
+    },
+    {
+        id: 2,
+        folder: "prompt-2",
+        title: "The Atelier Hybrid Portrait",
+        category: "AI Art",
+        tags: ["Fashion", "Oil Painting", "Portrait"],
+        image: "laiqverse.jpg",
+        prompt: `Transform the uploaded portrait into a hybrid visual style combining contemporary fashion illustration, expressive atelier oil painting, and semi-abstract sketch aesthetics.
+
+Identity & Fidelity: Preserve 100% of the subject's original facial identity, including hairstyle, skin tone, beard, mustache, glasses, hijab, makeup, age, gender expression, pose, body proportions, clothing silhouette, and all distinguishing features exactly as in the uploaded image.
+
+Composition: Place the subject on a clean isolated background featuring subtle warm sepia canvas stains fading into untouched white negative space. The artwork should appear partially refined and partially deconstructed—highly accurate facial rendering emerging from layered gestural brushwork.
+
+Artistic Technique: Integrate dynamic line variation: razor-sharp technical contours mixed with soft unfinished sketch marks, spontaneous ink streaks, rough charcoal lines, palette knife textures, dry-brush pigment buildup, semi-transparent washes, scraped paint surfaces, and overlapping expressive drafting strokes extending outward into empty space.
+
+Atmosphere: Include subtle, illegible atelier construction marks and conceptual fashion-drawing textures. Strictly NO typography, letters, logos, watermarks, signatures, or readable text. Lighting should be soft and cinematic with subtle chiaroscuro transitions.`
+    },
+    {
+        id: 3,
+        folder: "prompt-3",
+        title: "Refined Monochromatic Ink Profile",
+        category: "AI Art",
+        tags: ["Minimalist", "Ink", "Profile"],
+        image: "laiqverse28.png",
+        prompt: `A refined, museum-quality monochromatic ink portrait on a pristine, pure white textured fine art paper background. The composition features a clean, sharp side profile of the subject facing left, strictly preserving the exact facial identity, bone structure, proportions, and likeness from the uploaded reference image.
+
+Artistic Execution: The portrait is rendered using deep charcoal-gray ink, expertly balanced to achieve subtle tonal variations that define the contours of the face and hair. The rendering blends precision portraiture with expressive, fluid art techniques: controlled ink splatter accents are visible, alongside delicate watercolor diffusion effects that give the shadows a soft, organic quality. The edges of the silhouette are not hard-lined; instead, they feature a faint, mist-like dispersion where the ink dissolves into the negative space, creating an ethereal and elegant fade.
+
+Atmosphere: The lighting is soft and even, highlighting the texture of both the ink and the paper. The final image must feel contemporary yet timeless, emphasizing minimalist beauty and absolute subject accuracy through a sophisticated, hand-painted monochromatic medium.`
+    },
+    {
+        id: 4,
+        folder: "prompt-4",
+        title: "Intaglio Financial Engraving Portrait",
+        category: "AI Art",
+        tags: ["Engraving", "Banknote", "Ultra-Detailed"],
+        image: "malalalaiqverse.png",
+        prompt: `An ultra-detailed, professional steel-plate and intaglio engraving of the subject, rendered as a vintage financial banknote portrait. Strictly preserve the exact facial identity, bone structure, ethnicity, gender, age, hairstyle, beard, mustache, glasses, and expression of the subject.
+
+Technical Execution: The entire portrait is composed of monochrome, micro-fine black linework on a solid, pure white background (#FFFFFF). Depth and 3D volume are achieved exclusively through masterful line-weight variation:
+- Facial Rendering: Smooth, concentric contour lines wrap around facial geometry to create realistic shading and depth transitions.
+- Texture: Intricate cross-hatching and fine stippling define skin tones, while dense linework captures the textures of clothing, fabric folds, and accessories.
+- Hair: Crisp, high-contrast black-and-white lines define individual locks and highlights, emphasizing flowing, sculptural form.
+
+Lighting: The portrait features dramatic, high-contrast studio lighting, where light and shadow are defined entirely by the density and thickness of the engraving lines.
+
+Watermark: Include a microscopic, ultra-thin, low-opacity sans-serif watermark reading 'LAIQVERSE' positioned cleanly in the bottom right corner.`
+    }
+];
+
+// ============================================
+// DON'T EDIT BELOW THIS LINE
+// ============================================
+
+function renderPrompts() {
+    const container = document.getElementById('promptGrid');
+    if (!container) return;
+
+    let html = '';
+    
+    promptsData.forEach((prompt) => {
+        const imagePath = `${prompt.folder}/${prompt.image}`;
+        const shortPrompt = prompt.prompt.length > 150 
+            ? prompt.prompt.substring(0, 150) + '...' 
+            : prompt.prompt;
+        
+        html += `
+            <div class="prompt-card" data-prompt="${encodeURIComponent(prompt.prompt)}">
+                <div class="prompt-card-image">
+                    <img src="${imagePath}" 
+                         alt="${prompt.title}" 
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect width=%22300%22 height=%22200%22 fill=%22%23e8e8ed%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-family=%22system-ui%22 fill=%22%23999%22%3ENo Image%3C/text%3E%3C/svg%3E'"
+                         loading="lazy" />
+                </div>
+                <div class="prompt-card-body">
+                    <span class="category">${prompt.category}</span>
+                    <h3>${prompt.title}</h3>
+                    <p class="prompt-text">${shortPrompt}</p>
+                    <div class="tags">
+                        ${prompt.tags.map(tag => `<span>${tag}</span>`).join('')}
+                    </div>
+                </div>
+            </div>
+        `;
+    });
+
+    container.innerHTML = html;
+
+    container.querySelectorAll('.prompt-card').forEach(card => {
+        card.addEventListener('click', function() {
+            const promptText = decodeURIComponent(this.dataset.prompt);
+            copyPrompt(promptText);
+        });
+    });
+}
+
+function copyPrompt(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(() => {
+            showToast('✨ Prompt copied to clipboard!');
+        }).catch(() => {
+            fallbackCopy(text);
+        });
+    } else {
+        fallbackCopy(text);
+    }
+}
+
+function fallbackCopy(text) {
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    document.body.appendChild(textarea);
+    textarea.select();
+    try {
+        document.execCommand('copy');
+        showToast('✨ Prompt copied to clipboard!');
+    } catch (e) {
+        showToast('📋 Please copy manually');
+    }
+    document.body.removeChild(textarea);
+}
+
+function showToast(message) {
+    const existing = document.querySelector('.toast');
+    if (existing) existing.remove();
+
+    const toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.textContent = message;
+    Object.assign(toast.style, {
+        position: 'fixed',
+        bottom: '32px',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        background: 'rgba(0,0,0,0.85)',
+        color: 'white',
+        padding: '14px 32px',
+        borderRadius: '100px',
+        fontFamily: '-apple-system, sans-serif',
+        fontSize: '0.95rem',
+        fontWeight: '500',
+        backdropFilter: 'blur(10px)',
+        zIndex: '999',
+        boxShadow: '0 8px 30px rgba(0,0,0,0.2)',
+        opacity: '0',
+        transition: 'opacity 0.3s ease'
+    });
+    document.body.appendChild(toast);
+    
+    setTimeout(() => toast.style.opacity = '1', 10);
+    setTimeout(() => {
+        toast.style.opacity = '0';
+        setTimeout(() => toast.remove(), 300);
+    }, 2500);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('🚀 LaiqVerseStudioAI loaded with all 4 prompts!');
+    renderPrompts();
+});
+// ============================================
+// ALL 4 PROMPTS - Complete with your actual content
+// ============================================
+
+const promptsData = [
+    {
+        id: 1,
+        folder: "prompt-1",
+        title: "The Illustrator's Sketchbook Page",
+        category: "AI Art",
+        tags: ["Sketchbook", "Hand-Drawn", "Character"],
+        image: "laiqverse.jpg",
+        prompt: `A spontaneous, chaotic, and densely packed sketchbook page, presented as if an illustrator has quickly sketched, doodled, and stacked multiple drawings at will. The entire composition is set against a clean, bright white textured paper background. The subject's exact facial identity, short dark hair, and full beard must be preserved across all sketches, maintaining perfect likeness and anatomical accuracy, especially on the close-ups.
+
+Freely Distributed Sketches:
+- Face Close-ups: Multiple expressive portraits capturing the subject's personality and subtle smile.
+- Full-body drawings: Several figures showcasing the subject's specific style: V-neck black T-shirts, black or blue jeans, and heavy, rugged combat boots.
+- Accessories: Beaded bracelets and a digital wrist watch visible on hands and wrists.
+- Activity Sketches: Subject shown using MacBook Pro and iPad with Apple Pencil.
+- Chibi/Deformed: Humorous 'chibi' versions scattered among realistic sketches.
+
+Style: Free, stripped, raw black ink, pencil, and charcoal sketch lines. Loose, energetic, expressive lines with visible hatching and cross-hatching. NO organized character sheet, NO grid layout, NO clean digital lines.`
+    },
+    {
+        id: 2,
+        folder: "prompt-2",
+        title: "The Atelier Hybrid Portrait",
+        category: "AI Art",
+        tags: ["Fashion", "Oil Painting", "Portrait"],
+        image: "laiqverse.jpg",
+        prompt: `Transform the uploaded portrait into a hybrid visual style combining contemporary fashion illustration, expressive atelier oil painting, and semi-abstract sketch aesthetics.
+
+Identity & Fidelity: Preserve 100% of the subject's original facial identity, including hairstyle, skin tone, beard, mustache, glasses, hijab, makeup, age, gender expression, pose, body proportions, clothing silhouette, and all distinguishing features exactly as in the uploaded image.
+
+Composition: Place the subject on a clean isolated background featuring subtle warm sepia canvas stains fading into untouched white negative space. The artwork should appear partially refined and partially deconstructed—highly accurate facial rendering emerging from layered gestural brushwork.
+
+Artistic Technique: Integrate dynamic line variation: razor-sharp technical contours mixed with soft unfinished sketch marks, spontaneous ink streaks, rough charcoal lines, palette knife textures, dry-brush pigment buildup, semi-transparent washes, scraped paint surfaces, and overlapping expressive drafting strokes extending outward into empty space.
+
+Atmosphere: Include subtle, illegible atelier construction marks and conceptual fashion-drawing textures. Strictly NO typography, letters, logos, watermarks, signatures, or readable text. Lighting should be soft and cinematic with subtle chiaroscuro transitions.`
+    },
+    {
+        id: 3,
+        folder: "prompt-3",
+        title: "Refined Monochromatic Ink Profile",
+        category: "AI Art",
+        tags: ["Minimalist", "Ink", "Profile"],
+        image: "laiqverse28.png",
+        prompt: `A refined, museum-quality monochromatic ink portrait on a pristine, pure white textured fine art paper background. The composition features a clean, sharp side profile of the subject facing left, strictly preserving the exact facial identity, bone structure, proportions, and likeness from the uploaded reference image.
+
+Artistic Execution: The portrait is rendered using deep charcoal-gray ink, expertly balanced to achieve subtle tonal variations that define the contours of the face and hair. The rendering blends precision portraiture with expressive, fluid art techniques: controlled ink splatter accents are visible, alongside delicate watercolor diffusion effects that give the shadows a soft, organic quality. The edges of the silhouette are not hard-lined; instead, they feature a faint, mist-like dispersion where the ink dissolves into the negative space, creating an ethereal and elegant fade.
+
+Atmosphere: The lighting is soft and even, highlighting the texture of both the ink and the paper. The final image must feel contemporary yet timeless, emphasizing minimalist beauty and absolute subject accuracy through a sophisticated, hand-painted monochromatic medium.`
+    },
+    {
+        id: 4,
+        folder: "prompt-4",
+        title: "Intaglio Financial Engraving Portrait",
+        category: "AI Art",
+        tags: ["Engraving", "Banknote", "Ultra-Detailed"],
+        image: "malalalaiqverse.png",
+        prompt: `An ultra-detailed, professional steel-plate and intaglio engraving of the subject, rendered as a vintage financial banknote portrait. Strictly preserve the exact facial identity, bone structure, ethnicity, gender, age, hairstyle, beard, mustache, glasses, and expression of the subject.
+
+Technical Execution: The entire portrait is composed of monochrome, micro-fine black linework on a solid, pure white background (#FFFFFF). Depth and 3D volume are achieved exclusively through masterful line-weight variation:
+- Facial Rendering: Smooth, concentric contour lines wrap around facial geometry to create realistic shading and depth transitions.
+- Texture: Intricate cross-hatching and fine stippling define skin tones, while dense linework captures the textures of clothing, fabric folds, and accessories.
+- Hair: Crisp, high-contrast black-and-white lines define individual locks and highlights, emphasizing flowing, sculptural form.
+
+Lighting: The portrait features dramatic, high-contrast studio lighting, where light and shadow are defined entirely by the density and thickness of the engraving lines.
+
+Watermark: Include a microscopic, ultra-thin, low-opacity sans-serif watermark reading 'LAIQVERSE' positioned cleanly in the bottom right corner.`
+    }
+];
+
+// ============================================
+// DON'T EDIT BELOW THIS LINE
+// ============================================
+
+function renderPrompts() {
+    const container = document.getElementById('promptGrid');
+    if (!container) return;
+
+    let html = '';
+    
+    promptsData.forEach((prompt) => {
+        const imagePath = `${prompt.folder}/${prompt.image}`;
+        const shortPrompt = prompt.prompt.length > 150 
+            ? prompt.prompt.substring(0, 150) + '...' 
+            : prompt.prompt;
+        
+        html += `
+            <div class="prompt-card" data-prompt="${encodeURIComponent(prompt.prompt)}">
+                <div class="prompt-card-image">
+                    <img src="${imagePath}" 
+                         alt="${prompt.title}" 
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect width=%22300%22 height=%22200%22 fill=%22%23e8e8ed%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-family=%22system-ui%22 fill=%22%23999%22%3ENo Image%3C/text%3E%3C/svg%3E'"
+                         loading="lazy" />
+                </div>
+                <div class="prompt-card-body">
+                    <span class="category">${prompt.category}</span>
+                    <h3>${prompt.title}</h3>
+                    <p class="prompt-text">${shortPrompt}</p>
+                    <div class="tags">
+                        ${prompt.tags.map(tag => `<span>${tag}</span>`).join('')}
+                    </div>
+                </div>
+            </div>
+        `;
+    });
+
+    container.innerHTML = html;
+
+    container.querySelectorAll('.prompt-card').forEach(card => {
+        card.addEventListener('click', function() {
+            const promptText = decodeURIComponent(this.dataset.prompt);
+            copyPrompt(promptText);
+        });
+    });
+}
+
+function copyPrompt(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(() => {
+            showToast('✨ Prompt copied to clipboard!');
+        }).catch(() => {
+            fallbackCopy(text);
+        });
+    } else {
+        fallbackCopy(text);
+    }
+}
+
+function fallbackCopy(text) {
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    document.body.appendChild(textarea);
+    textarea.select();
+    try {
+        document.execCommand('copy');
+        showToast('✨ Prompt copied to clipboard!');
+    } catch (e) {
+        showToast('📋 Please copy manually');
+    }
+    document.body.removeChild(textarea);
+}
+
+function showToast(message) {
+    const existing = document.querySelector('.toast');
+    if (existing) existing.remove();
+
+    const toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.textContent = message;
+    Object.assign(toast.style, {
+        position: 'fixed',
+        bottom: '32px',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        background: 'rgba(0,0,0,0.85)',
+        color: 'white',
+        padding: '14px 32px',
+        borderRadius: '100px',
+        fontFamily: '-apple-system, sans-serif',
+        fontSize: '0.95rem',
+        fontWeight: '500',
+        backdropFilter: 'blur(10px)',
+        zIndex: '999',
+        boxShadow: '0 8px 30px rgba(0,0,0,0.2)',
+        opacity: '0',
+        transition: 'opacity 0.3s ease'
+    });
+    document.body.appendChild(toast);
+    
+    setTimeout(() => toast.style.opacity = '1', 10);
+    setTimeout(() => {
+        toast.style.opacity = '0';
+        setTimeout(() => toast.remove(), 300);
+    }, 2500);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('🚀 LaiqVerseStudioAI loaded with all 4 prompts!');
+    renderPrompts();
+});

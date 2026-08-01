@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>The Last Reader Before Dawn · surrealist vision</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #1a1816;
+      background-image: 
+        linear-gradient(rgba(40, 38, 35, 0.3) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(40, 38, 35, 0.2) 1px, transparent 1px);
+      background-size: 48px 48px;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      color: #ece6de;
+      line-height: 1.5;
+      padding: 2rem 1rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      max-width: 840px;
+      width: 100%;
+      margin: 0 auto;
+      background: rgba(28, 26, 23, 0.78);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border-radius: 48px;
+      box-shadow: 0 24px 72px -20px rgba(0, 0, 0, 0.7), 0 8px 32px rgba(0, 0, 0, 0.3);
+      padding: 3rem 2.5rem;
+      transition: all 0.2s ease;
+      border: 1px solid rgba(255, 235, 210, 0.08);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* aged plaster / charcoal texture overlay */
+    .container::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160"><filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.12 0"/></filter><rect width="160" height="160" filter="url(%23grain)" opacity="0.4"/></svg>');
+      opacity: 0.25;
+      pointer-events: none;
+      mix-blend-mode: overlay;
+    }
+
+    .container > * {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* title block */
+    .title-section {
+      margin-bottom: 2.4rem;
+      border-bottom: 1px solid rgba(255, 235, 210, 0.07);
+      padding-bottom: 1.6rem;
+    }
+
+    h1 {
+      font-size: 2.9rem;
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      line-height: 1.1;
+      margin-bottom: 0.6rem;
+      color: #f2ebe0;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      background: linear-gradient(145deg, #f2ebe0 20%, #c8bcaa 90%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .subhead {
+      font-size: 1rem;
+      font-weight: 370;
+      color: #cbc2b5;
+      letter-spacing: -0.01em;
+      line-height: 1.5;
+      margin-top: 0.2rem;
+      padding: 0.4rem 1.2rem 0.4rem 1.2rem;
+      background: rgba(60, 55, 48, 0.25);
+      border-radius: 40px;
+      display: inline-block;
+      backdrop-filter: blur(2px);
+      border: 0.5px solid rgba(255, 215, 180, 0.06);
+      color: #d6cdc0;
+    }
+
+    .subhead strong {
+      font-weight: 500;
+      color: #e8dfd2;
+    }
+
+    /* fine print / description small */
+    .fine-print {
+      font-size: 0.78rem;
+      color: #a89f94;
+      letter-spacing: 0.01em;
+      margin-top: 0.8rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem 0.6rem;
+    }
+
+    .fine-print span {
+      background: rgba(80, 72, 64, 0.2);
+      padding: 0.1rem 0.9rem;
+      border-radius: 40px;
+      border: 0.3px solid rgba(255, 215, 180, 0.05);
+      font-weight: 350;
+      color: #cbc2b5;
+    }
+
+    /* story */
+    .story {
+      margin-top: 0.2rem;
+    }
+
+    .story h2 {
+      font-size: 0.95rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #b0a69a;
+      border-bottom: 1px solid rgba(255, 235, 210, 0.06);
+      padding-bottom: 0.7rem;
+      margin-bottom: 1.8rem;
+      display: inline-block;
+    }
+
+    .story-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+    }
+
+    .story-content p {
+      font-size: 1.06rem;
+      font-weight: 350;
+      line-height: 1.7;
+      color: #e3dbd0;
+      letter-spacing: -0.002em;
+      margin: 0;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    }
+
+    .story-content p:first-of-type {
+      margin-top: 0;
+    }
+    .story-content p:last-of-type {
+      margin-bottom: 0;
+    }
+
+    /* meta footer */
+    .story-meta {
+      margin-top: 2.4rem;
+      padding-top: 1.6rem;
+      border-top: 1px solid rgba(255, 235, 210, 0.06);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      color: #a89f94;
+      letter-spacing: 0.02em;
+    }
+
+    .story-meta span {
+      background: rgba(60, 55, 48, 0.2);
+      padding: 0.2rem 1.1rem;
+      border-radius: 40px;
+      backdrop-filter: blur(1px);
+      border: 0.4px solid rgba(255, 215, 180, 0.04);
+    }
+
+    .atmosphere-tag {
+      font-style: normal;
+      font-weight: 350;
+      color: #d6cdc0;
+      background: rgba(60, 55, 48, 0.2);
+      padding: 0.15rem 1rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      display: inline-block;
+      backdrop-filter: blur(1px);
+      border: 0.3px solid rgba(255, 215, 180, 0.04);
+    }
+
+    .divider {
+      width: 40px;
+      height: 2px;
+      background: #5f554a;
+      margin: 1rem 0 1.8rem 0;
+      border-radius: 4px;
+    }
+
+    /* responsive */
+    @media (max-width: 640px) {
+      body {
+        padding: 1rem 0.6rem;
+      }
+      .container {
+        padding: 2rem 1.4rem;
+        border-radius: 32px;
+      }
+      h1 {
+        font-size: 2.1rem;
+      }
+      .subhead {
+        font-size: 0.9rem;
+        padding: 0.3rem 1rem;
+      }
+      .story-content p {
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+      .story-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.6rem;
+      }
+    }
+
+    ::selection {
+      background: #7a6c5e;
+      color: #f2ebe0;
+    }
+
+    /* small decorative */
+    .glow-dot {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #c78a5e;
+      box-shadow: 0 0 18px #c78a5e44;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+
+    .tag-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem 0.7rem;
+      margin-top: 1.2rem;
+      padding-top: 0.8rem;
+      border-top: 0.5px solid rgba(255, 235, 210, 0.04);
+      font-size: 0.7rem;
+      color: #a0988c;
+    }
+    .tag-group span {
+      background: rgba(60, 55, 48, 0.15);
+      padding: 0.1rem 0.9rem;
+      border-radius: 30px;
+      border: 0.3px solid rgba(255, 215, 180, 0.04);
+    }
+
+    .footer-note {
+      margin-top: 2rem;
+      font-size: 0.6rem;
+      color: #7f766b;
+      letter-spacing: 0.04em;
+      text-align: center;
+      border-top: 0.5px solid rgba(255, 235, 210, 0.04);
+      padding-top: 1rem;
+      opacity: 0.7;
+    }
+
+    /* crimson / copper accent */
+    .accent-crimson {
+      color: #b55a4a;
+      font-weight: 400;
+    }
+    .accent-ochre {
+      color: #c58f5e;
+      font-weight: 400;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- title + description -->
+    <div class="title-section">
+      <h1>The Last Reader<br>Before Dawn</h1>
+      <div class="subhead">
+        <span class="glow-dot"></span> 
+        A monumental surrealist expressionist vision of an old South Asian city suspended between darkness and awakening.
+      </div>
+      <!-- description in small fonts -->
+      <div class="fine-print">
+        <span>solitary intellectual · elongated, mythic · book against chest</span>
+        <span>black linework · charcoal · fractured forms · gestural marks</span>
+        <span>enormous birds · books become birds · ladders into heaven</span>
+      </div>
+      <div style="margin-top: 0.4rem; display: flex; flex-wrap: wrap; gap: 0.3rem 0.6rem;">
+        <span style="background:rgba(60,55,48,0.2); padding:0.1rem 0.9rem; border-radius:30px; font-size:0.7rem; color:#b0a69a;">Pakistan · South Asia</span>
+        <span style="background:rgba(60,55,48,0.2); padding:0.1rem 0.9rem; border-radius:30px; font-size:0.7rem; color:#b0a69a;">charcoal · bone-white · stone-gray · crimson · oxidized copper · ochre</span>
+      </div>
+    </div>
+
+    <!-- story -->
+    <div class="story">
+      <h2>The Story Behind the Painting</h2>
+      <div class="divider"></div>
+      <div class="story-content">
+        <p>The city is still asleep.</p>
+        <p>There is no traffic yet. The tea stalls are only beginning to open. The streets are empty except for a few workers, a bicycle leaning against a wall and a rickshaw disappearing into the darkness. Above the rooftops, the final hours of night hang heavily over the city.</p>
+        <p>And then there is the reader. He stands alone on the unfinished roof of a concrete building, holding a book against his chest as though it were something more precious than shelter, wealth or power. His body has become strangely tall, almost impossibly tall, because he represents something larger than an individual man. He is the human mind stretched to its limits—the thinker, the dreamer, the witness.</p>
+        <p>Around him, the city begins to lose its ordinary shape. Walls become enormous gestures. Buildings twist upward like fragments of forgotten handwriting. Electrical wires cross the sky like nervous lines of thought. Clocks are embedded in stone, frozen at different moments, reminding us that everyone experiences time differently. Books escape their pages and become birds.</p>
+        <p>The birds rise into the darkness. Some represent freedom. Some represent migration. Some carry memories of places that no longer exist. Others seem to be searching for somewhere they have never seen.</p>
+        <p>Far away, the sun begins to rise. Its light does not flood the city. Instead, it creates a single narrow path through the darkness, falling toward the solitary reader. It is not a triumphant sunrise. It is a fragile one.</p>
+        <p>Below him, ordinary life continues. A tea seller prepares the first cups of the morning. An elderly man reads his newspaper. Children move through the streets. Workers begin another day. Someone rides a bicycle. Someone leaves home. Someone is returning. They barely notice the enormous figure above them.</p>
+        <p>But perhaps that is the point. Civilizations are built not only by concrete, streets and monuments, but by the invisible lives of people who think, remember, question, believe and hope.</p>
+        <p>The unfinished building beneath the reader is therefore more than architecture. It represents humanity itself—always incomplete, always under construction. The broken clocks speak of mortality. The roots growing through concrete speak of survival. The ladders disappearing into the sky speak of aspiration. The birds speak of freedom. And the book represents the one thing that survives all of them: the human desire to understand.</p>
+        <p>As dawn finally arrives, the reader remains standing. The city has not changed. The problems have not disappeared. The past has not been erased. But there is light. And sometimes, that is enough to begin again.</p>
+        <p><span style="color: #d6cdc0; font-weight: 380;">The Last Reader Before Dawn</span> is ultimately a painting about knowledge in the middle of uncertainty—the belief that even in a fractured world, a single human mind can continue to imagine another one.</p>
+      </div>
+
+      <!-- meta: atmosphere + details -->
+      <div class="story-meta">
+        <span class="atmosphere-tag">🌅 dawn · reader · book · birds · ladders</span>
+        <span>✦ <span style="font-weight:350;">surrealist expressionist · charcoal · ink</span></span>
+        <span style="font-weight:350;"><span class="accent-crimson">crimson</span> · <span class="accent-ochre">ochre</span> · oxidized copper</span>
+      </div>
+
+      <!-- extra small description tags -->
+      <div class="tag-group">
+        <span>unfinished roof</span>
+        <span>broken clocks</span>
+        <span>roots through concrete</span>
+        <span>calligraphic gestures</span>
+        <span>aged plaster · handmade paper</span>
+        <span>tea seller · rickshaw · bicycle</span>
+        <span>migration · memory · spiritual longing</span>
+      </div>
+    </div>
+
+    <!-- footer -->
+    <div class="footer-note">
+      “The Last Reader Before Dawn” — knowledge in the middle of uncertainty.
+    </div>
+  </div>
+</body>
+</html>
