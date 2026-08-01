@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>The Vault — with Share Fix</title>
+    <script>
+        // Load the original gallery
+        fetch('gallery.html')
+            .then(response => response.text())
+            .then(html => {
+                document.write(html);
+                // Load the share fix after gallery loads
+                const script = document.createElement('script');
+                script.src = 'share-fix.js';
+                document.head.appendChild(script);
+            });
+    </script>
+</head>
+<body>
+    Loading...
+</body>
+</html>
