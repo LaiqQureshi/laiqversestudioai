@@ -2921,11 +2921,25 @@
 
         let currentLightboxItem = null;
 
-        function openLightbox(id) {
+                function openLightbox(id) {
             const item = vaultData.find(p => p.id === id);
             if (!item) return;
             currentLightboxItem = item;
+            
+            // Update URL with the image ID
+            const url = new URL(window.location);
+            url.searchParams.set('id', id);
+            window.history.pushState({}, '', url);
+            
             document.getElementById('lbImage').src = `${item.folder}/${item.image}`;
+            document.getElementById('lbImage').alt = item.title;
+            document.getElementById('lbCategory').textContent = 'AI Art';
+            document.getElementById('lbTitle').textContent = item.title;
+            document.getElementById('lbDescription').textContent = item.prompt || 'No description available.';
+            document.getElementById('lbTags').innerHTML = item.tags.map(tag => `<span>${tag}</span>`).join('');
+            document.getElementById('lightbox').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }/${item.image}`;
             document.getElementById('lbImage').alt = item.title;
             document.getElementById('lbCategory').textContent = 'AI Art';
             document.getElementById('lbTitle').textContent = item.title;
@@ -2985,13 +2999,39 @@
             }
         });
 
-        function shareLightbox(platform) {
+                function shareLightbox(platform) {
             if (!currentLightboxItem) return;
             const item = currentLightboxItem;
             const title = item.title;
             const text = (item.prompt || '').substring(0, 300) + '...';
-            const url = window.location.href;
-            const imageUrl = `${window.location.origin}/${item.folder}/${item.image}`;
+            const url = window.location.origin + '/image-pages/' + item.id + '.html';
+            const imageUrl = window.location.origin + '/' + item.folder + '/' + item.image;
+            const brandMessage = '✨ ' + title + '
+
+' + text + '
+
+🎨 Prompt crafted by Laiq Ahmed Qureshi
+#LaiqVerse #AIinPakistan #TasteMatters';
+            let shareUrl = '';
+            switch(platform) {
+                case 'twitter': shareUrl = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(brandMessage) + '&url=' + encodeURIComponent(url); break;
+                case 'facebook': shareUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url) + '&quote=' + encodeURIComponent(title + ' — ' + brandMessage); break;
+                case 'linkedin': shareUrl = 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(url) + '&title=' + encodeURIComponent(title) + '&summary=' + encodeURIComponent(brandMessage); break;
+                case 'whatsapp': shareUrl = 'https://wa.me/?text=' + encodeURIComponent(brandMessage + '
+
+' + url); break;
+                case 'pinterest': shareUrl = 'https://pinterest.com/pin/create/button/?url=' + encodeURIComponent(url) + '&media=' + encodeURIComponent(imageUrl) + '&description=' + encodeURIComponent(title + ' — ' + brandMessage); break;
+                case 'bluesky': shareUrl = 'https://bsky.app/intent/compose?text=' + encodeURIComponent(brandMessage + '
+
+' + url); break;
+                case 'email': shareUrl = 'mailto:?subject=' + encodeURIComponent(title + ' — Premium AI Prompt') + '&body=' + encodeURIComponent(brandMessage + '
+
+' + url); break;
+                default: return;
+            }
+            if (shareUrl) window.open(shareUrl, '_blank', 'width=600,height=500');
+            document.getElementById('lbShareMenu').classList.remove('show');
+        }/${item.folder}/${item.image}`;
             const brandMessage = `✨ ${title}\n\n${text}\n\n🎨 Prompt crafted by Laiq Ahmed Qureshi\n#LaiqVerse #AIinPakistan #TasteMatters`;
             let shareUrl = '';
             switch(platform) {
