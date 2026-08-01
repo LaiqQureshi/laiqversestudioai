@@ -2999,13 +2999,14 @@
             }
         });
 
-                function shareLightbox(platform) {
+                        function shareLightbox(platform) {
             if (!currentLightboxItem) return;
             const item = currentLightboxItem;
             const title = item.title;
             const text = (item.prompt || '').substring(0, 300) + '...';
-            const url = window.location.origin + '/image-pages/' + item.id + '.html';
-            const imageUrl = window.location.origin + '/' + item.folder + '/' + item.image;
+            // Use the individual image page URL
+            const url = 'https://laiqqureshi.github.io/laiqversestudioai/image-pages/' + item.id + '.html';
+            const imageUrl = 'https://laiqqureshi.github.io/laiqversestudioai/' + item.folder + '/' + item.image;
             const brandMessage = '✨ ' + title + '
 
 ' + text + '
@@ -3029,6 +3030,9 @@
 ' + url); break;
                 default: return;
             }
+            if (shareUrl) window.open(shareUrl, '_blank', 'width=600,height=500');
+            document.getElementById('lbShareMenu').classList.remove('show');
+        }
             if (shareUrl) window.open(shareUrl, '_blank', 'width=600,height=500');
             document.getElementById('lbShareMenu').classList.remove('show');
         }/${item.folder}/${item.image}`;
