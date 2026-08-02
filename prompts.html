@@ -1648,6 +1648,57 @@ Co...</p>
 
         </div>
     </section>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggle = document.querySelector('.mobile-toggle');
+            const nav = document.querySelector('.main-nav');
+            if (toggle && nav) {
+                toggle.addEventListener('click', function() {
+                    if (nav.style.display === 'flex') {
+                        nav.style.display = 'none';
+                    } else {
+                        nav.style.display = 'flex';
+                        nav.style.flexDirection = 'column';
+                        nav.style.position = 'absolute';
+                        nav.style.top = '68px';
+                        nav.style.left = '0';
+                        nav.style.right = '0';
+                        nav.style.background = 'rgba(255,255,255,0.98)';
+                        nav.style.padding = '24px';
+                        nav.style.borderBottom = '1px solid rgba(0,0,0,0.04)';
+                        nav.style.gap = '16px';
+                        nav.style.alignItems = 'center';
+                        nav.style.zIndex = '99';
+                    }
+                });
+            }
+            document.addEventListener('click', function(event) {
+                const nav = document.querySelector('.main-nav');
+                const toggle = document.querySelector('.mobile-toggle');
+                if (nav && toggle && !nav.contains(event.target) && !toggle.contains(event.target)) {
+                    nav.style.display = 'none';
+                }
+            });
+            window.addEventListener('resize', function() {
+                const nav = document.querySelector('.main-nav');
+                if (window.innerWidth > 768 && nav) {
+                    nav.style.display = '';
+                    nav.style.position = '';
+                    nav.style.top = '';
+                    nav.style.left = '';
+                    nav.style.right = '';
+                    nav.style.background = '';
+                    nav.style.padding = '';
+                    nav.style.borderBottom = '';
+                    nav.style.gap = '';
+                    nav.style.alignItems = '';
+                    nav.style.zIndex = '';
+                }
+            });
+        });
+    </script>
 <footer style="padding: 32px 0 24px; background: var(--color-bg); border-top: 2px solid var(--color-primary);">
         <div class="container">
             
@@ -1746,56 +1797,6 @@ Co...</p>
                 <a href="terms.html" style="color: rgba(255,255,255,0.3) !important; font-size: 0.6rem !important; text-decoration: none !important;">Terms of Service</a>
             </div>
     </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const toggle = document.querySelector('.mobile-toggle');
-            const nav = document.querySelector('.main-nav');
-            if (toggle && nav) {
-                toggle.addEventListener('click', function() {
-                    if (nav.style.display === 'flex') {
-                        nav.style.display = 'none';
-                    } else {
-                        nav.style.display = 'flex';
-                        nav.style.flexDirection = 'column';
-                        nav.style.position = 'absolute';
-                        nav.style.top = '68px';
-                        nav.style.left = '0';
-                        nav.style.right = '0';
-                        nav.style.background = 'rgba(255,255,255,0.98)';
-                        nav.style.padding = '24px';
-                        nav.style.borderBottom = '1px solid rgba(0,0,0,0.04)';
-                        nav.style.gap = '16px';
-                        nav.style.alignItems = 'center';
-                        nav.style.zIndex = '99';
-                    }
-                });
-            }
-            document.addEventListener('click', function(event) {
-                const nav = document.querySelector('.main-nav');
-                const toggle = document.querySelector('.mobile-toggle');
-                if (nav && toggle && !nav.contains(event.target) && !toggle.contains(event.target)) {
-                    nav.style.display = 'none';
-                }
-            });
-            window.addEventListener('resize', function() {
-                const nav = document.querySelector('.main-nav');
-                if (window.innerWidth > 768 && nav) {
-                    nav.style.display = '';
-                    nav.style.position = '';
-                    nav.style.top = '';
-                    nav.style.left = '';
-                    nav.style.right = '';
-                    nav.style.background = '';
-                    nav.style.padding = '';
-                    nav.style.borderBottom = '';
-                    nav.style.gap = '';
-                    nav.style.alignItems = '';
-                    nav.style.zIndex = '';
-                }
-            });
-        });
-    </script>
 </body>
 </html>
 const promptsData = [];<script>
@@ -1929,6 +1930,7 @@ const promptsData = [];<script>
         });
     </script>
 
+
 <footer style="padding: 32px 0 24px; background: var(--color-bg); border-top: 2px solid var(--color-primary);">
         <div class="container">
             
@@ -2030,5 +2032,103 @@ const promptsData = [];<script>
 </body>
 </html>
 
+<footer style="padding: 32px 0 24px; background: var(--color-bg); border-top: 2px solid var(--color-primary);">
+        <div class="container">
+            
+            <!-- Footer Main Box - Compact -->
+            <div style="background: var(--color-surface); border-radius: 16px; padding: 24px 32px; border: 1.5px solid rgba(253, 68, 0, 0.15); box-shadow: 0 4px 20px rgba(0,0,0,0.04);">
+                
+                <!-- 3 Column Grid - Tighter spacing -->
+                <div style="display: grid; grid-template-columns: 1.8fr 1fr 1.2fr; gap: 24px;">
+                    
+                    <!-- Brand Column -->
+                    <div>
+                        <a href="index.html" class="logo" style="display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 1.1rem; color: var(--color-text); text-decoration: none;">
+                            <img src="logo.png" alt="LaiqVerseStudioAI" style="height: 28px; width: auto; border-radius: 6px;" />
+                            <span>LaiqVerse<span style="color: var(--color-primary);">StudioAI</span></span>
+                        </a>
+                        <p style="color: var(--color-text-secondary); font-size: 0.8rem; margin-top: 4px; line-height: 1.5;">
+                            Curated AI prompts for artists and creators.
+                        </p>
+                        <p style="color: var(--color-primary); font-size: 0.75rem; font-style: italic; margin-top: 2px;">
+                            "I direct machines to imagine."
+                        </p>
+                        
+                        <!-- Parent Site Link - Compact -->
+                        <div style="margin-top: 10px; display: inline-block; border: 1px solid rgba(253, 68, 0, 0.15); border-radius: 8px; padding: 4px 12px; transition: all 0.3s ease;">
+                            <a href="https://laiqverse11.wordpress.com/" target="_blank" style="color: var(--color-primary); font-size: 0.7rem; font-weight: 500; text-decoration: none; display: flex; align-items: center; gap: 4px;">
+                                <span>🌐</span> Parent Site
+                                <span style="font-size: 0.6rem;">→</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Pages Column - Tighter -->
+                    <div>
+                        <h4 style="font-size: 0.65rem; font-weight: 600; color: var(--color-text); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; border-bottom: 1.5px solid var(--color-primary); padding-bottom: 4px; display: inline-block;">
+                            Pages
+                        </h4>
+                        <ul style="list-style: none; padding: 0; margin: 0;">
+                            <li style="margin-bottom: 4px;"><a href="index.html" style="color: var(--color-text-secondary); text-decoration: none; font-size: 0.8rem; transition: color 0.2s ease;">Home</a></li>
+                            <li style="margin-bottom: 4px;"><a href="prompts.html" style="color: var(--color-text-secondary); text-decoration: none; font-size: 0.8rem; transition: color 0.2s ease;">Prompts</a></li>
+                            <li style="margin-bottom: 4px;"><a href="about.html" style="color: var(--color-text-secondary); text-decoration: none; font-size: 0.8rem; transition: color 0.2s ease;">About</a></li>
+                            <li style="margin-bottom: 0;"><a href="contact.html" style="color: var(--color-text-secondary); text-decoration: none; font-size: 0.8rem; transition: color 0.2s ease;">Contact</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Connect Column - Tighter -->
+                    <div>
+                        <h4 style="font-size: 0.65rem; font-weight: 600; color: var(--color-text); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; border-bottom: 1.5px solid var(--color-primary); padding-bottom: 4px; display: inline-block;">
+                            Connect
+                        </h4>
+                        <ul style="list-style: none; padding: 0; margin: 0;">
+                            <li style="margin-bottom: 4px;"><a href="https://x.com/LaiqVerse" target="_blank" style="color: var(--color-text-secondary); text-decoration: none; font-size: 0.8rem; transition: color 0.2s ease;">Twitter / X</a></li>
+                            <li style="margin-bottom: 4px;"><a href="https://www.facebook.com/groups/laiqverse" target="_blank" style="color: var(--color-text-secondary); text-decoration: none; font-size: 0.8rem; transition: color 0.2s ease;">Facebook</a></li>
+                            <li style="margin-bottom: 4px;"><a href="https://www.instagram.com/laiqverse/" target="_blank" style="color: var(--color-text-secondary); text-decoration: none; font-size: 0.8rem; transition: color 0.2s ease;">Instagram</a></li>
+                            <li style="margin-bottom: 4px;"><a href="https://www.pinterest.com/laiqqureshi/" target="_blank" style="color: var(--color-text-secondary); text-decoration: none; font-size: 0.8rem; transition: color 0.2s ease;">Pinterest</a></li>
+                            <li style="margin-bottom: 0;"><a href="https://bsky.app/profile/laiqai.bsky.social" target="_blank" style="color: var(--color-text-secondary); text-decoration: none; font-size: 0.8rem; transition: color 0.2s ease;">Bluesky</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Divider - Thin orange -->
+                <div style="border-top: 1.5px solid rgba(253, 68, 0, 0.12); margin: 16px 0 14px;"></div>
+                
+                <!-- Footer Bottom - Compact -->
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+                    <div>
+                        <p style="font-size: 0.7rem; color: var(--color-text-secondary); margin: 0;">
+                            &copy; 2026 LaiqVerseStudioAI
+                        </p>
+                        <p style="font-size: 0.65rem; color: var(--color-primary); margin: 2px 0 0; letter-spacing: 0.3px;">
+                            #LaiqVerse #AIinPakistan #TasteMatters
+                        </p>
+                    </div>
+                    
+                    <!-- CTA Buttons - Compact -->
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                        <a href="prompts.html" style="background: var(--color-primary); color: white; padding: 6px 16px; border-radius: 980px; font-weight: 600; font-size: 0.75rem; text-decoration: none; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 4px; border: 1.5px solid var(--color-primary);">
+                            Explore
+                            <span style="font-size: 0.65rem;">→</span>
+                        </a>
+                        <a href="https://laiqverse11.wordpress.com/" target="_blank" style="background: transparent; color: var(--color-text); padding: 6px 16px; border-radius: 980px; font-weight: 500; font-size: 0.75rem; text-decoration: none; transition: all 0.3s ease; border: 1.5px solid var(--color-border); display: inline-flex; align-items: center; gap: 4px;">
+                            Blog
+                            <span style="font-size: 0.65rem;">→</span>
+                        </a>
+                    </div>
+                </div>
+                
+            </div>
+            
+        </div>
+    
+            
+
+        <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; padding: 8px 0 16px; background: #1d1d1f;">
+                <a href="privacy.html" style="color: rgba(255,255,255,0.3) !important; font-size: 0.6rem !important; text-decoration: none !important;">Privacy Policy</a>
+                <span style="color: rgba(255,255,255,0.15); font-size: 0.5rem;">·</span>
+                <a href="terms.html" style="color: rgba(255,255,255,0.3) !important; font-size: 0.6rem !important; text-decoration: none !important;">Terms of Service</a>
+            </div>
+    </footer>
 </body>
 </html>
