@@ -1,9 +1,3 @@
-# robots.txt for LaiqVerseStudioAI
 User-agent: *
 Allow: /
 Sitemap: https://laiqqureshi.github.io/laiqversestudioai/sitemap.xml
-
-# Disallow sensitive directories
-Disallow: /assets/
-Disallow: /css/
-Disallow: /js/
