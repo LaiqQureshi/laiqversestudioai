@@ -2312,84 +2312,6 @@
     ],
     "isPanoramic": true
 }
-,
-    {
-    "id": 159,
-    "folder": "panoramic/panoramic-2",
-    "title": "Between Day and Night",
-    "image": "laiqverse-AI-painting2.jpg",
-    "prompt": "A panoramic AI artwork.",
-    "tags": [
-        "Panoramic"
-    ],
-    "isPanoramic": true
-},
-    {
-    "id": 160,
-    "folder": "panoramic/panoramic-5",
-    "title": "The Observatoryat the Edge of Memory",
-    "image": "laiqverse-AI-painting5.jpg",
-    "prompt": "A panoramic AI artwork.",
-    "tags": [
-        "Panoramic"
-    ],
-    "isPanoramic": true
-},
-    {
-    "id": 161,
-    "folder": "panoramic/panoramic-4",
-    "title": "The Architectureof Unfinished Thought",
-    "image": "laiqverse-AI-painting4.jpg",
-    "prompt": "A panoramic AI artwork.",
-    "tags": [
-        "Panoramic"
-    ],
-    "isPanoramic": true
-},
-    {
-    "id": 162,
-    "folder": "panoramic/panoramic-3",
-    "title": "The Last ReaderBefore Dawn",
-    "image": "laiqverse-AI-painting3.jpg",
-    "prompt": "A panoramic AI artwork.",
-    "tags": [
-        "Panoramic"
-    ],
-    "isPanoramic": true
-},
-    {
-    "id": 163,
-    "folder": "panoramic/panoramic-6",
-    "title": "Threads That Holdthe Sky",
-    "image": "laiqverse-AI-painting6.jpg",
-    "prompt": "A panoramic AI artwork.",
-    "tags": [
-        "Panoramic"
-    ],
-    "isPanoramic": true
-},
-    {
-    "id": 164,
-    "folder": "panoramic/panoramic-1",
-    "title": "The Last TrainThrough the Monsoon",
-    "image": "laiqverse-AI-painting1.jpg",
-    "prompt": "A panoramic AI artwork.",
-    "tags": [
-        "Panoramic"
-    ],
-    "isPanoramic": true
-},
-    {
-    "id": 165,
-    "folder": "panoramic/panoramic-7",
-    "title": "Panoramic 7",
-    "image": "laiqverse-AI-painting7.jpg",
-    "prompt": "A panoramic AI artwork.",
-    "tags": [
-        "Panoramic"
-    ],
-    "isPanoramic": true
-}
 ]
         let currentLightboxItem = null;
 
@@ -2397,39 +2319,13 @@
             const grid = document.getElementById('vaultGrid');
             if (!grid) return;
             let html = '';
-            let hasPanoramic = false;
             
             vaultData.forEach((item) => {
                 const isPanoramic = item.isPanoramic || false;
-                
-                if (isPanoramic && !hasPanoramic) {
-                    html += `
-                        <div class="vault-divider">
-                            <h2>Panoramic Collection</h2>
-                            <p>Wide-format panoramic artworks</p>
-                            <div class="line"></div>
-                        </div>
-                    `;
-                    hasPanoramic = true;
-                }
-                
                 const imagePath = item.folder + '/' + item.image;
                 const itemClass = isPanoramic ? 'vault-item-panoramic' : 'vault-item';
                 html += `
                     <div class="${itemClass}" onclick="openLightbox(${item.id})">
-                        <img src="${imagePath}" alt="${item.title}" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect width=%22300%22 height=%22300%22 fill=%22%23e8e8ed%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-family=%22system-ui%22 fill=%22%23999%22%3ENo Image%3C/text%3E%3C/svg%3E'" />
-                        <div class="vault-info">
-                            <h3>${item.title}</h3>
-                            <div class="vault-tags">
-                                ${item.tags.slice(0, 3).map(tag => `<span>${tag}</span>`).join('')}
-                            </div>
-                        </div>
-                    </div>
-                `;
-            });
-            
-            grid.innerHTML = html;
-        }" onclick="openLightbox(${item.id})">
                         <img src="${imagePath}" alt="${item.title}" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect width=%22300%22 height=%22300%22 fill=%22%23e8e8ed%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-family=%22system-ui%22 fill=%22%23999%22%3ENo Image%3C/text%3E%3C/svg%3E'" />
                         <div class="vault-info">
                             <h3>${item.title}</h3>
