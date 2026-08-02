@@ -1,0 +1,2421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Vault — LaiqVerseStudioAI</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="icon" href="logo.png" type="image/png" />
+    <style>
+        .page-header-vault {
+            padding: 40px 0 20px;
+            background: #ffffff;
+            border-bottom: 1px solid rgba(0,0,0,0.04);
+            text-align: center;
+        }
+        .page-header-vault h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin: 0;
+        }
+        .page-header-vault h1 span {
+            color: #fd4400;
+        }
+        .page-header-vault p {
+            color: #86868b;
+            font-size: 1.1rem;
+            margin: 4px 0 0 0;
+        }
+
+        .vault-wrapper {
+            padding: 40px 0 60px;
+            background: #f5f5f7;
+        }
+
+        .vault-grid {
+            column-count: 4;
+            column-gap: 16px;
+            padding: 0;
+        }
+
+        .vault-item {
+            break-inside: avoid;
+            margin-bottom: 16px;
+            border-radius: 16px;
+            overflow: hidden;
+            background: #ffffff;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .vault-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .vault-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .vault-item:hover img {
+            transform: scale(1.02);
+        }
+
+        .vault-item .vault-info {
+            padding: 12px 16px 16px;
+        }
+
+        .vault-item .vault-info h3 {
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin: 0 0 4px 0;
+            color: #1d1d1f;
+            line-height: 1.3;
+        }
+
+        .vault-item .vault-info .vault-tags {
+            display: flex;
+            gap: 4px;
+            flex-wrap: wrap;
+        }
+
+        .vault-item .vault-info .vault-tags span {
+            font-size: 0.6rem;
+            font-weight: 500;
+            color: #86868b;
+            background: #f5f5f7;
+            padding: 2px 10px;
+            border-radius: 100px;
+        }
+
+        .vault-divider {
+            break-inside: avoid;
+            padding: 24px 0 16px;
+            text-align: center;
+            background: #f0efed;
+            border-radius: 16px;
+            margin: 8px 0 16px;
+            border: 1px solid rgba(253, 68, 0, 0.06);
+        }
+        .vault-divider h2 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #1d1d1f;
+            letter-spacing: -0.02em;
+        }
+        .vault-divider p {
+            color: #86868b;
+            font-size: 0.8rem;
+            margin-top: 2px;
+        }
+        .vault-divider .line {
+            width: 40px;
+            height: 2px;
+            background: #fd4400;
+            margin: 6px auto 0;
+            border-radius: 2px;
+        }
+
+        .vault-item-panoramic {
+            break-inside: avoid;
+            margin-bottom: 16px;
+            border-radius: 16px;
+            overflow: hidden;
+            background: #ffffff;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            cursor: pointer;
+            position: relative;
+            grid-column: span 2;
+        }
+
+        .vault-item-panoramic:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .vault-item-panoramic img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .vault-item-panoramic:hover img {
+            transform: scale(1.02);
+        }
+
+        .vault-item-panoramic .vault-info {
+            padding: 12px 16px 16px;
+        }
+
+        .vault-item-panoramic .vault-info h3 {
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin: 0 0 4px 0;
+            color: #1d1d1f;
+            line-height: 1.3;
+        }
+
+        .vault-item-panoramic .vault-info .vault-tags {
+            display: flex;
+            gap: 4px;
+            flex-wrap: wrap;
+        }
+
+        .vault-item-panoramic .vault-info .vault-tags span {
+            font-size: 0.6rem;
+            font-weight: 500;
+            color: #86868b;
+            background: #f5f5f7;
+            padding: 2px 10px;
+            border-radius: 100px;
+        }
+
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+        }
+
+        .lightbox-overlay.open {
+            display: flex;
+        }
+
+        .lightbox-content {
+            background: #ffffff;
+            border-radius: 20px;
+            max-width: 900px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 40px 120px rgba(0, 0, 0, 0.3);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.06);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: #1d1d1f;
+            transition: all 0.3s ease;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(0, 0, 0, 0.12);
+            transform: rotate(90deg);
+        }
+
+        .lightbox-image-wrap {
+            padding: 20px 20px 0;
+        }
+
+        .lightbox-image-wrap img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            display: block;
+        }
+
+        .lightbox-body {
+            padding: 20px 28px 28px;
+        }
+
+        .lightbox-body .lb-category {
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: #fd4400;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .lightbox-body h2 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin: 4px 0 8px 0;
+            color: #1d1d1f;
+        }
+
+        .lightbox-body .lb-description {
+            font-size: 0.9rem;
+            color: #86868b;
+            line-height: 1.6;
+            margin-bottom: 16px;
+            max-height: 120px;
+            overflow-y: auto;
+        }
+
+        .lightbox-body .lb-tags {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .lightbox-body .lb-tags span {
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: #86868b;
+            background: #f5f5f7;
+            padding: 3px 12px;
+            border-radius: 100px;
+        }
+
+        .lightbox-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            border-top: 1px solid #f0f0f0;
+            padding-top: 16px;
+        }
+
+        .lightbox-actions button {
+            padding: 8px 20px;
+            border-radius: 980px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-family: var(--font);
+        }
+
+        .lb-btn-copy {
+            background: #fd4400;
+            color: white;
+        }
+        .lb-btn-copy:hover {
+            background: #e63d00;
+        }
+
+        .lb-btn-share {
+            background: #f5f5f7;
+            color: #1d1d1f;
+            border: 1px solid #e5e5ea;
+        }
+        .lb-btn-share:hover {
+            background: #1d1d1f;
+            color: white;
+            border-color: #1d1d1f;
+        }
+
+        .lb-share-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .lb-share-menu {
+            display: none;
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-8px);
+            background: #ffffff;
+            border-radius: 14px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+            padding: 8px;
+            min-width: 160px;
+            border: 1px solid #f0f0f0;
+            z-index: 100;
+            margin-bottom: 8px;
+        }
+
+        .lb-share-menu.show {
+            display: block;
+        }
+
+        .lb-share-menu a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            color: #1d1d1f;
+            text-decoration: none;
+            transition: background 0.15s ease;
+            cursor: pointer;
+        }
+
+        .lb-share-menu a:hover {
+            background: #f5f5f7;
+        }
+
+        @media (max-width: 1200px) {
+            .vault-grid {
+                column-count: 3;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .vault-grid {
+                column-count: 2;
+                column-gap: 12px;
+            }
+            .vault-item {
+                border-radius: 12px;
+                margin-bottom: 12px;
+            }
+            .vault-item-panoramic {
+                grid-column: span 2;
+                border-radius: 12px;
+                margin-bottom: 12px;
+            }
+            .lightbox-overlay {
+                padding: 16px;
+            }
+            .lightbox-content {
+                max-height: 95vh;
+            }
+            .lightbox-body {
+                padding: 12px 16px 16px;
+            }
+            .lightbox-body h2 {
+                font-size: 1.1rem;
+            }
+            .lightbox-actions {
+                flex-direction: column;
+                gap: 8px;
+            }
+            .lightbox-actions button {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .vault-grid {
+                column-count: 1;
+            }
+            .vault-item-panoramic {
+                grid-column: span 1;
+            }
+        }
+    </style>
+    <meta name="msvalidate.01" content="61DD89A5281E231525444A19AE53529E" />
+    <meta name="yandex-verification" content="c8b487d3325cad1b" />
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="site-header">
+        <div class="container">
+            <div class="nav-wrapper">
+                <a href="index.html" class="logo">
+                    <img src="logo.png" alt="LaiqVerseStudioAI" class="logo-img" />
+                    <span class="logo-text">LaiqVerse<span>StudioAI</span></span>
+                </a>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="prompts.html">Prompts</a></li>
+                        <li><a href="gallery.html" class="active">The Vault</a></li>
+                        <li><a href="panoramic.html">Panoramic</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+                <button class="mobile-toggle" aria-label="Toggle menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-header-vault">
+        <div class="container">
+            <h1>The <span>Vault</span></h1>
+            <p>Explore the complete collection — images, prompts, and inspiration.</p>
+        </div>
+    </div>
+
+    <section class="vault-wrapper">
+        <div class="container">
+            <div class="vault-grid" id="vaultGrid"></div>
+        </div>
+    </section>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox-overlay" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+            <div class="lightbox-image-wrap">
+                <img id="lbImage" src="" alt="" />
+            </div>
+            <div class="lightbox-body">
+                <span class="lb-category" id="lbCategory">AI Art</span>
+                <h2 id="lbTitle">Title</h2>
+                <p class="lb-description" id="lbDescription">Description</p>
+                <div class="lb-tags" id="lbTags"></div>
+                <div class="lightbox-actions">
+                    <button class="lb-btn-copy" onclick="copyLightboxPrompt()">📋 Copy Prompt</button>
+                    <div class="lb-share-dropdown">
+                        <button class="lb-btn-share" onclick="toggleShareMenu()">↗ Share</button>
+                        <div class="lb-share-menu" id="lbShareMenu">
+                            <a onclick="shareLightbox('twitter')">𝕏 Twitter</a>
+                            <a onclick="shareLightbox('facebook')">📘 Facebook</a>
+                            <a onclick="shareLightbox('linkedin')">🔗 LinkedIn</a>
+                            <a onclick="shareLightbox('whatsapp')">💬 WhatsApp</a>
+                            <a onclick="shareLightbox('pinterest')">📌 Pinterest</a>
+                            <a onclick="shareLightbox('bluesky')">🦋 Bluesky</a>
+                            <a onclick="shareLightbox('email')">✉ Email</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<footer style="padding: 32px 0 24px; background: var(--color-bg); border-top: 2px solid var(--color-primary);">
+        <div class="container">
+            
+            <!-- Footer Main Box - Compact -->
+            <div style="background: var(--color-surface); border-radius: 16px; padding: 24px 32px; border: 1.5px solid rgba(253, 68, 0, 0.15); box-shadow: 0 4px 20px rgba(0,0,0,0.04);">
+                
+                <!-- 3 Column Grid - Tighter spacing -->
+                <div style="display: grid; grid-template-columns: 1.8fr 1fr 1.2fr; gap: 24px;">
+                    
+                    <!-- Brand Column -->
+                    <div>
+                        <a href="index.html" class="logo" style="display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 1.1rem; color: var(--color-text); text-decoration: none;">
+                            <img src="logo.png" alt="LaiqVerseStudioAI" style="height: 28px; width: auto; border-radius: 6px;" />
+                            <span>LaiqVerse<span style="color: var(--color-primary);">StudioAI</span></span>
+                        </a>
+                        <p style="color: var(--color-text-secondary); font-size: 0.8rem; margin-top: 4px; line-height: 1.5;">
+                            Curated AI prompts for artists and creators.
+                        </p>
+                        <p style="color: var(--color-primary); font-size: 0.75rem; font-style: italic; margin-top: 2px;">
+                            "I direct machines to imagine."
+                        </p>
+                        
+                        <!-- Parent Site Link - Compact -->
+                        <div style="margin-top: 10px; display: inline-block; border: 1px solid rgba(253, 68, 0, 0.15); border-radius: 8px; padding: 4px 12px; transition: all 0.3s ease;">
+                            <a href="https://laiqverse11.wordpress.com/" target="_blank" style="color: var(--color-primary); font-size: 0.7rem; font-weight: 500; text-decoration: none; display: flex; align-items: center; gap: 4px;">
+                                <span>🌐</span> Parent Site
+                                <span style="font-size: 0.6rem;">→</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Pages Column - Tighter -->
+                    <div>
+                        <h4 style="font-size: 0.65rem; font-weight: 600; color: var(--color-text); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; border-bottom: 1.5px solid var(--color-primary); padding-bottom: 4px; display: inline-block;">
+                            Pages
+                        </h4>
+                        <ul style="list-style: none; padding: 0; margin: 0;">
+                            <li style="margin-bottom: 4px;"><a href="index.html" style="color: var(--color-text-secondary); text-decoration: none; font-size: 0.8rem; transition: color 0.2s ease;">Home</a></li>
+                            <li style="margin-bottom: 4px;"><a href="prompts.html" style="color: var(--color-text-secondary); text-decoration: none; font-size: 0.8rem; transition: color 0.2s ease;">Prompts</a></li>
+                            <li style="margin-bottom: 4px;"><a href="about.html" style="color: var(--color-text-secondary); text-decoration: none; font-size: 0.8rem; transition: color 0.2s ease;">About</a></li>
+                            <li style="margin-bottom: 0;"><a href="contact.html" style="color: var(--color-text-secondary); text-decoration: none; font-size: 0.8rem; transition: color 0.2s ease;">Contact</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Connect Column - Tighter -->
+                    <div>
+                        <h4 style="font-size: 0.65rem; font-weight: 600; color: var(--color-text); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; border-bottom: 1.5px solid var(--color-primary); padding-bottom: 4px; display: inline-block;">
+                            Connect
+                        </h4>
+                        <ul style="list-style: none; padding: 0; margin: 0;">
+                            <li style="margin-bottom: 4px;"><a href="https://x.com/LaiqVerse" target="_blank" style="color: var(--color-text-secondary); text-decoration: none; font-size: 0.8rem; transition: color 0.2s ease;">Twitter / X</a></li>
+                            <li style="margin-bottom: 4px;"><a href="https://www.facebook.com/groups/laiqverse" target="_blank" style="color: var(--color-text-secondary); text-decoration: none; font-size: 0.8rem; transition: color 0.2s ease;">Facebook</a></li>
+                            <li style="margin-bottom: 4px;"><a href="https://www.instagram.com/laiqverse/" target="_blank" style="color: var(--color-text-secondary); text-decoration: none; font-size: 0.8rem; transition: color 0.2s ease;">Instagram</a></li>
+                            <li style="margin-bottom: 4px;"><a href="https://www.pinterest.com/laiqqureshi/" target="_blank" style="color: var(--color-text-secondary); text-decoration: none; font-size: 0.8rem; transition: color 0.2s ease;">Pinterest</a></li>
+                            <li style="margin-bottom: 0;"><a href="https://bsky.app/profile/laiqai.bsky.social" target="_blank" style="color: var(--color-text-secondary); text-decoration: none; font-size: 0.8rem; transition: color 0.2s ease;">Bluesky</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Divider - Thin orange -->
+                <div style="border-top: 1.5px solid rgba(253, 68, 0, 0.12); margin: 16px 0 14px;"></div>
+                
+                <!-- Footer Bottom - Compact -->
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+                    <div>
+                        <p style="font-size: 0.7rem; color: var(--color-text-secondary); margin: 0;">
+                            &copy; 2026 LaiqVerseStudioAI
+                        </p>
+                        <p style="font-size: 0.65rem; color: var(--color-primary); margin: 2px 0 0; letter-spacing: 0.3px;">
+                            #LaiqVerse #AIinPakistan #TasteMatters
+                        </p>
+                    </div>
+                    
+                    <!-- CTA Buttons - Compact -->
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                        <a href="prompts.html" style="background: var(--color-primary); color: white; padding: 6px 16px; border-radius: 980px; font-weight: 600; font-size: 0.75rem; text-decoration: none; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 4px; border: 1.5px solid var(--color-primary);">
+                            Explore
+                            <span style="font-size: 0.65rem;">→</span>
+                        </a>
+                        <a href="https://laiqverse11.wordpress.com/" target="_blank" style="background: transparent; color: var(--color-text); padding: 6px 16px; border-radius: 980px; font-weight: 500; font-size: 0.75rem; text-decoration: none; transition: all 0.3s ease; border: 1.5px solid var(--color-border); display: inline-flex; align-items: center; gap: 4px;">
+                            Blog
+                            <span style="font-size: 0.65rem;">→</span>
+                        </a>
+                    </div>
+                </div>
+                
+            </div>
+            
+        </div>
+    
+            
+
+        <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; padding: 8px 0 16px; background: #1d1d1f;">
+                <a href="privacy.html" style="color: rgba(255,255,255,0.3) !important; font-size: 0.6rem !important; text-decoration: none !important;">Privacy Policy</a>
+                <span style="color: rgba(255,255,255,0.15); font-size: 0.5rem;">·</span>
+                <a href="terms.html" style="color: rgba(255,255,255,0.3) !important; font-size: 0.6rem !important; text-decoration: none !important;">Terms of Service</a>
+            </div>
+    </footer>
+
+    <script>
+        const vaultData = [
+    {
+        "id": 1,
+        "folder": "prompt-15",
+        "title": "The Melancholic City Night",
+        "image": "shah-rukh-khan-laiqverse.jpg",
+        "tags": [
+            "AI Art"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 2,
+        "folder": "prompt-11",
+        "title": "The Vibrant Editorial Caricature",
+        "image": "benazir-laiqverse.jpg",
+        "tags": [
+            "AI Art"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 3,
+        "folder": "prompt-2",
+        "title": "The Atelier Hybrid Portrait",
+        "image": "laiqverse.jpg",
+        "tags": [
+            "AI Art"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 4,
+        "folder": "prompt-10",
+        "title": "The Acoustic Sepia Caricature",
+        "image": "salma-hayek1-laiqverse.jpg",
+        "tags": [
+            "AI Art"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 5,
+        "folder": "prompt-17",
+        "title": "The Intellectual Sketchbook Caricature",
+        "image": "laiq-qureshi.jpg",
+        "tags": [
+            "AI Art"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 6,
+        "folder": "prompt-5",
+        "title": "The Monochromatic Blue Force Perspective",
+        "image": "bhutto-laiqverse.jpg",
+        "tags": [
+            "AI Art"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 7,
+        "folder": "prompt-20",
+        "title": "Dimensional Papercraft Portrait",
+        "image": "asim-munir-laiqverse.jpg",
+        "tags": [
+            "AI Art"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 8,
+        "folder": "prompt-4",
+        "title": "Intaglio Financial Engraving Portrait",
+        "image": "malalalaiqverse.png",
+        "tags": [
+            "AI Art"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 9,
+        "folder": "prompt-7",
+        "title": "The Cinematic Hyper-Caricature",
+        "image": "fazal-ur-rehman-laiqverse.jpg",
+        "tags": [
+            "AI Art"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 10,
+        "folder": "prompt-23",
+        "title": "The LaiqVerse Kinetic Portrait",
+        "image": "laiqqureshi-kinetic.jpg",
+        "tags": [
+            "AI Art"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 11,
+        "folder": "prompt-1",
+        "title": "The Illustrator's Sketchbook Page",
+        "image": "laiqverse.jpg",
+        "tags": [
+            "AI Art"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 12,
+        "folder": "prompt-12",
+        "title": "The Modern Geometric Editorial Portrait",
+        "image": "irrfan-khan-laiq-verse.jpg",
+        "tags": [
+            "AI Art"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 13,
+        "folder": "prompt-18",
+        "title": "The Refined Charcoal Profile",
+        "image": "pope-laiqverse.jpg",
+        "tags": [
+            "AI Art"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 14,
+        "folder": "prompt-14",
+        "title": "The Cue Master's Focus",
+        "image": "fazal-ur-rahman-laiqverse.jpg",
+        "tags": [
+            "AI Art"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 15,
+        "folder": "prompt-21",
+        "title": "Macro Scratchboard Vision",
+        "image": "laiqqureshi-engraved.jpg",
+        "tags": [
+            "AI Art"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 16,
+        "folder": "prompt-19",
+        "title": "LaiqVerse Prompt Studio",
+        "image": "laiqqureshi.jpg",
+        "tags": [
+            "AI Art"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 17,
+        "folder": "prompt-24",
+        "title": "Maniacal Impasto Expressionist Portrait",
+        "image": "fazal-ur-rehman-laiqverse.jpg",
+        "tags": [
+            "AI Art"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 18,
+        "folder": "prompt-6",
+        "title": "The Urban Chronicle Portrait",
+        "image": "malala-laiqverse.jpg",
+        "tags": [
+            "AI Art"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 19,
+        "folder": "prompt-22",
+        "title": "The Visionary Ink Study",
+        "image": "humera-khan-laiqverse.jpg",
+        "tags": [
+            "AI Art"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 20,
+        "folder": "prompt-13",
+        "title": "The Alpenglow Reflection Portrait",
+        "image": "shah-rukh-khan-laiqverse.jpg",
+        "tags": [
+            "AI Art"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 21,
+        "folder": "prompt-8",
+        "title": "The Pen-and-Ink Editorial Caricature",
+        "image": "bajwa-laiqverse.jpg",
+        "tags": [
+            "AI Art"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 22,
+        "folder": "prompt-16",
+        "title": "The Neo-Baroque Engraving Portrait",
+        "image": "laiq-qureshi.jpg",
+        "tags": [
+            "AI Art"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 23,
+        "folder": "prompt-9",
+        "title": "The Crimson Silhouette Portrait",
+        "image": "fazal-ur-rehman-laiqverse.jpg",
+        "tags": [
+            "AI Art"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 24,
+        "folder": "prompt-3",
+        "title": "Refined Monochromatic Ink Profile",
+        "image": "laiqverse28.png",
+        "tags": [
+            "AI Art"
+        ],
+        "isPanoramic": false
+    },
+    {
+        "id": 25,
+        "folder": "vault-3",
+        "title": "LaiqVerse ArtWork #1",
+        "image": "nawaz-sharif-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 26,
+        "folder": "vault-3",
+        "title": "LaiqVerse ArtWork #2",
+        "image": "rana-sana-ullah-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 27,
+        "folder": "vault-3",
+        "title": "LaiqVerse ArtWork #3",
+        "image": "gandapur-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 28,
+        "folder": "vault-3",
+        "title": "LaiqVerse ArtWork #4",
+        "image": "laiq-qureshi-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 29,
+        "folder": "vault-3",
+        "title": "LaiqVerse ArtWork #5",
+        "image": "fazal-ur-rahman-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 30,
+        "folder": "vault-4",
+        "title": "LaiqVerse ArtWork #6",
+        "image": "laiqverse-cubist-graphite-benazir-bhutto.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 31,
+        "folder": "vault-4",
+        "title": "LaiqVerse ArtWork #7",
+        "image": "laiqverse-cubist-graphite-malala.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 32,
+        "folder": "vault-4",
+        "title": "LaiqVerse ArtWork #8",
+        "image": "laiqverse-cubist-graphite-allama-iqbal.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 33,
+        "folder": "vault-4",
+        "title": "LaiqVerse ArtWork #9",
+        "image": "laiqverse-cubist-graphite-noor-jehan.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 34,
+        "folder": "vault-4",
+        "title": "LaiqVerse ArtWork #10",
+        "image": "maryam-nawaz-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 35,
+        "folder": "vault-4",
+        "title": "LaiqVerse ArtWork #11",
+        "image": "nawaz-sharif-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 36,
+        "folder": "vault-4",
+        "title": "LaiqVerse ArtWork #12",
+        "image": "shah-rukh-khan-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 37,
+        "folder": "vault-4",
+        "title": "LaiqVerse ArtWork #13",
+        "image": "malala-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 38,
+        "folder": "vault-4",
+        "title": "LaiqVerse ArtWork #14",
+        "image": "laiqverse-cubist-graphite-laiqqureshi.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 39,
+        "folder": "vault-4",
+        "title": "LaiqVerse ArtWork #15",
+        "image": "laiqverse-cubist-graphite-edhi.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 40,
+        "folder": "vault-4",
+        "title": "LaiqVerse ArtWork #16",
+        "image": "gandapur-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 41,
+        "folder": "vault-4",
+        "title": "LaiqVerse ArtWork #17",
+        "image": "fazal-ur-rehman-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 42,
+        "folder": "vault-4",
+        "title": "LaiqVerse ArtWork #18",
+        "image": "rana-sanaullah-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 43,
+        "folder": "vault-4",
+        "title": "LaiqVerse ArtWork #19",
+        "image": "laiq-qureshi-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 44,
+        "folder": "vault-4",
+        "title": "LaiqVerse ArtWork #20",
+        "image": "laiqverse-cubist-graphite-laiq.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 45,
+        "folder": "vault-5",
+        "title": "LaiqVerse ArtWork #21",
+        "image": "dhaka-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 46,
+        "folder": "vault-5",
+        "title": "LaiqVerse ArtWork #22",
+        "image": "benazir-bhutto-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 47,
+        "folder": "vault-5",
+        "title": "LaiqVerse ArtWork #23",
+        "image": "manila-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 48,
+        "folder": "vault-5",
+        "title": "LaiqVerse ArtWork #24",
+        "image": "mumbai-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 49,
+        "folder": "vault-5",
+        "title": "LaiqVerse ArtWork #25",
+        "image": "tamil-nadu-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 50,
+        "folder": "vault-5",
+        "title": "LaiqVerse ArtWork #26",
+        "image": "colin-david-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 51,
+        "folder": "vault-5",
+        "title": "LaiqVerse ArtWork #27",
+        "image": "kathmandu-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 52,
+        "folder": "vault-5",
+        "title": "LaiqVerse ArtWork #28",
+        "image": "kolkata-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 53,
+        "folder": "vault-5",
+        "title": "LaiqVerse ArtWork #29",
+        "image": "allama-iqbal-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 54,
+        "folder": "vault-5",
+        "title": "LaiqVerse ArtWork #30",
+        "image": "quetta-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 55,
+        "folder": "vault-5",
+        "title": "LaiqVerse ArtWork #31",
+        "image": "mutan-pakistan-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 56,
+        "folder": "vault-5",
+        "title": "LaiqVerse ArtWork #32",
+        "image": "karachi-food-street-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 57,
+        "folder": "vault-5",
+        "title": "LaiqVerse ArtWork #33",
+        "image": "lahore-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 58,
+        "folder": "vault-5",
+        "title": "LaiqVerse ArtWork #34",
+        "image": "peshawar-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 59,
+        "folder": "vault-5",
+        "title": "LaiqVerse ArtWork #35",
+        "image": "islamabad-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 60,
+        "folder": "vault-5",
+        "title": "LaiqVerse ArtWork #36",
+        "image": "laiq-ahmed-qureshi-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 61,
+        "folder": "vault-5",
+        "title": "LaiqVerse ArtWork #37",
+        "image": "delhi-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 62,
+        "folder": "vault-5",
+        "title": "LaiqVerse ArtWork #38",
+        "image": "edhi-by-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 63,
+        "folder": "vault-5",
+        "title": "LaiqVerse ArtWork #39",
+        "image": "karachi-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 64,
+        "folder": "vault-5",
+        "title": "LaiqVerse ArtWork #40",
+        "image": "gawadar-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 65,
+        "folder": "vault-5",
+        "title": "LaiqVerse ArtWork #41",
+        "image": "multan-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 66,
+        "folder": "vault-5",
+        "title": "LaiqVerse ArtWork #42",
+        "image": "bangkok-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 67,
+        "folder": "vault-2",
+        "title": "LaiqVerse ArtWork #43",
+        "image": "allan-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 68,
+        "folder": "vault-2",
+        "title": "LaiqVerse ArtWork #44",
+        "image": "nusrat-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 69,
+        "folder": "vault-2",
+        "title": "LaiqVerse ArtWork #45",
+        "image": "abro-khuda-bux-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 70,
+        "folder": "vault-2",
+        "title": "LaiqVerse ArtWork #46",
+        "image": "imranbylaiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 71,
+        "folder": "vault-2",
+        "title": "LaiqVerse ArtWork #47",
+        "image": "tina-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 72,
+        "folder": "vault-2",
+        "title": "LaiqVerse ArtWork #48",
+        "image": "nawaz-sharif-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 73,
+        "folder": "vault-2",
+        "title": "LaiqVerse ArtWork #49",
+        "image": "rana-sana-ullah-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 74,
+        "folder": "vault-2",
+        "title": "LaiqVerse ArtWork #50",
+        "image": "bilawalbylaiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 75,
+        "folder": "vault-2",
+        "title": "LaiqVerse ArtWork #51",
+        "image": "faiz-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 76,
+        "folder": "vault-2",
+        "title": "LaiqVerse ArtWork #52",
+        "image": "atif-aslam-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 77,
+        "folder": "vault-2",
+        "title": "LaiqVerse ArtWork #53",
+        "image": "arif-imam-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 78,
+        "folder": "vault-2",
+        "title": "LaiqVerse ArtWork #54",
+        "image": "ayubbylaiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 79,
+        "folder": "vault-2",
+        "title": "LaiqVerse ArtWork #55",
+        "image": "malala-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 80,
+        "folder": "vault-2",
+        "title": "LaiqVerse ArtWork #56",
+        "image": "fazalbylaiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 81,
+        "folder": "vault-2",
+        "title": "LaiqVerse ArtWork #57",
+        "image": "gandapur-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 82,
+        "folder": "vault-2",
+        "title": "LaiqVerse ArtWork #58",
+        "image": "fahad-mustafa-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 83,
+        "folder": "vault-2",
+        "title": "LaiqVerse ArtWork #59",
+        "image": "asim-munir-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 84,
+        "folder": "vault-2",
+        "title": "LaiqVerse ArtWork #60",
+        "image": "laiq-qureshi-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 85,
+        "folder": "vault-2",
+        "title": "LaiqVerse ArtWork #61",
+        "image": "benazir-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 86,
+        "folder": "vault-2",
+        "title": "LaiqVerse ArtWork #62",
+        "image": "saba-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 87,
+        "folder": "vault-2",
+        "title": "LaiqVerse ArtWork #63",
+        "image": "fazal-ur-rahman-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 88,
+        "folder": "vault-7",
+        "title": "LaiqVerse ArtWork #64",
+        "image": "donald-trump-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 89,
+        "folder": "vault-7",
+        "title": "LaiqVerse ArtWork #65",
+        "image": "benazir-bhutto-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 90,
+        "folder": "vault-7",
+        "title": "LaiqVerse ArtWork #66",
+        "image": "Mohammad-Ali-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 91,
+        "folder": "vault-7",
+        "title": "LaiqVerse ArtWork #67",
+        "image": "imran-khan-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 92,
+        "folder": "vault-7",
+        "title": "LaiqVerse ArtWork #68",
+        "image": "amitabh-rekha-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 93,
+        "folder": "vault-7",
+        "title": "LaiqVerse ArtWork #69",
+        "image": "Idris-Elba-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 94,
+        "folder": "vault-7",
+        "title": "LaiqVerse ArtWork #70",
+        "image": "Indira-Gandhi-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 95,
+        "folder": "vault-7",
+        "title": "LaiqVerse ArtWork #71",
+        "image": "maryam-nawaz-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 96,
+        "folder": "vault-7",
+        "title": "LaiqVerse ArtWork #72",
+        "image": "tom-cruise-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 97,
+        "folder": "vault-7",
+        "title": "LaiqVerse ArtWork #73",
+        "image": "a-r-rahman-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 98,
+        "folder": "vault-7",
+        "title": "LaiqVerse ArtWork #74",
+        "image": "nawaz-sharif-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 99,
+        "folder": "vault-7",
+        "title": "LaiqVerse ArtWork #75",
+        "image": "rana-sana-ullah-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 100,
+        "folder": "vault-7",
+        "title": "LaiqVerse ArtWork #76",
+        "image": "salma-hayek1-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 101,
+        "folder": "vault-7",
+        "title": "LaiqVerse ArtWork #77",
+        "image": "Shah-Rukh-Khan-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 102,
+        "folder": "vault-7",
+        "title": "LaiqVerse ArtWork #78",
+        "image": "laiq-ahmed-qureshi-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 103,
+        "folder": "vault-7",
+        "title": "LaiqVerse ArtWork #79",
+        "image": "bajwa-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 104,
+        "folder": "vault-7",
+        "title": "LaiqVerse ArtWork #80",
+        "image": "salma-hayek-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 105,
+        "folder": "vault-7",
+        "title": "LaiqVerse ArtWork #81",
+        "image": "malala-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 106,
+        "folder": "vault-7",
+        "title": "LaiqVerse ArtWork #82",
+        "image": "fazal-ur-rehman-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 107,
+        "folder": "vault-7",
+        "title": "LaiqVerse ArtWork #83",
+        "image": "fatima-jinnah-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 108,
+        "folder": "vault-8",
+        "title": "LaiqVerse ArtWork #84",
+        "image": "shah-rukh-khan-laiq-verse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 109,
+        "folder": "vault-8",
+        "title": "LaiqVerse ArtWork #85",
+        "image": "donald-trump-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 110,
+        "folder": "vault-8",
+        "title": "LaiqVerse ArtWork #86",
+        "image": "salma-hayek-laiq-verse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 111,
+        "folder": "vault-8",
+        "title": "LaiqVerse ArtWork #87",
+        "image": "laiq-qureshi-laiq-verse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 112,
+        "folder": "vault-8",
+        "title": "LaiqVerse ArtWork #88",
+        "image": "ibn-e-insha-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 113,
+        "folder": "vault-8",
+        "title": "LaiqVerse ArtWork #89",
+        "image": "malala-laiq-verse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 114,
+        "folder": "vault-8",
+        "title": "LaiqVerse ArtWork #90",
+        "image": "Idris-Elba-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 115,
+        "folder": "vault-8",
+        "title": "LaiqVerse ArtWork #91",
+        "image": "idris-alba-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 116,
+        "folder": "vault-8",
+        "title": "LaiqVerse ArtWork #92",
+        "image": "maryam-nawaz-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 117,
+        "folder": "vault-8",
+        "title": "LaiqVerse ArtWork #93",
+        "image": "tom-cruise-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 118,
+        "folder": "vault-8",
+        "title": "LaiqVerse ArtWork #94",
+        "image": "a-r-rahman-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 119,
+        "folder": "vault-8",
+        "title": "LaiqVerse ArtWork #95",
+        "image": "fazal-ur-rahman-laiq-verse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 120,
+        "folder": "vault-8",
+        "title": "LaiqVerse ArtWork #96",
+        "image": "salma-hayek1-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 121,
+        "folder": "vault-8",
+        "title": "LaiqVerse ArtWork #97",
+        "image": "shah-rukh-khan-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 122,
+        "folder": "vault-8",
+        "title": "LaiqVerse ArtWork #98",
+        "image": "rana-sanaullah-laiq-verse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 123,
+        "folder": "vault-8",
+        "title": "LaiqVerse ArtWork #99",
+        "image": "laiq-ahmed-qureshi-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 124,
+        "folder": "vault-8",
+        "title": "LaiqVerse ArtWork #100",
+        "image": "salma-hayek-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 125,
+        "folder": "vault-8",
+        "title": "LaiqVerse ArtWork #101",
+        "image": "irrfan-khan-laiq-verse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 126,
+        "folder": "vault-8",
+        "title": "LaiqVerse ArtWork #102",
+        "image": "bilawal-bhutto-laiq-verse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 127,
+        "folder": "vault-6",
+        "title": "LaiqVerse ArtWork #103",
+        "image": "benazir-bhutto-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 128,
+        "folder": "vault-6",
+        "title": "LaiqVerse ArtWork #104",
+        "image": "Mohammad-Ali-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 129,
+        "folder": "vault-6",
+        "title": "LaiqVerse ArtWork #105",
+        "image": "Jinnah-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 130,
+        "folder": "vault-6",
+        "title": "LaiqVerse ArtWork #106",
+        "image": "laiqverse-image-2.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 131,
+        "folder": "vault-6",
+        "title": "LaiqVerse ArtWork #107",
+        "image": "laiqverse-image-3.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 132,
+        "folder": "vault-6",
+        "title": "LaiqVerse ArtWork #108",
+        "image": "laiqverse-image-1.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 133,
+        "folder": "vault-6",
+        "title": "LaiqVerse ArtWork #109",
+        "image": "amitabh-rekha-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 134,
+        "folder": "vault-6",
+        "title": "LaiqVerse ArtWork #110",
+        "image": "nida-yasir-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 135,
+        "folder": "vault-6",
+        "title": "LaiqVerse ArtWork #111",
+        "image": "laiqverse-fazal-ur-rahman.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 136,
+        "folder": "vault-6",
+        "title": "LaiqVerse ArtWork #112",
+        "image": "nawaz-sharif-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 137,
+        "folder": "vault-6",
+        "title": "LaiqVerse ArtWork #113",
+        "image": "Shah-Rukh-Khan-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 138,
+        "folder": "vault-6",
+        "title": "LaiqVerse ArtWork #114",
+        "image": "laiq-ahmed-qureshi-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 139,
+        "folder": "vault-6",
+        "title": "LaiqVerse ArtWork #115",
+        "image": "bajwa-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 140,
+        "folder": "vault-6",
+        "title": "LaiqVerse ArtWork #116",
+        "image": "malala-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 141,
+        "folder": "vault-6",
+        "title": "LaiqVerse ArtWork #117",
+        "image": "nusrat-fateh-ali-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 142,
+        "folder": "vault-6",
+        "title": "LaiqVerse ArtWork #118",
+        "image": "fazal-ur-rehman-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 143,
+        "folder": "vault-6",
+        "title": "LaiqVerse ArtWork #119",
+        "image": "Atiqa-Odho-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 144,
+        "folder": "vault-6",
+        "title": "LaiqVerse ArtWork #120",
+        "image": "mia-khalifa-laiqverse.jpg",
+        "tags": [
+            "Vault"
+        ],
+        "isPanoramic": false,
+        "isVaultOnly": true
+    },
+    {
+        "id": 145,
+        "folder": "panoramic/panoramic-2",
+        "title": "Panoramic 2",
+        "image": "laiqverse-AI-painting2.jpg",
+        "tags": [
+            "Panoramic"
+        ],
+        "isPanoramic": true
+    },
+    {
+        "id": 146,
+        "folder": "panoramic/panoramic-5",
+        "title": "Panoramic 5",
+        "image": "laiqverse-AI-painting5.jpg",
+        "tags": [
+            "Panoramic"
+        ],
+        "isPanoramic": true
+    },
+    {
+        "id": 147,
+        "folder": "panoramic/panoramic-4",
+        "title": "Panoramic 4",
+        "image": "laiqverse-AI-painting4.jpg",
+        "tags": [
+            "Panoramic"
+        ],
+        "isPanoramic": true
+    },
+    {
+        "id": 148,
+        "folder": "panoramic/panoramic-3",
+        "title": "Panoramic 3",
+        "image": "laiqverse-AI-painting3.jpg",
+        "tags": [
+            "Panoramic"
+        ],
+        "isPanoramic": true
+    },
+    {
+        "id": 149,
+        "folder": "panoramic/panoramic-6",
+        "title": "Panoramic 6",
+        "image": "laiqverse-AI-painting6.jpg",
+        "tags": [
+            "Panoramic"
+        ],
+        "isPanoramic": true
+    },
+    {
+        "id": 150,
+        "folder": "panoramic/panoramic-1",
+        "title": "Panoramic 1",
+        "image": "laiqverse-AI-painting1.jpg",
+        "tags": [
+            "Panoramic"
+        ],
+        "isPanoramic": true
+    }
+,
+    {
+    "id": 151,
+    "folder": "panoramic/panoramic-7",
+    "title": "The Silent Empire of Embers",
+    "image": "laiqverse-AI-painting7.jpg",
+    "prompt": "Beneath the forgotten forests, where rain lingers on ancient timber and amber droplets preserve the memory of passing seasons, an unseen civilization moves with quiet precision. These are not ordinary...",
+    "tags": [
+        "Panoramic",
+        "LaiqVerse",
+        "AI Art"
+    ],
+    "isPanoramic": true
+}
+];
+        let currentLightboxItem = null;
+
+        function renderVault() {
+            const grid = document.getElementById('vaultGrid');
+            if (!grid) return;
+            let html = '';
+            
+            vaultData.forEach((item) => {
+                const isPanoramic = item.isPanoramic || false;
+                const imagePath = item.folder + '/' + item.image;
+                const itemClass = isPanoramic ? 'vault-item-panoramic' : 'vault-item';
+                html += `
+                    <div class="${itemClass}" onclick="openLightbox(${item.id})">
+                        <img src="${imagePath}" alt="${item.title}" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect width=%22300%22 height=%22300%22 fill=%22%23e8e8ed%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-family=%22system-ui%22 fill=%22%23999%22%3ENo Image%3C/text%3E%3C/svg%3E'" />
+                        <div class="vault-info">
+                            <h3>${item.title}</h3>
+                            <div class="vault-tags">
+                                ${item.tags.slice(0, 3).map(tag => `<span>${tag}</span>`).join('')}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            grid.innerHTML = html;
+        }
+
+        function openLightbox(id) {
+            const item = vaultData.find(p => p.id === id);
+            if (!item) return;
+            currentLightboxItem = item;
+            document.getElementById('lbImage').src = item.folder + '/' + item.image;
+            document.getElementById('lbImage').alt = item.title;
+            document.getElementById('lbCategory').textContent = 'AI Art';
+            document.getElementById('lbTitle').textContent = item.title;
+            document.getElementById('lbDescription').textContent = item.prompt || 'No description available.';
+            document.getElementById('lbTags').innerHTML = item.tags.map(tag => `<span>${tag}</span>`).join('');
+            document.getElementById('lightbox').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('open');
+            document.body.style.overflow = '';
+            document.getElementById('lbShareMenu').classList.remove('show');
+        }
+
+        document.getElementById('lightbox').addEventListener('click', function(e) {
+            if (e.target === this) closeLightbox();
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeLightbox();
+        });
+
+        function copyLightboxPrompt() {
+            if (!currentLightboxItem) return;
+            const text = currentLightboxItem.prompt || 'No prompt available.';
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(() => {
+                    showToast('✨ Prompt copied!');
+                }).catch(() => fallbackCopy(text));
+            } else {
+                fallbackCopy(text);
+            }
+        }
+
+        function fallbackCopy(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                document.execCommand('copy');
+                showToast('✨ Prompt copied!');
+            } catch (e) {
+                showToast('📋 Please copy manually');
+            }
+            document.body.removeChild(textarea);
+        }
+
+        function toggleShareMenu() {
+            document.getElementById('lbShareMenu').classList.toggle('show');
+        }
+
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.lb-share-dropdown')) {
+                document.getElementById('lbShareMenu').classList.remove('show');
+            }
+        });
+
+        function shareLightbox(platform) {
+            if (!currentLightboxItem) return;
+            const item = currentLightboxItem;
+            const title = item.title;
+            const text = (item.prompt || '').substring(0, 300) + '...';
+            const url = window.location.href;
+            const imageUrl = window.location.origin + '/' + item.folder + '/' + item.image;
+            const brandMessage = '✨ ' + title + '\n\n' + text + '\n\n🎨 Prompt crafted by Laiq Ahmed Qureshi\n#LaiqVerse #AIinPakistan #TasteMatters';
+            let shareUrl = '';
+            switch(platform) {
+                case 'twitter': shareUrl = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(brandMessage) + '&url=' + encodeURIComponent(url); break;
+                case 'facebook': shareUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url) + '&quote=' + encodeURIComponent(title + ' — ' + brandMessage); break;
+                case 'linkedin': shareUrl = 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(url) + '&title=' + encodeURIComponent(title) + '&summary=' + encodeURIComponent(brandMessage); break;
+                case 'whatsapp': shareUrl = 'https://wa.me/?text=' + encodeURIComponent(brandMessage + '\n\n' + url); break;
+                case 'pinterest': shareUrl = 'https://pinterest.com/pin/create/button/?url=' + encodeURIComponent(url) + '&media=' + encodeURIComponent(imageUrl) + '&description=' + encodeURIComponent(title + ' — ' + brandMessage); break;
+                case 'bluesky': shareUrl = 'https://bsky.app/intent/compose?text=' + encodeURIComponent(brandMessage + '\n\n' + url); break;
+                case 'email': shareUrl = 'mailto:?subject=' + encodeURIComponent(title + ' — Premium AI Prompt') + '&body=' + encodeURIComponent(brandMessage + '\n\n' + url); break;
+                default: return;
+            }
+            if (shareUrl) window.open(shareUrl, '_blank', 'width=600,height=500');
+            document.getElementById('lbShareMenu').classList.remove('show');
+        }
+
+        function showToast(message) {
+            const existing = document.querySelector('.toast');
+            if (existing) existing.remove();
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.textContent = message;
+            Object.assign(toast.style, {
+                position: 'fixed', bottom: '32px', left: '50%', transform: 'translateX(-50%)',
+                background: 'rgba(0,0,0,0.85)', color: 'white', padding: '14px 32px',
+                borderRadius: '100px', fontFamily: '-apple-system, sans-serif', fontSize: '0.95rem',
+                fontWeight: '500', backdropFilter: 'blur(10px)', zIndex: '999',
+                boxShadow: '0 8px 30px rgba(0,0,0,0.2)', opacity: '0',
+                transition: 'opacity 0.3s ease'
+            });
+            document.body.appendChild(toast);
+            setTimeout(() => toast.style.opacity = '1', 10);
+            setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 300); }, 2500);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🏛️ The Vault loaded with ' + vaultData.length + ' items!');
+            renderVault();
+        });
+    </script>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggle = document.querySelector('.mobile-toggle');
+            const nav = document.querySelector('.main-nav');
+            if (toggle && nav) {
+                toggle.addEventListener('click', function() {
+                    if (nav.style.display === 'flex') {
+                        nav.style.display = 'none';
+                    } else {
+                        nav.style.display = 'flex';
+                        nav.style.flexDirection = 'column';
+                        nav.style.position = 'absolute';
+                        nav.style.top = '68px';
+                        nav.style.left = '0';
+                        nav.style.right = '0';
+                        nav.style.background = 'rgba(255,255,255,0.98)';
+                        nav.style.padding = '24px';
+                        nav.style.borderBottom = '1px solid rgba(0,0,0,0.04)';
+                        nav.style.gap = '16px';
+                        nav.style.alignItems = 'center';
+                        nav.style.zIndex = '99';
+                    }
+                });
+            }
+            document.addEventListener('click', function(event) {
+                const nav = document.querySelector('.main-nav');
+                const toggle = document.querySelector('.mobile-toggle');
+                if (nav && toggle && !nav.contains(event.target) && !toggle.contains(event.target)) {
+                    nav.style.display = 'none';
+                }
+            });
+            window.addEventListener('resize', function() {
+                const nav = document.querySelector('.main-nav');
+                if (window.innerWidth > 768 && nav) {
+                    nav.style.display = '';
+                    nav.style.position = '';
+                    nav.style.top = '';
+                    nav.style.left = '';
+                    nav.style.right = '';
+                    nav.style.background = '';
+                    nav.style.padding = '';
+                    nav.style.borderBottom = '';
+                    nav.style.gap = '';
+                    nav.style.alignItems = '';
+                    nav.style.zIndex = '';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
